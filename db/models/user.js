@@ -37,6 +37,8 @@ module.exports = db => db.define('users', {
 module.exports.associations = (User, {OAuth, Thing, Favorite}) => {
   User.hasOne(OAuth)
   User.belongsToMany(Thing, {as: 'favorites', through: Favorite})
+  
+  
 }
 
 function setEmailAndPassword(user) {
