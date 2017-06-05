@@ -5,7 +5,7 @@ import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
 
 import store from './store'
-import Jokes from './components/Jokes'
+import Landing from './components/Landing'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
@@ -15,8 +15,32 @@ const ExampleApp = connect(
 )(
   ({ user, children }) =>
     <div>
-      <nav>
-        {user ? <WhoAmI/> : <Login/>}
+      <nav className='navbar navbar-inverse navbar-fixed-top' role='navigation'>
+          <div className='container'>
+              <div className='navbar-header'>
+                  <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1'>
+                      <span className='sr-only'>Toggle navigation</span>
+                      <span className='icon-bar'></span>
+                      <span className='icon-bar'></span>
+                      <span className='icon-bar'></span>
+                  </button>
+                  <a className='navbar-brand' href='#'>Galactic BnB</a>
+              </div>
+              <div className='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+                  <ul className='nav navbar-nav'>
+                      <li>
+                          <a href='#'>About</a>
+                      </li>
+                      <li>
+                          <a href='#'>Homes</a>
+                      </li>
+                      <li>
+                          <a href='#'>Contact</a>
+                      </li>
+                  </ul>
+              {user ? <WhoAmI/> : <Login/>}
+              </div>
+          </div>
       </nav>
       {children}
     </div>
@@ -26,8 +50,8 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp}>
-        <IndexRedirect to="/jokes" />
-        <Route path="/jokes" component={Jokes} />
+        <IndexRedirect to="/landing" />
+        <Route path="/landing" component={Landing} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
