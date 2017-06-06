@@ -7,5 +7,5 @@ module.exports = db => db.define('availability', {
 })
 
 module.exports.associations = (Availability, {Home}) => {
-  // Availability.belongsToMany(Home)
+  Availability.belongsTo(Home)
 }
