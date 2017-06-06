@@ -9,6 +9,9 @@ import Landing from './components/Landing'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
+import HomesContainer from './containers/HomesContainer'
+import SelectedHomeContainer from './containers/SelectedHomeContainer'
+import { fetchHomes } from './action-creators/homes'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -46,12 +49,20 @@ const ExampleApp = connect(
     </div>
 )
 
+const HomesList = () => {
+  axios.get('/homes')
+  .then(res => res.data)
+  .then(homes => store.dispatch(fetchHomes(homes)))
+}
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp}>
         <IndexRedirect to="/landing" />
         <Route path="/landing" component={Landing} />
+        <Route path="/homes" component={HomesContainer} onEnter={HomesList}/>
+        <Route path="/homes/:homeId" component={SelectedHomeContainer} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
