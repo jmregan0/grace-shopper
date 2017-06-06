@@ -5,10 +5,19 @@ const bcrypt = require('bcryptjs')
     , {STRING, VIRTUAL} = require('sequelize')
 
 module.exports = db => db.define('users', {
-  name: STRING,
+  name: {
+    type: STRING,
+    allowNull: false
+  },
+  picture: STRING,
+  userType: {
+    type: STRING,
+    allowNull: false
+  },
   email: {
     type: STRING,
     validate: {
+      notNull: true,
       isEmail: true,
       notEmpty: true,
     }
@@ -34,9 +43,8 @@ module.exports = db => db.define('users', {
   }
 })
 
-module.exports.associations = (User, {OAuth, Thing, Favorite}) => {
+module.exports.associations = (User, {OAuth, Home}) => {
   User.hasOne(OAuth)
-  User.belongsToMany(Thing, {as: 'favorites', through: Favorite})
 }
 
 function setEmailAndPassword(user) {

@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('APP/db')
-const User = db.model('users')
+const Home = db.model('homes')
 
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
@@ -13,19 +13,27 @@ module.exports = require('express').Router()
     // If you want to only let admins list all the users, then you'll
     // have to add a role column to the users table to support
     // the concept of admin users.
-    // forbidden('listing users is not allowed'),
+    //forbidden('listing users is not allowed'),
     (req, res, next) =>
-      User.findAll()
-        .then(users => res.json(users))
+      Home.findAll()
+        .then(homes => res.json(homes))
         .catch(next))
   .post('/',
     (req, res, next) =>
-      User.create(req.body)
-      .then(user => res.status(201).json(user))
+      Home.create(req.body)
+      .then(home => res.status(201).json(home))
       .catch(next))
   .get('/:id',
     mustBeLoggedIn,
     (req, res, next) =>
-      User.findById(req.params.id)
-      .then(user => res.json(user))
+      Home.findById(req.params.id)
+      .then(home => res.json(home))
       .catch(next))
+  .delete('/:id', (req, res, next) =>
+    Home.destroy({
+      where: {id: req.params.id}
+    })
+    .then(deleted =>
+      res.sendStatus(202))
+    .catch(next)
+  )

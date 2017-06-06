@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('APP/db')
-const User = db.model('users')
+const Transaction = db.model('transactions')
 
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
@@ -13,19 +13,13 @@ module.exports = require('express').Router()
     // If you want to only let admins list all the users, then you'll
     // have to add a role column to the users table to support
     // the concept of admin users.
-    // forbidden('listing users is not allowed'),
+    //forbidden('listing users is not allowed'),
     (req, res, next) =>
-      User.findAll()
-        .then(users => res.json(users))
+      Transaction.findAll()
+        .then(trips => res.json(trips))
         .catch(next))
   .post('/',
     (req, res, next) =>
-      User.create(req.body)
-      .then(user => res.status(201).json(user))
-      .catch(next))
-  .get('/:id',
-    mustBeLoggedIn,
-    (req, res, next) =>
-      User.findById(req.params.id)
-      .then(user => res.json(user))
+      Transaction.create(req.body)
+      .then(trip => res.status(201).json(trip))
       .catch(next))
