@@ -2,3 +2,11 @@
   background-image: url('elysium.jpg');
   /*background-size: 800px 300px;*/
 }
+
+h3 {
+  margin-top: 0;
+}
+
+ul {
+  padding-right: 40px;
+}

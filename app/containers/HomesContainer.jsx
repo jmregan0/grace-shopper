@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Homes from '../components/Homes'
 import { getHomeById } from '../action-creators/homes'
 
+
 const mapStateToProps = (state) => {
   return {
     homes: state.homes.list,
