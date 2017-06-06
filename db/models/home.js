@@ -6,9 +6,10 @@ var db = require('../index.js')
 module.exports = db => db.define('homes', {
   name: Sequelize.STRING,
   location: Sequelize.STRING,
-  description:Sequelize.TEXT,
+  description: Sequelize.TEXT,
   imageUrl: {
 	  type: Sequelize.STRING,
+    //defaultValue: '',
 	  validate: {
 	  		isUrl: true
 	  		}
