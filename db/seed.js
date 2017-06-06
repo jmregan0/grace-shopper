@@ -12,27 +12,60 @@ function seedEverything() {
 }
 
 const users = seed(User, {
-  dave: {
-      id:1,
-      name: 'dave',
-      userType: 'host',
-      email:'asd@asd.com',
-      password: '123'
-    },
-  john: {
-      id:2,
-      name: 'john',
-      userType: 'guest',
-      email:'qwe@asd.com',
-      password: '123'
-    },
-  waldo: {
-      id:3,
-      name: 'Waldo',
-      userType: 'guest',
-      email:'waldo@asd.com',
-      password: '123'
-    }})
+  yoda: {
+    name: 'Yoda',
+    userType: 'host',
+    email: 'yoda@example.com',
+    password: '1234',
+  },
+  lando: {
+    name: 'Lando Calrissian',
+    userType: 'host',
+    email: 'lando@example.gov',
+    password: '1234'
+  },
+  kirk: {
+    name: 'Captain Kirk',
+    userType: 'host',
+    email: 'captainkirk@example.gov',
+    password: '1234'
+  },
+  drWho: {
+    name: 'Dr. Who',
+    userType: 'host',
+    email: 'drwho@example.gov',
+    password: '1234'
+  },
+  stormTrooper: {
+    name: 'Storm Trooper 074',
+    userType: 'host',
+    email: 'st074@example.gov',
+    password: '1234'
+  },
+  vader: {
+    name: 'Darth Vader',
+    userType: 'host',
+    email: 'vaded@example.gov',
+    password: '1234'
+  },
+  Jabba: {
+    name: 'Jabba the Hut',
+    userType: 'host',
+    email: 'jh@example.gov',
+    password: '1234'
+  },
+  Coop: {
+    name: 'Joseph Cooper',
+    userType: 'host',
+    email: 'jc@example.gov',
+    password: '1234'
+  },
+  Thanos: {
+    name: 'Thanos',
+    userType: 'host',
+    email: 'thanos@example.gov',
+    password: '1234'
+  }})
 
 
 const homes = seed(Home, {
