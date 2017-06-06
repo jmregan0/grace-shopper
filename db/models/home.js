@@ -4,7 +4,7 @@ var db = require('../index.js')
 
 
 module.exports = db => db.define('homes', {
-  name:Sequelize.TEXT, 
+  name: Sequelize.STRING,
   location: Sequelize.STRING,
   description:Sequelize.TEXT,
   imageUrl: {
@@ -20,7 +20,7 @@ module.exports = db => db.define('homes', {
 
 })
 
-module.exports.associations = (Home, {Transaction, User}) => {
+module.exports.associations = (Home, {User}) => {
 	Home.belongsTo(User, {as: 'Host'})
 
 }
