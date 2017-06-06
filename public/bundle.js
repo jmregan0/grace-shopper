@@ -14065,7 +14065,226 @@ function warning(message) {
 }
 
 /***/ }),
-/* 135 */,
+/* 135 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Landing = function Landing() {
+    return _react2.default.createElement(
+        'div',
+        { className: 'container' },
+        _react2.default.createElement(
+            'header',
+            { className: 'jumbotron hero-spacer' },
+            _react2.default.createElement(
+                'h1',
+                null,
+                'Welcome Home... Anywhere In The Universe!'
+            ),
+            _react2.default.createElement(
+                'p',
+                null,
+                'Whether you\'re looking for a pad to crash in Andromeda or Dagobah, we\'ve got you covered. Check out the sweet places to crash below.'
+            ),
+            _react2.default.createElement(
+                'p',
+                null,
+                _react2.default.createElement(
+                    'a',
+                    { className: 'btn btn-primary btn-large' },
+                    'View all homes'
+                )
+            )
+        ),
+        _react2.default.createElement('hr', null),
+        _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+                'div',
+                { className: 'col-lg-12' },
+                _react2.default.createElement(
+                    'h3',
+                    null,
+                    'Latest Features'
+                )
+            )
+        ),
+        _react2.default.createElement(
+            'div',
+            { className: 'row text-center' },
+            _react2.default.createElement(
+                'div',
+                { className: 'col-md-3 col-sm-6 hero-feature' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'thumbnail' },
+                    _react2.default.createElement('img', { src: 'http://placehold.it/800x500', alt: '' }),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'caption' },
+                        _react2.default.createElement(
+                            'h3',
+                            null,
+                            'Feature Label'
+                        ),
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+                        ),
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#', className: 'btn btn-primary' },
+                                'Buy Now!'
+                            ),
+                            ' ',
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#', className: 'btn btn-default' },
+                                'More Info'
+                            )
+                        )
+                    )
+                )
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'col-md-3 col-sm-6 hero-feature' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'thumbnail' },
+                    _react2.default.createElement('img', { src: 'http://placehold.it/800x500', alt: '' }),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'caption' },
+                        _react2.default.createElement(
+                            'h3',
+                            null,
+                            'Feature Label'
+                        ),
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+                        ),
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#', className: 'btn btn-primary' },
+                                'Buy Now!'
+                            ),
+                            ' ',
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#', className: 'btn btn-default' },
+                                'More Info'
+                            )
+                        )
+                    )
+                )
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'col-md-3 col-sm-6 hero-feature' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'thumbnail' },
+                    _react2.default.createElement('img', { src: 'http://placehold.it/800x500', alt: '' }),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'caption' },
+                        _react2.default.createElement(
+                            'h3',
+                            null,
+                            'Feature Label'
+                        ),
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+                        ),
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#', className: 'btn btn-primary' },
+                                'Buy Now!'
+                            ),
+                            ' ',
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#', className: 'btn btn-default' },
+                                'More Info'
+                            )
+                        )
+                    )
+                )
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'col-md-3 col-sm-6 hero-feature' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'thumbnail' },
+                    _react2.default.createElement('img', { src: 'http://placehold.it/800x500', alt: '' }),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'caption' },
+                        _react2.default.createElement(
+                            'h3',
+                            null,
+                            'Feature Label'
+                        ),
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+                        ),
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#', className: 'btn btn-primary' },
+                                'Buy Now!'
+                            ),
+                            ' ',
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#', className: 'btn btn-default' },
+                                'More Info'
+                            )
+                        )
+                    )
+                )
+            )
+        ),
+        _react2.default.createElement('hr', null)
+    );
+};
+
+exports.default = Landing;
+
+/***/ }),
 /* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15129,7 +15348,7 @@ var _store = __webpack_require__(139);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _Landing = __webpack_require__(320);
+var _Landing = __webpack_require__(135);
 
 var _Landing2 = _interopRequireDefault(_Landing);
 
@@ -32517,226 +32736,6 @@ module.exports = function(module) {
 	return module;
 };
 
-
-/***/ }),
-/* 320 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(7);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Landing = function Landing() {
-    return _react2.default.createElement(
-        'div',
-        { className: 'container' },
-        _react2.default.createElement(
-            'header',
-            { className: 'jumbotron hero-spacer' },
-            _react2.default.createElement(
-                'h1',
-                null,
-                'Welcome Home... Anywhere In The Universe!'
-            ),
-            _react2.default.createElement(
-                'p',
-                null,
-                'Whether you\'re looking for a pad to crash in Andromeda or Dagobah, we\'ve got you covered. Check out the sweet places to crash below.'
-            ),
-            _react2.default.createElement(
-                'p',
-                null,
-                _react2.default.createElement(
-                    'a',
-                    { className: 'btn btn-primary btn-large' },
-                    'View all homes'
-                )
-            )
-        ),
-        _react2.default.createElement('hr', null),
-        _react2.default.createElement(
-            'div',
-            { className: 'row' },
-            _react2.default.createElement(
-                'div',
-                { className: 'col-lg-12' },
-                _react2.default.createElement(
-                    'h3',
-                    null,
-                    'Latest Features'
-                )
-            )
-        ),
-        _react2.default.createElement(
-            'div',
-            { className: 'row text-center' },
-            _react2.default.createElement(
-                'div',
-                { className: 'col-md-3 col-sm-6 hero-feature' },
-                _react2.default.createElement(
-                    'div',
-                    { className: 'thumbnail' },
-                    _react2.default.createElement('img', { src: 'http://placehold.it/800x500', alt: '' }),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'caption' },
-                        _react2.default.createElement(
-                            'h3',
-                            null,
-                            'Feature Label'
-                        ),
-                        _react2.default.createElement(
-                            'p',
-                            null,
-                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
-                        ),
-                        _react2.default.createElement(
-                            'p',
-                            null,
-                            _react2.default.createElement(
-                                'a',
-                                { href: '#', className: 'btn btn-primary' },
-                                'Buy Now!'
-                            ),
-                            ' ',
-                            _react2.default.createElement(
-                                'a',
-                                { href: '#', className: 'btn btn-default' },
-                                'More Info'
-                            )
-                        )
-                    )
-                )
-            ),
-            _react2.default.createElement(
-                'div',
-                { className: 'col-md-3 col-sm-6 hero-feature' },
-                _react2.default.createElement(
-                    'div',
-                    { className: 'thumbnail' },
-                    _react2.default.createElement('img', { src: 'http://placehold.it/800x500', alt: '' }),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'caption' },
-                        _react2.default.createElement(
-                            'h3',
-                            null,
-                            'Feature Label'
-                        ),
-                        _react2.default.createElement(
-                            'p',
-                            null,
-                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
-                        ),
-                        _react2.default.createElement(
-                            'p',
-                            null,
-                            _react2.default.createElement(
-                                'a',
-                                { href: '#', className: 'btn btn-primary' },
-                                'Buy Now!'
-                            ),
-                            ' ',
-                            _react2.default.createElement(
-                                'a',
-                                { href: '#', className: 'btn btn-default' },
-                                'More Info'
-                            )
-                        )
-                    )
-                )
-            ),
-            _react2.default.createElement(
-                'div',
-                { className: 'col-md-3 col-sm-6 hero-feature' },
-                _react2.default.createElement(
-                    'div',
-                    { className: 'thumbnail' },
-                    _react2.default.createElement('img', { src: 'http://placehold.it/800x500', alt: '' }),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'caption' },
-                        _react2.default.createElement(
-                            'h3',
-                            null,
-                            'Feature Label'
-                        ),
-                        _react2.default.createElement(
-                            'p',
-                            null,
-                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
-                        ),
-                        _react2.default.createElement(
-                            'p',
-                            null,
-                            _react2.default.createElement(
-                                'a',
-                                { href: '#', className: 'btn btn-primary' },
-                                'Buy Now!'
-                            ),
-                            ' ',
-                            _react2.default.createElement(
-                                'a',
-                                { href: '#', className: 'btn btn-default' },
-                                'More Info'
-                            )
-                        )
-                    )
-                )
-            ),
-            _react2.default.createElement(
-                'div',
-                { className: 'col-md-3 col-sm-6 hero-feature' },
-                _react2.default.createElement(
-                    'div',
-                    { className: 'thumbnail' },
-                    _react2.default.createElement('img', { src: 'http://placehold.it/800x500', alt: '' }),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'caption' },
-                        _react2.default.createElement(
-                            'h3',
-                            null,
-                            'Feature Label'
-                        ),
-                        _react2.default.createElement(
-                            'p',
-                            null,
-                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
-                        ),
-                        _react2.default.createElement(
-                            'p',
-                            null,
-                            _react2.default.createElement(
-                                'a',
-                                { href: '#', className: 'btn btn-primary' },
-                                'Buy Now!'
-                            ),
-                            ' ',
-                            _react2.default.createElement(
-                                'a',
-                                { href: '#', className: 'btn btn-default' },
-                                'More Info'
-                            )
-                        )
-                    )
-                )
-            )
-        ),
-        _react2.default.createElement('hr', null)
-    );
-};
-
-exports.default = Landing;
 
 /***/ })
 /******/ ]);
