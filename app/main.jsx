@@ -30,7 +30,7 @@ const ExampleApp = connect(
                   </button>
                   <a className='navbar-brand' href='#'>Galactic BnB</a>
               </div>
-              <div className='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+              <div className='collapse navbar-collapse left' id='bs-example-navbar-collapse-1'>
                   <ul className='nav navbar-nav'>
                       <li>
                           <Link to='#'>About</Link>
@@ -39,8 +39,10 @@ const ExampleApp = connect(
                           <Link to='/homes'>Homes</Link>
                       </li>
                   </ul>
-              {user ? <WhoAmI/> : <Login/>}
               </div>
+                <div className="collapse navbar-collapse right">
+                  {user ? <WhoAmI/> : <Login/>}
+                </div>
           </div>
       </nav>
       {children}
