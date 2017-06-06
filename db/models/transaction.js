@@ -5,10 +5,10 @@ var db = require('../index.js')
 
 module.exports = db => db.define('transactions', {
 
-  transactionDate: Sequelize.DATE, 
+  transactionDate: Sequelize.DATE,
   transactionId: Sequelize.INTEGER,
   price: Sequelize.FLOAT,
-  startDate: Sequelize.DATE
+  reservationDate: Sequelize.DATE
 
 })
 
