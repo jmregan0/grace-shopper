@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 import SelectedHome from '../components/SelectedHome'
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
-
+    selected: state.homes.selected,
   }
 }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router';
 
 const Landing = () => {
   return (
@@ -6,7 +7,7 @@ const Landing = () => {
       <header className='jumbotron hero-spacer'>
         <h1>Welcome Home... Anywhere In The Universe!</h1>
         <p>Whether you're looking for a pad to crash in Andromeda or Dagobah, we've got you covered. Check out the sweet places to crash below.</p>
-        <p><a className='btn btn-primary btn-large'>View all homes</a>
+        <p><Link to = '/homes' className='btn btn-primary btn-large'>View all homes</Link>
         </p>
       </header>
 

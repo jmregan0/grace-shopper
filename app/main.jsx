@@ -38,9 +38,6 @@ const ExampleApp = connect(
                       <li>
                           <Link to='/homes'>Homes</Link>
                       </li>
-                      <li>
-                          <Link to='#'>Contact</Link>
-                      </li>
                   </ul>
               {user ? <WhoAmI/> : <Login/>}
               </div>
@@ -61,6 +58,7 @@ const fetchHomesList = () => {
 
 const fetchSelectedHome = (nextRouterState) => {
   const homeId = nextRouterState.params.homeId;
+  console.log('router state'. nextRouterState);
   store.dispatch(getHomeById(homeId));
 }
 

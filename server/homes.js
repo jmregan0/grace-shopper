@@ -2,6 +2,7 @@
 
 const db = require('APP/db')
 const Home = db.model('homes')
+const User = db.model('users')
 
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
@@ -25,7 +26,12 @@ module.exports = require('express').Router()
       .catch(next))
   .get('/:id',
     (req, res, next) =>
-      Home.findById(req.params.id)
+      Home.find({
+        where: {id: req.params.id},
+        include: [
+          {model: User, as: 'Host' }
+        ]
+      })
       .then(home => res.json(home))
       .catch(next))
   .delete('/:id', (req, res, next) =>

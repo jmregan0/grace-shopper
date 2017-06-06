@@ -2,7 +2,9 @@ import { FETCH_HOMES, SET_CURRENT_HOME } from '../constants'
 
 const initialState = {
   list: [],
-  selected: {}
+  selected: {
+    Host: {},
+  }
 }
 
 export default function(state=initialState, action) {
