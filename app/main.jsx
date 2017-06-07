@@ -13,6 +13,8 @@ import NotFound from './components/NotFound'
 import HomesContainer from './containers/HomesContainer'
 import SelectedHomeContainer from './containers/SelectedHomeContainer'
 import { fetchHomes, getHomeById } from './action-creators/homes'
+import ProfileContainer from './containers/ProfileContainer'
+import { fetchUsers, getUserById } from './action-creators/users'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -37,6 +39,9 @@ const ExampleApp = connect(
                       </li>
                       <li>
                           <Link to='/homes'>Homes</Link>
+                      </li>
+                      <li>
+                          <Link to='/profile/1'>Profile</Link>
                       </li>
                   </ul>
               </div>
@@ -64,6 +69,13 @@ const fetchSelectedHome = (nextRouterState) => {
   store.dispatch(getHomeById(homeId));
 }
 
+const fetchUserInfo = (nextRouterState) => {
+  const userId = nextRouterState.params.homeId;
+  console.log('router state'. nextRouterState);
+  store.dispatch(getUserById(userId));
+}
+
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
@@ -72,6 +84,7 @@ render(
         <Route path="/landing" component={Landing} />
         <Route path="/homes" component={HomesContainer} onEnter={fetchHomesList}/>
         <Route path="/homes/:homeId" component={SelectedHomeContainer} onEnter={fetchSelectedHome}/>
+        <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
