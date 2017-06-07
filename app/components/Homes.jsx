@@ -5,6 +5,7 @@ const Homes = (props) => {
   const list = props.homes
   return (
     <div>
+      <h1>Filler to space out navbar</h1>
       <h1>Select a home</h1>
       <ul>
       {list.map(home => {

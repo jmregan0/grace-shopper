@@ -5,7 +5,7 @@ export const Login = ({ login }) => (
     evt.preventDefault()
     login(evt.target.username.value, evt.target.password.value)
   } }>
-    <div className='input-group'>
+    <div className='form-inline navbar-form'>
       <input className='form-control' placeholder='email address' name="username" />
       <input className='form-control' placeholder='password' name="password" type="password" />
       <input className='btn btn-success' type="submit" value="Login" />
