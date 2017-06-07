@@ -1,9 +1,12 @@
 'use strict'
 
 const db = require('APP/db')
+const moment = require('moment');
+
 const Home = db.model('homes')
 const User = db.model('users')
 const Availability = db.model('availability')
+
 
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
@@ -17,20 +20,37 @@ module.exports = require('express').Router()
     // the concept of admin users.
     //forbidden('listing users is not allowed'),
     (req, res, next) =>
-      Home.findAll()
+      Home.findAll({order: 'id ASC'})
         .then(homes => res.json(homes))
         .catch(next))
-  // .post('/',
-  //   (req, res, next) => {
-  //     let createdHome
-  //     return Home.create(req.body)
-  //     .then(home => {
-  //       createdHome = home
-  //       return
-  //       res.status(201).json(home)
-  //     })
-  //     .catch(next))
-  //   }
+  .post('/',
+    (req, res, next) => {
+
+      let createdHome
+      return Home.create(req.body)
+      .then(home => {
+        createdHome = home
+        let startDate = moment(home.startDate, "YYYY/MM/DD");
+        let endDate = moment(home.endDate, "YYYY/MM/DD");
+
+        let diff = endDate.diff(startDate, 'days');
+        let dateRange = [new Date(startDate)];
+
+        for(let i = 0; i < diff; i++) {
+          dateRange.push(new Date(startDate.add(1, 'days')));
+        }
+        console.log('dates', dateRange);
+
+        return Promise.all(dateRange.map(date => Availability.create({
+          date,
+          home_id: home.id
+        })))
+      })
+      .then(dateArr => {
+        res.status(201).json(createdHome)
+      })
+      .catch(next)
+    })
   .get('/:id',
     (req, res, next) =>
       Home.find({
