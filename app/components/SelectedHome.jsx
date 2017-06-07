@@ -13,7 +13,7 @@ const SelectedHome = (props) => {
 
       <h1>{home.name}</h1>
       <h3>Host: <Link to={`/users/${home.host_id}`}>{host.name}</Link></h3>
-      <img src={home.imageUrl}/>
+      <img src={home.imageUrl} className="col-sm-4"/>
       <h4>Price/Night: ${home.price}</h4>
       <p>{home.description}</p>
       <h4>Select your date:</h4>
