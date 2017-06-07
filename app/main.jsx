@@ -31,7 +31,7 @@ const ExampleApp = connect(
                       <span className='icon-bar'></span>
                       <span className='icon-bar'></span>
                   </button>
-                  <a className='navbar-brand' href='#'>Galactic BnB</a>
+                  <Link to="/" className='navbar-brand'>Galactic BnB</Link>
               </div>
               <div className='collapse navbar-collapse left' id='bs-example-navbar-collapse-1'>
                   <ul className='nav navbar-nav'>
