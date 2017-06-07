@@ -72,8 +72,8 @@ const fetchSelectedHome = (nextRouterState) => {
 }
 
 const fetchUserInfo = (nextRouterState) => {
-  const userId = nextRouterState.params.homeId;
-  console.log('router state'. nextRouterState);
+  const userId = nextRouterState.params.userId;
+  console.log('router state', nextRouterState);
   store.dispatch(getUserById(userId));
 }
 
