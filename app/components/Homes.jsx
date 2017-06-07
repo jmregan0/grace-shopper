@@ -9,7 +9,7 @@ const Homes = (props) => {
       <ul>
       {list.map(home => {
         return (
-          <div className="list-group-item" key={ home.id }>
+          <div className="row list-group-item" key={ home.id }>
             <div className="row">
               <div className="col-sm-3">
                 <img src={home.imageUrl}/>

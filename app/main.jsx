@@ -14,6 +14,8 @@ import HomesContainer from './containers/HomesContainer'
 import SelectedHomeContainer from './containers/SelectedHomeContainer'
 import { fetchHomes, getHomeById } from './action-creators/homes'
 import { getAvailabilityById } from './action-creators/availability'
+import ProfileContainer from './containers/ProfileContainer'
+import { fetchUsers, getUserById } from './action-creators/users'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -39,6 +41,9 @@ const ExampleApp = connect(
                       <li>
                           <Link to='/homes'>Homes</Link>
                       </li>
+                      <li>
+                          <Link to='/profile/1'>Profile</Link>
+                      </li>
                   </ul>
               </div>
                 <div className="collapse navbar-collapse right">
@@ -61,10 +66,17 @@ const fetchHomesList = () => {
 
 const fetchSelectedHome = (nextRouterState) => {
   const homeId = nextRouterState.params.homeId;
-  console.log('router state'. nextRouterState);
+  console.log('router state', nextRouterState);
   store.dispatch(getHomeById(homeId));
   store.dispatch(getAvailabilityById(homeId))
 }
+
+const fetchUserInfo = (nextRouterState) => {
+  const userId = nextRouterState.params.homeId;
+  console.log('router state'. nextRouterState);
+  store.dispatch(getUserById(userId));
+}
+
 
 render(
   <Provider store={store}>
@@ -74,6 +86,7 @@ render(
         <Route path="/landing" component={Landing} />
         <Route path="/homes" component={HomesContainer} onEnter={fetchHomesList}/>
         <Route path="/homes/:homeId" component={SelectedHomeContainer} onEnter={fetchSelectedHome}/>
+        <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

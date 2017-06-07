@@ -18,6 +18,7 @@ module.exports = db => db.define('users', {
     type: STRING,
     allowNull: false,
     validate: {
+      // notNull: true,
       isEmail: true,
       notEmpty: true,
     }
