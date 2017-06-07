@@ -14,34 +14,24 @@ function seedEverything() {
 const users = seed(User, {
   yoda: {
     name: 'Yoda',
-<<<<<<< HEAD
     userType: 'host',
-=======
->>>>>>> master
     email: 'yoda@example.com',
     password: '1234',
   },
   lando: {
     name: 'Lando Calrissian',
-<<<<<<< HEAD
     userType: 'host',
-=======
->>>>>>> master
     email: 'lando@example.gov',
     password: '1234'
   },
   kirk: {
     name: 'Captain Kirk',
-<<<<<<< HEAD
     userType: 'host',
-=======
->>>>>>> master
     email: 'captainkirk@example.gov',
     password: '1234'
   },
   drWho: {
     name: 'Dr. Who',
-<<<<<<< HEAD
     userType: 'host',
     email: 'drwho@example.gov',
     password: '1234'
@@ -76,37 +66,6 @@ const users = seed(User, {
     email: 'thanos@example.gov',
     password: '1234'
   }})
-=======
-    email: 'drwho@example.gov',
-    password: '1234'
-  },
-  stormTrooper: {
-    name: 'Storm Trooper 074',
-    email: 'st074@example.gov',
-    password: '1234'
-  },
-  vader: {
-    name: 'Darth Vader',
-    email: 'vaded@example.gov',
-    password: '1234'
-  },
-  Jabba: {
-    name: 'Jabba the Hut',
-    email: 'jh@example.gov',
-    password: '1234'
-  },
-  Coop: {
-    name: 'Joseph Cooper',
-    email: 'jc@example.gov',
-    password: '1234'
-  },
-  Thanos: {
-    name: 'Thanos',
-    email: 'thanos@example.gov',
-    password: '1234'
-  }
-})
->>>>>>> master
 
 
 const homes = seed(Home, {
