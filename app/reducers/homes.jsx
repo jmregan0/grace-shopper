@@ -4,7 +4,7 @@ const initialState = {
   list: [],
   selected: {
     Host: {},
-  }
+  },
 }
 
 export default function(state=initialState, action) {

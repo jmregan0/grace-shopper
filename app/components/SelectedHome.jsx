@@ -5,7 +5,9 @@ const SelectedHome = (props) => {
   console.log('props', props)
   const home = props.selected
   const host = props.selected.Host
+  const dates = props.availability.list
   console.log('host', host);
+  console.log('dates', dates);
   return (
     <div className = "container">
       <h1>Filler to space out navbar</h1>
@@ -14,6 +16,12 @@ const SelectedHome = (props) => {
       <img src={home.imageUrl}/>
       <h4>Price/Night: ${home.price}</h4>
       <p>{home.description}</p>
+      <h4>Select your date:</h4>
+      <select className="form-control padding-bottom">
+      {dates.map(date =>
+        <option key={`${date.id}`} value={`${date.date}`}>{date.date}</option>
+      )}
+      </select>
       <button className = 'btn btn-primary' onClick = {() => {}} >Add to Cart</button>
 
     </div>
