@@ -42,7 +42,7 @@ const ExampleApp = connect(
                           <Link to='/homes'>Homes</Link>
                       </li>
                       <li>
-                          <Link to='/profile/1'>Profile</Link>
+                          {user ? <Link to={`/profile/${user.id}`}>Profile</Link> : null}
                       </li>
                   </ul>
               </div>
