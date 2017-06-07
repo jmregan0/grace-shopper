@@ -6,15 +6,16 @@ const Home = db.model('homes')
 
 module.exports = require('express').Router()
   //Not sure if the 'get all' route is needed?
-  .get('/', (res, req, next) => {
+  .get('/', (req, res, next) => {
     Availability.findAll()
       .then(availabilities => res.json(availabilities))
       .catch(next)
   })
-  .get('/:homeId', (res, req, next) => {
-    Availability.find({
+  .get('/:homeId', (req, res, next) => {
+    console.log("homeId in availability", req.params.homeId)
+    Availability.findAll({
       where: {
-        homeId: req.params.homeId,
+        home_id: req.params.homeId,
       }
     })
       .then(availability => {
@@ -23,3 +24,7 @@ module.exports = require('express').Router()
       })
       .catch(next);
   })
+  .post('/', (req, res, next) =>
+    Availability.create(req.body)
+      .then(date => res.status(201).json(date))
+      .catch(next))

@@ -13,6 +13,7 @@ import NotFound from './components/NotFound'
 import HomesContainer from './containers/HomesContainer'
 import SelectedHomeContainer from './containers/SelectedHomeContainer'
 import { fetchHomes, getHomeById } from './action-creators/homes'
+import { getAvailabilityById } from './action-creators/availability'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -62,6 +63,7 @@ const fetchSelectedHome = (nextRouterState) => {
   const homeId = nextRouterState.params.homeId;
   console.log('router state'. nextRouterState);
   store.dispatch(getHomeById(homeId));
+  store.dispatch(getAvailabilityById(homeId))
 }
 
 render(

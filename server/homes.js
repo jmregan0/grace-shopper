@@ -3,6 +3,7 @@
 const db = require('APP/db')
 const Home = db.model('homes')
 const User = db.model('users')
+const Availability = db.model('availability')
 
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
@@ -19,11 +20,17 @@ module.exports = require('express').Router()
       Home.findAll()
         .then(homes => res.json(homes))
         .catch(next))
-  .post('/',
-    (req, res, next) =>
-      Home.create(req.body)
-      .then(home => res.status(201).json(home))
-      .catch(next))
+  // .post('/',
+  //   (req, res, next) => {
+  //     let createdHome
+  //     return Home.create(req.body)
+  //     .then(home => {
+  //       createdHome = home
+  //       return
+  //       res.status(201).json(home)
+  //     })
+  //     .catch(next))
+  //   }
   .get('/:id',
     (req, res, next) =>
       Home.find({

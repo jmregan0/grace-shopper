@@ -6,6 +6,7 @@ const mapStateToProps = (state) => {
   console.log(state);
   return {
     selected: state.homes.selected,
+    availability: state.availability,
   }
 }
 
