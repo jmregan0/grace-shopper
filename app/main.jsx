@@ -65,7 +65,7 @@ const fetchHomesList = () => {
 
 const fetchSelectedHome = (nextRouterState) => {
   const homeId = nextRouterState.params.homeId;
-  console.log('router state'. nextRouterState);
+  console.log('router state', nextRouterState);
   store.dispatch(getHomeById(homeId));
 }
 
