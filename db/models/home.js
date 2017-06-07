@@ -16,8 +16,9 @@ module.exports = db => db.define('homes', {
   },
   rating: Sequelize.FLOAT,
   price: Sequelize.FLOAT,
+  //TODO: problem is that you could only book on stay at a time if you put a range on the home itself instead of creating individual days that are availability
   startDate: Sequelize.DATE,
-  endDate: Sequelize.DATE
+  endDate: Sequelize.DATE,
 
 },
 {

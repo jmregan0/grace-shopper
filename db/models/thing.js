@@ -2,6 +2,8 @@
 
 const {STRING} = require('sequelize')
 
+
+//TODO: I assume this was a test file?
 module.exports = db => db.define('things', {
   name: STRING,
 })

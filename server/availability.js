@@ -6,11 +6,17 @@ const Home = db.model('homes')
 
 module.exports = require('express').Router()
   //Not sure if the 'get all' route is needed?
+// GET /api/availability/?reserved=null
   .get('/', (req, res, next) => {
     Availability.findAll()
       .then(availabilities => res.json(availabilities))
       .catch(next)
   })
+//TODO: make this RESTful 
+// making request to /api/availability/:homeId
+// either do /api/availability/?homeId=abc
+// or do /api/home/:homeId/availabilities
+
   .get('/:homeId', (req, res, next) => {
     console.log("homeId in availability", req.params.homeId)
     Availability.findAll({
