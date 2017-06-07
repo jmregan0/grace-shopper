@@ -2,8 +2,8 @@ import React from 'react'
 
 export const WhoAmI = ({ user, logout }) => (
   <div className="whoami">
-    <span className="whoami-user-name">{user && user.name}</span>
-    <button className="logout" onClick={logout}>Logout</button>
+    <span className="whoami-user-name welcome-user">Welcome, {user && user.name}</span>
+    <button className="btn btn-success logout" onClick={logout}>Logout</button>
   </div>
 )
 

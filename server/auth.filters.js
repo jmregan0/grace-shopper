@@ -18,4 +18,18 @@ const forbidden = message => (req, res) => {
 
 // Feel free to add more filters here (suggested: something that keeps out non-admins)
 
-module.exports = {mustBeLoggedIn, selfOnly, forbidden}
+const mustBeAdmin = (req, res, next) => {
+  if (req.user.type !== 'Admin') {
+    return res.status(403).send('You must be an admin to do that')
+  }
+  next()
+}
+
+const mustBeHost = (req, res, next) => {
+  if (req.user.type !== 'Host' && req.user.type !== 'Admin') {
+    return res.status(403).send('You must be a host or admin to do that')
+  }
+  next()
+}
+
+module.exports = {mustBeLoggedIn, selfOnly, forbidden, mustBeAdmin, mustBeHost}

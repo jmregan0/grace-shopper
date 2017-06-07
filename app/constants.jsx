@@ -1,0 +1,3 @@
+export const FETCH_HOMES = 'FETCH_HOMES'
+
+export const SET_CURRENT_HOME = 'SET_CURRENT_HOME'

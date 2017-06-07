@@ -2,3 +2,37 @@
   background-image: url('elysium.jpg');
   /*background-size: 800px 300px;*/
 }
+
+h3 {
+  margin-top: 0;
+}
+
+ul {
+  padding-right: 40px;
+}
+
+.welcome-user {
+  font-size: 13px;
+  font-weight: 300;
+  color: white;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.clear {
+  clear: both;
+}
+
+.whoami {
+  padding-top: 5px;
+}
+
+.whoami-user-name {
+  padding-right: 10px;
+}

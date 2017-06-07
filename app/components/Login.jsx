@@ -1,13 +1,15 @@
 import React from 'react'
 
 export const Login = ({ login }) => (
-  <form onSubmit={evt => {
+  <form className='form-inline navbar-form' onSubmit={evt => {
     evt.preventDefault()
     login(evt.target.username.value, evt.target.password.value)
   } }>
-    <input name="username" />
-    <input name="password" type="password" />
-    <input type="submit" value="Login" />
+    <div class='input-group'>
+      <input className='form-control' placeholder='email address' name="username" />
+      <input className='form-control' placeholder='password' name="password" type="password" />
+      <input className='btn btn-success' type="submit" value="Login" />
+    </div>
   </form>
 )
 
