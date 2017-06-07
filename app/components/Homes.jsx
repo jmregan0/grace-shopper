@@ -5,15 +5,15 @@ const Homes = (props) => {
   const list = props.homes
   return (
     <div>
-      <h1>Filler to space out navbar</h1>
+
       <h1>Select a home</h1>
       <ul>
       {list.map(home => {
         return (
           <div className="row list-group-item" key={ home.id }>
             <div className="row">
-              <div className="col-sm-3">
-                <img src={home.imageUrl}/>
+              <div className="col-sm-12">
+                <img className="col-sm-3" src={home.imageUrl}/>
               </div>
               <div className="col-sm-9">
                 <h3><Link to={`/homes/${home.id}`}>{home.name}</Link></h3>

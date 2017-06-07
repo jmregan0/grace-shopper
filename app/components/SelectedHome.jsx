@@ -10,7 +10,7 @@ const SelectedHome = (props) => {
   console.log('dates', dates);
   return (
     <div className = "container">
-      <h1>Filler to space out navbar</h1>
+
       <h1>{home.name}</h1>
       <h3>Host: <Link to={`/users/${home.host_id}`}>{host.name}</Link></h3>
       <img src={home.imageUrl}/>

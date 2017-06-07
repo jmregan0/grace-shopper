@@ -22,7 +22,7 @@ const ExampleApp = connect(
 )(
   ({ user, children }) =>
     <div>
-      <nav className='navbar navbar-inverse navbar-fixed-top' role='navigation'>
+      <nav className='navbar navbar-default navbar-static-top' role='navigation'>
           <div className='container'>
               <div className='navbar-header'>
                   <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1'>
