@@ -4,13 +4,6 @@ import { Link } from 'react-router'
 const SelectedUser= (props) => {
   const user = props.selected
 
-  {/*<div className = "container">
-      <h1>Filler to space out navbar</h1>
-      <h1>Name:{user.name}</h1>
-      <h1>Email:{user.email}</h1>
-      <h1>More sample text</h1>
-    </div>*/}
-
   return (
     <div className="panel panel-default">
       <div className="panel-body">
