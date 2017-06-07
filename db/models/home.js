@@ -19,6 +19,13 @@ module.exports = db => db.define('homes', {
   startDate: Sequelize.DATE,
   endDate: Sequelize.DATE
 
+},
+{
+  getterMethods: {
+    excerpt: function() {
+      return `${this.description.slice(0, 200)}...`;
+    },
+  }
 })
 
 module.exports.associations = (Home, {User}) => {

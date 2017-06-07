@@ -10,7 +10,18 @@ const Homes = (props) => {
       {list.map(home => {
         return (
           <div className="list-group-item" key={ home.id }>
-            <Link to={`/homes/${home.id}`}>{home.name}</Link>
+            <div className="row">
+              <div className="col-sm-3">
+                <img src={home.imageUrl}/>
+              </div>
+              <div className="col-sm-9">
+                <h3><Link to={`/homes/${home.id}`}>{home.name}</Link></h3>
+                <h4>Price/Night: ${home.price}</h4>
+                <p>{home.excerpt}</p>
+                <button className = 'btn btn-primary' onClick = {() => {}} >Add to Cart</button>
+                <Link className = 'btn btn-default' to={`/homes/${home.id}`}>More Information</Link>
+              </div>
+            </div>
           </div>
         )
       })}
