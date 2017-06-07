@@ -14,6 +14,7 @@ module.exports = require('express').Router()
   .get('/:homeId', (req, res, next) => {
     console.log("homeId in availability", req.params.homeId)
     Availability.findAll({
+      order: 'id ASC',
       where: {
         home_id: req.params.homeId,
       }
