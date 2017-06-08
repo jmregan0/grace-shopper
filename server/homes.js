@@ -30,10 +30,7 @@ module.exports = require('express').Router({mergeParams: true})
       console.log('create route hit');
       console.log(req.body)
       Home.create(req.body)
-      .then(home => {
-        console.log('home made', home);
-        return res.status(201).json(home)
-      })
+      .then(home => res.status(201).json(home))
       .catch(next)
     })
   .get('/:id',
