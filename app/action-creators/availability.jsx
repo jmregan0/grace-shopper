@@ -8,7 +8,7 @@ export const fetchAvailability = dates => ({
 
 export const getAvailabilityById = homeId => {
   return dispatch => {
-    axios.get(`/api/availability/${homeId}`)
+    axios.get(`/api/homes/${homeId}/availability`)
     .then(res => {
       dispatch(fetchAvailability(res.data))
     })
