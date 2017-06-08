@@ -17,8 +17,10 @@ class NewHome extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    let userId = this.props.user.id
+    this.props.getUserById(userId);
     this.props.addNewHome({
-      host_id: this.props.user.id,
+      host_id: userId,
       name: this.state.homeName,
       location: this.state.homeLocation,
       description: this.state.homeDescription,

@@ -22,7 +22,7 @@ export const addNewHome = home => {
       })
       .then(home => {
         console.log('dispatch sent');
-        dispatch(setCurrentHome(home));
+        dispatch(getHomeById(home.id));
         browserHistory.push(`/homes/${home.id}`)
       })
       .catch(console.error.bind(console))

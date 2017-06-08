@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import NewHome from '../components/NewHome'
 import { addNewHome } from '../action-creators/homes'
+import { getUserById } from '../action-creators/users'
 
 
 const mapStateToProps = (state) => {
@@ -11,9 +12,12 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    addNewHome(home){
+    addNewHome(home) {
       dispatch(addNewHome(home));
     },
+    getUserById(userId) {
+      dispatch(getUserById(userId));
+    }
   }
 }
 
