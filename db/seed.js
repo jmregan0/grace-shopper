@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('APP/db')
-    , {User, Home, Favorite, Availability, Promise} = db
+    , {User, Home, Favorite, Availability, Promise, Cart} = db
     , {mapValues} = require('lodash')
 
 function seedEverything() {
@@ -9,10 +9,11 @@ function seedEverything() {
     .then(function(users) {
       return homes()
     })
-    // .then(function(homes) {
-    //   return availabilities()
-    // })
+    .then(function(homes) {
+      return availabilities()
+    })
 }
+
 
 const users = seed(User, {
   yoda: {
@@ -163,44 +164,44 @@ const homes = seed(Home, {
     id: 9
   }})
 
-// const availabilities = seed(Availability, {
-//   date1: {date: "2017-07-01", home_id: 1},
-//   date2: {date: "2017-07-02", home_id: 1},
-//   date3: {date: "2017-07-03", home_id: 1},
-//   date4: {date: "2017-07-04", home_id: 1},
-//   date5: {date: "2017-07-05", home_id: 1},
-//   date6: {date: "2017-07-06", home_id: 1},
-//   date7: {date: "2017-07-07", home_id: 1},
-//   date8: {date: "2017-07-08", home_id: 1},
-//   date9: {date: "2017-07-09", home_id: 1},
-//   date10: {date: "2017-07-10", home_id: 1},
-//   date11: {date: "2017-07-11", home_id: 1},
-//   date12: {date: "2017-07-12", home_id: 1},
-//   date13: {date: "2017-07-13", home_id: 1},
-//   date14: {date: "2017-07-14", home_id: 1},
-//   date15: {date: "2017-07-15", home_id: 1},
-//   date16: {date: "2017-07-16", home_id: 1},
-//   date17: {date: "2017-07-17", home_id: 1},
-//   date18: {date: "2017-07-18", home_id: 1},
-//   date19: {date: "2017-07-19", home_id: 1},
-//   date20: {date: "2017-07-20", home_id: 1},
-//   date21: {date: "2017-07-21", home_id: 1},
-//   date22: {date: "2017-07-22", home_id: 1},
-//   date23: {date: "2017-07-23", home_id: 1},
-//   date24: {date: "2017-07-24", home_id: 1},
-//   date25: {date: "2017-07-25", home_id: 1},
-//   date26: {date: "2017-07-26", home_id: 1},
-//   date27: {date: "2017-07-27", home_id: 1},
-//   date28: {date: "2017-07-28", home_id: 1},
-//   date29: {date: "2017-07-29", home_id: 1},
-//   date30: {date: "2017-07-30", home_id: 1},
-//   date31: {date: "2017-07-31", home_id: 1},
-//   date32: {date: "2017-08-01", home_id: 1},
-//   date33: {date: "2017-08-02", home_id: 1},
-//   date34: {date: "2017-08-03", home_id: 1},
-//   date35: {date: "2017-08-04", home_id: 1},
-//   date36: {date: "2017-08-05", home_id: 1},
-// })
+const availabilities = seed(Availability, {
+  date1: {date: "2017-07-01", home_id: 1},
+  date2: {date: "2017-07-02", home_id: 1},
+  date3: {date: "2017-07-03", home_id: 1},
+  date4: {date: "2017-07-04", home_id: 1},
+  date5: {date: "2017-07-05", home_id: 1},
+  date6: {date: "2017-07-06", home_id: 1},
+  date7: {date: "2017-07-07", home_id: 1},
+  date8: {date: "2017-07-08", home_id: 1},
+  date9: {date: "2017-07-09", home_id: 1},
+  date10: {date: "2017-07-10", home_id: 1},
+  date11: {date: "2017-07-11", home_id: 1},
+  date12: {date: "2017-07-12", home_id: 1},
+  date13: {date: "2017-07-13", home_id: 1},
+  date14: {date: "2017-07-14", home_id: 1},
+  date15: {date: "2017-07-15", home_id: 1},
+  date16: {date: "2017-07-16", home_id: 1},
+  date17: {date: "2017-07-17", home_id: 1},
+  date18: {date: "2017-07-18", home_id: 1},
+  date19: {date: "2017-07-19", home_id: 1},
+  date20: {date: "2017-07-20", home_id: 1},
+  date21: {date: "2017-07-21", home_id: 1},
+  date22: {date: "2017-07-22", home_id: 1},
+  date23: {date: "2017-07-23", home_id: 1},
+  date24: {date: "2017-07-24", home_id: 1},
+  date25: {date: "2017-07-25", home_id: 1},
+  date26: {date: "2017-07-26", home_id: 1},
+  date27: {date: "2017-07-27", home_id: 1},
+  date28: {date: "2017-07-28", home_id: 1},
+  date29: {date: "2017-07-29", home_id: 1},
+  date30: {date: "2017-07-30", home_id: 1},
+  date31: {date: "2017-07-31", home_id: 1},
+  date32: {date: "2017-08-01", home_id: 1},
+  date33: {date: "2017-08-02", home_id: 1},
+  date34: {date: "2017-08-03", home_id: 1},
+  date35: {date: "2017-08-04", home_id: 1},
+  date36: {date: "2017-08-05", home_id: 1},
+})
 
 if (module === require.main) {
   db.didSync
