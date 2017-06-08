@@ -1,10 +1,11 @@
-import { FETCH_HOMES, SET_CURRENT_HOME } from '../constants'
+import { FETCH_HOMES, FETCH_LATEST_HOMES, SET_CURRENT_HOME } from '../constants'
 
 const initialState = {
   list: [],
   selected: {
     Host: {},
   },
+  latest: []
 }
 
 export default function(state=initialState, action) {
@@ -13,6 +14,9 @@ export default function(state=initialState, action) {
   switch (action.type) {
     case FETCH_HOMES:
       newState.list = action.homes
+      break
+    case FETCH_LATEST_HOMES:
+      newState.latest = action.latestHomes
       break
     case SET_CURRENT_HOME:
       newState.selected = action.home

@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router';
 
-const Landing = () => {
+const Landing = (props) => {
+  const latestHomes = props.latest
   return (
     <div className='container'>
       <header className='jumbotron hero-spacer'>
@@ -15,63 +16,29 @@ const Landing = () => {
 
       <div className='row'>
           <div className='col-lg-12'>
-              <h3>Latest Features</h3>
+              <h3>Latest Homes Available</h3>
           </div>
       </div>
 
       <div className='row text-center'>
 
-          <div className='col-md-3 col-sm-6 hero-feature'>
-              <div className='thumbnail'>
-                  <img src='http://placehold.it/800x500' alt=''/>
-                  <div className='caption'>
-                      <h3>Feature Label</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                      <p>
-                          <a href='#' className='btn btn-primary'>Buy Now!</a> <a href='#' className='btn btn-default'>More Info</a>
-                      </p>
-                  </div>
-              </div>
-          </div>
-
-          <div className='col-md-3 col-sm-6 hero-feature'>
-              <div className='thumbnail'>
-                  <img src='http://placehold.it/800x500' alt=''/>
-                  <div className='caption'>
-                      <h3>Feature Label</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                      <p>
-                          <a href='#' className='btn btn-primary'>Buy Now!</a> <a href='#' className='btn btn-default'>More Info</a>
-                      </p>
-                  </div>
-              </div>
-          </div>
-
-          <div className='col-md-3 col-sm-6 hero-feature'>
-              <div className='thumbnail'>
-                  <img src='http://placehold.it/800x500' alt='' />
-                  <div className='caption'>
-                      <h3>Feature Label</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                      <p>
-                          <a href='#' className='btn btn-primary'>Buy Now!</a> <a href='#' className='btn btn-default'>More Info</a>
-                      </p>
-                  </div>
-              </div>
-          </div>
-
-          <div className='col-md-3 col-sm-6 hero-feature'>
-              <div className='thumbnail'>
-                  <img src='http://placehold.it/800x500' alt='' />
-                  <div className='caption'>
-                      <h3>Feature Label</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                      <p>
-                          <a href='#' className='btn btn-primary'>Buy Now!</a> <a href='#' className='btn btn-default'>More Info</a>
-                      </p>
-                  </div>
-              </div>
-          </div>
+          {latestHomes.map(home => {
+            return (
+                <div key={home.id} className='col-md-3 col-sm-6 hero-feature'>
+                    <div className='thumbnail'>
+                        <img src={home.imageUrl} alt=''/>
+                        <div className='caption'>
+                            <h3>{home.name}</h3>
+                            <p>{home.excerpt}</p>
+                            <p>
+                                <a href='#' className='btn btn-primary'>Book Now!</a> <a href='#' className='btn btn-default'>More Info</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            )
+          }
+          )}
 
       </div>
 
