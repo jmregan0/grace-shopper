@@ -10,6 +10,15 @@ const Availability = db.model('availability')
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
 module.exports = require('express').Router({mergeParams: true})
+
+  .get('/latest', (req, res, next) =>
+    Home.findAll({
+      limit: 8,
+      order: 'id DESC'
+    })
+    .then(homes => res.json(homes))
+    .catch(next)
+  )
   .get('/',
     // The forbidden middleware will fail *all* requests to list users.
     // Remove it if you want to allow anyone to list all users on the site.
