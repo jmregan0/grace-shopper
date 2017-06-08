@@ -26,12 +26,16 @@ module.exports = require('express').Router({mergeParams: true})
 // you should consider setting up a batch route on availability such that POST /api/availability
 // in the body you would add startDate, endDate, and then it would create an individual availability for each day between the two
   .post('/',
-    (req, res, next) =>
+    (req, res, next) => {
+      console.log('create route hit');
+      console.log(req.body)
       Home.create(req.body)
       .then(home => {
-        res.status(201).json(home)
+        console.log('home made', home);
+        return res.status(201).json(home)
       })
-      .catch(next))
+      .catch(next)
+    })
   .get('/:id',
     (req, res, next) =>
       Home.find({

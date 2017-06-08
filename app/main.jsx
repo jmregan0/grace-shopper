@@ -10,12 +10,13 @@ import Landing from './components/Landing'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
+import NewHomeContainer from './containers/NewHomeContainer'
 import HomesContainer from './containers/HomesContainer'
 import SelectedHomeContainer from './containers/SelectedHomeContainer'
 import { fetchHomes, getHomeById } from './action-creators/homes'
 import { getAvailabilityById } from './action-creators/availability'
 import ProfileContainer from './containers/ProfileContainer'
-import { fetchUsers, getUserById } from './action-creators/users'
+import { fetchUsers, getUserById, setCurrentUser } from './action-creators/users'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -42,7 +43,10 @@ const ExampleApp = connect(
                           <Link to='/homes'>Homes</Link>
                       </li>
                       <li>
-                          {user ? <Link to={`/profile/${user.id}`}>Profile</Link> : null}
+                          {user ? <Link to={`/users/${user.id}`}>Profile</Link> : null}
+                      </li>
+                      <li>
+                        {user ? <Link to='/new-home'>Add Home</Link> : null}
                       </li>
                   </ul>
               </div>
@@ -77,6 +81,14 @@ const fetchUserInfo = (nextRouterState) => {
   store.dispatch(getUserById(userId));
 }
 
+const fetchCurrentUser = () => {
+  axios.get('/api/auth/whoami')
+    .then(res => res.data)
+    .then(user => {
+      store.dispatch(setCurrentUser(user))
+    })
+}
+
 
 render(
   <Provider store={store}>
@@ -85,8 +97,9 @@ render(
         <IndexRedirect to="/landing" />
         <Route path="/landing" component={Landing} />
         <Route path="/homes" component={HomesContainer} onEnter={fetchHomesList}/>
+        <Route path="/new-home" component={NewHomeContainer} onEnter={fetchCurrentUser}/>
         <Route path="/homes/:homeId" component={SelectedHomeContainer} onEnter={fetchSelectedHome}/>
-        <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
+        <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
