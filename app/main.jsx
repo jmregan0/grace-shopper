@@ -14,6 +14,7 @@ import HomesContainer from './containers/HomesContainer'
 import LandingContainer from './containers/LandingContainer'
 import SelectedHomeContainer from './containers/SelectedHomeContainer'
 import CartContainer from './containers/CartContainer'
+import SignUpContainer from './containers/SignUpContainer'
 import { fetchHomes, fetchLatestHomes, getHomeById } from './action-creators/homes'
 import { getAvailabilityById } from './action-creators/availability'
 import ProfileContainer from './containers/ProfileContainer'
@@ -43,6 +44,9 @@ const ExampleApp = connect(
                       </li>
                       <li>
                           <Link to='/homes'>Homes</Link>
+                      </li>
+                      <li>
+                          {user ? null : <Link to='/signup'>SignUp</Link>}
                       </li>
                       <li>
                           {user ? <Link to={`/users/${user.id}`}>Profile</Link> : null}
@@ -119,6 +123,7 @@ render(
         <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
         <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
         <Route path="/cart/:cartId" component={CartContainer} onEnter={fetchUserCart} />
+        <Route path="/signup" component={SignUpContainer} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
