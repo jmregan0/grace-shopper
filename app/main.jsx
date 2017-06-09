@@ -11,7 +11,7 @@ import NotFound from './components/NotFound'
 import EditHomeContainer from './containers/EditHomeContainer'
 import NewHomeContainer from './containers/NewHomeContainer'
 import HomesContainer from './containers/HomesContainer'
-import Landing from './components/Landing'
+import LandingContainer from './containers/LandingContainer'
 import SelectedHomeContainer from './containers/SelectedHomeContainer'
 import CartContainer from './containers/CartContainer'
 import { fetchHomes, fetchLatestHomes, getHomeById } from './action-creators/homes'
@@ -111,7 +111,7 @@ render(
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp} onEnter={fetchLatestHomesList}>
         <IndexRedirect to="/landing" />
-        <Route path="/landing" component={Landing} onEnter={fetchHomesList}/>
+        <Route path="/landing" component={LandingContainer} onEnter={fetchHomesList}/>
         <Route path="/homes" component={HomesContainer} onEnter={fetchHomesList}/>
         <Route path="/new-home" component={NewHomeContainer} onEnter={fetchCurrentUser}/>
         <Route path="/homes/:homeId" component={SelectedHomeContainer} onEnter={fetchSelectedHome}/>
