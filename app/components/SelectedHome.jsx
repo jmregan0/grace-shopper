@@ -2,20 +2,18 @@ import React from 'react'
 import { Link } from 'react-router'
 
 const SelectedHome = (props) => {
-  console.log('props', props)
   const home = props.selected
   const host = props.selected.Host
   const dates = props.availability.list
-  console.log('host', host);
-  console.log('dates', dates);
   return (
     <div className = "container">
       <h1>{home.name}</h1>
-      <h3>Host: <Link to={`/users/${home.host_id}`}>{host.name}</Link></h3>
+      <h4>Host: <Link to={`/users/${home.host_id}`}>{host.name}</Link></h4>
       <div className = "row">
         <img src={home.imageUrl} className="col-md-6 col-sm-12"/>
         <div className = "col-md-6 col-sm-12">
           <h4>Price/Night: ${home.price}</h4>
+          <h4>Location: {home.location}</h4>
           <p>{home.description}</p>
         </div>
       </div>
