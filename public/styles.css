@@ -40,3 +40,7 @@ ul {
 .bottom-padding {
   margin-bottom: 10px;
 }
+
+a .btn {
+  color: #222222;
+}

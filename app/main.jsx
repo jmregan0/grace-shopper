@@ -8,6 +8,8 @@ import store from './store'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
+import EditHomeContainer from './containers/EditHomeContainer'
+import NewHomeContainer from './containers/NewHomeContainer'
 import HomesContainer from './containers/HomesContainer'
 import Landing from './components/Landing'
 import SelectedHomeContainer from './containers/SelectedHomeContainer'
@@ -15,7 +17,7 @@ import CartContainer from './containers/CartContainer'
 import { fetchHomes, fetchLatestHomes, getHomeById } from './action-creators/homes'
 import { getAvailabilityById } from './action-creators/availability'
 import ProfileContainer from './containers/ProfileContainer'
-import { fetchUsers, getUserById } from './action-creators/users'
+import { fetchUsers, getUserById, setCurrentUser } from './action-creators/users'
 import { getCartByUserId } from './action-creators/cart'
 
 const ExampleApp = connect(
@@ -43,7 +45,10 @@ const ExampleApp = connect(
                           <Link to='/homes'>Homes</Link>
                       </li>
                       <li>
-                          {user ? <Link to={`/profile/${user.id}`}>Profile</Link> : null}
+                          {user ? <Link to={`/users/${user.id}`}>Profile</Link> : null}
+                      </li>
+                      <li>
+                        {user ? <Link to='/new-home'>Add Home</Link> : null}
                       </li>
                       <li>
                           {user ? <Link to={`/cart/${user.id}`}>Cart</Link> : null}
@@ -86,6 +91,14 @@ const fetchUserInfo = (nextRouterState) => {
   store.dispatch(getUserById(userId));
 }
 
+const fetchCurrentUser = () => {
+  axios.get('/api/auth/whoami')
+    .then(res => res.data)
+    .then(user => {
+      store.dispatch(setCurrentUser(user))
+    })
+}
+
 
 const fetchUserCart = (nextRouterState) => {
   const cartId = nextRouterState.params.cartId;
@@ -100,7 +113,10 @@ render(
         <IndexRedirect to="/landing" />
         <Route path="/landing" component={Landing} onEnter={fetchHomesList}/>
         <Route path="/homes" component={HomesContainer} onEnter={fetchHomesList}/>
+        <Route path="/new-home" component={NewHomeContainer} onEnter={fetchCurrentUser}/>
         <Route path="/homes/:homeId" component={SelectedHomeContainer} onEnter={fetchSelectedHome}/>
+        <Route path="/homes/:homeId/edit" component={EditHomeContainer} onEnter={fetchSelectedHome}/>
+        <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
         <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
         <Route path="/cart/:cartId" component={CartContainer} onEnter={fetchUserCart} />
       </Route>

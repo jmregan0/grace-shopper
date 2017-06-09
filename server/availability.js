@@ -19,7 +19,6 @@ module.exports = require('express').Router({mergeParams: true})
 // or do /api/home/:homeId/availabilities
 
   .get('/', (req, res, next) => {
-    console.log("homeId in availability", req.params.homeId)
     Availability.findAll({
       order: 'id ASC',
       where: {
