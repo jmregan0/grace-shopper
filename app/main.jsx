@@ -54,7 +54,7 @@ const ExampleApp = connect(
                         {user ? <Link to='/new-home'>Add Home</Link> : null}
                       </li>
                       <li>
-                          {user ? <Link to={`/cart/${user.id}`}>Cart</Link> : null}
+                          {<Link to={'/cart'}>Cart</Link>}
                       </li>
                   </ul>
               </div>
@@ -111,6 +111,19 @@ const fetchUserCart = (nextRouterState) => {
   store.dispatch(getCartByUserId(cartId));
 }
 
+const initialize = function(nextRouterState) {
+  var current = store.getState()
+  console.log(store.getState())
+    if(current.auth === null || current.auth === ""){
+      console.log('not a user', current.auth)
+    } else {
+      console.log('you are a user!', current.auth)
+    }
+
+  // store.dispatch(createNewCart())
+  //import this func
+}
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
@@ -124,7 +137,7 @@ render(
         <Route path="/homes/:homeId/edit" component={EditHomeContainer} onEnter={fetchSelectedHome}/>
         <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
         <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
-        <Route path="/cart/:cartId" component={CartContainer} onEnter={fetchUserCart} />
+        <Route path="/cart" component={CartContainer} onEnter={fetchUserCart} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
