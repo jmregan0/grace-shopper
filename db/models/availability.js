@@ -2,9 +2,14 @@
 
 const {DATE} = require('sequelize')
 const moment = require('moment')
+const {ENUM} = require('sequelize');
 
 module.exports = db => db.define('availability', {
-  date: DATE
+  date: DATE,
+  status: {
+    type: ENUM('available', 'reserved'),
+    defaultValue: 'available'
+  }
 },{
   getterMethods: {
     date: function() {
@@ -13,6 +18,7 @@ module.exports = db => db.define('availability', {
   }
 })
 
-module.exports.associations = (Availability, {Home}) => {
+module.exports.associations = (Availability, {Home, Cart}) => {
   Availability.belongsTo(Home)
+  Availability.belongsToMany(Cart, {through: 'guest_cart_items'})
 }
