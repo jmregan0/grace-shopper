@@ -203,6 +203,8 @@ const availabilities = seed(Availability, {
   date36: {date: "2017-08-05", home_id: 1},
 })
 
+
+
 if (module === require.main) {
   db.didSync
     .then(() => db.sync({force: true}))

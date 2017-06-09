@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 
 const Cart = (props) => {
-  //pass down cart contents into props later
+  console.log('props passed to cart component', props)
   return (
       <div className="container">
         <h1>Your Cart</h1>

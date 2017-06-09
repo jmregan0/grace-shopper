@@ -1,17 +1,18 @@
 import axios from 'axios'
 import { FETCH_USER_CART } from '../constants'
 
-export const fetchCart = userId => ({
+export const fetchCart = cart => ({
   type: FETCH_USER_CART,
-  userId
+  cart
 })
 
 
-export const fetchUserCart = homeId => {
+export const getCartByUserId = cartId => {
   return dispatch => {
-    axios.get(`/api/homes/${homeId}`)
+    axios.get(`/api/cart/${cartId}`)
     .then(res => {
-      dispatch(setCurrentHome(res.data))
+      console.log('got cart!', res.data)
+      dispatch(fetchCart(res.data))
     })
   }
 }

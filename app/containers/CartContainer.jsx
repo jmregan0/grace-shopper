@@ -2,10 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Cart from '../components/Cart'
 
-
 const mapStateToProps = (state) => {
  return {
-   selected: state.carts.selected,
+  state
  }
 }
 

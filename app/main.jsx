@@ -17,6 +17,7 @@ import { fetchHomes, getHomeById } from './action-creators/homes'
 import { getAvailabilityById } from './action-creators/availability'
 import ProfileContainer from './containers/ProfileContainer'
 import { fetchUsers, getUserById } from './action-creators/users'
+import { getCartByUserId } from './action-creators/cart'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -46,7 +47,7 @@ const ExampleApp = connect(
                           {user ? <Link to={`/profile/${user.id}`}>Profile</Link> : null}
                       </li>
                       <li>
-                          {user ? <Link to={`/profile/${user.id}`}>Cart</Link> : null}
+                          {user ? <Link to={`/cart/${user.id}`}>Cart</Link> : null}
                       </li>
                   </ul>
               </div>
@@ -83,9 +84,9 @@ const fetchUserInfo = (nextRouterState) => {
 
 
 const fetchUserCart = (nextRouterState) => {
-  const userId = nextRouterState.params.userId;
+  const cartId = nextRouterState.params.cartId;
   console.log('router state', nextRouterState);
-  store.dispatch(getCartByUserId(userId));
+  store.dispatch(getCartByUserId(cartId));
 }
 
 render(
@@ -93,11 +94,11 @@ render(
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp}>
         <IndexRedirect to="/landing" />
-        <Route path="/landing" component={Landing} />
+        <Route path="/landing" component={Landing} onEnter={fetchHomesList}/>
         <Route path="/homes" component={HomesContainer} onEnter={fetchHomesList}/>
         <Route path="/homes/:homeId" component={SelectedHomeContainer} onEnter={fetchSelectedHome}/>
         <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
-        <Route path="/carts/:cartId" component={CartContainer} onEnter={fetchUserCart} />
+        <Route path="/cart/:cartId" component={CartContainer} onEnter={fetchUserCart} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
