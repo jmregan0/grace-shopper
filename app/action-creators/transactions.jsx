@@ -10,7 +10,6 @@ export const getGuestTransactionsByUser = userId => {
   return dispatch => {
     axios.get(`/api/users/${userId}/transactions/guest`)
     .then(res => {
-      console.log("res.data in guest transactions action-creator", res.data)
       dispatch(fetchGuestTransactions(res.data))
     })
   }
@@ -25,7 +24,6 @@ export const getHostTransactionsByUser = userId => {
   return dispatch => {
     axios.get(`/api/users/${userId}/transactions/host`)
     .then(res => {
-      console.log("res.data in host transactions action-creator", res.data)
       dispatch(fetchHostTransactions(res.data))
     })
   }

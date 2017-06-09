@@ -14,7 +14,6 @@ module.exports = require('express').Router({mergeParams: true})
       include: [{model: Home }]
     })
     .then(guestTransactions => {
-      console.log("guestTransactions", guestTransactions)
       res.json(guestTransactions)
     })
     .catch(next)
@@ -22,11 +21,9 @@ module.exports = require('express').Router({mergeParams: true})
   .get('/host', (req, res, next) => {
     Transaction.findAll({
       where: {host_id: req.params.id},
-      // include: [{model: Home}]
       include: [{all: true}]
     })
     .then(hostTransactions => {
-      console.log("hostTransactions", hostTransactions)
       res.json(hostTransactions)
     })
     .catch(next)
@@ -40,16 +37,9 @@ module.exports = require('express').Router({mergeParams: true})
     // the concept of admin users.
     //forbidden('listing users is not allowed'),
     (req, res, next) => {
-      console.log("In / !!!!!!!!!!!!!!!!")
       Transaction.findAll({
-        // order: 'id DESC',
-        // where: {
-        //   host_id: req.params.id,
-        //   guest_id: req.params.id
-        // }
       })
       .then(transactions => {
-        console.log('transactions in server/transactions', transactions)
         res.json(transactions)
       })
       .catch(next)

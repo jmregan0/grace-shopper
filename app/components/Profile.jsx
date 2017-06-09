@@ -4,8 +4,6 @@ import moment from 'moment'
 
 const SelectedUser= ({selected, guest, host}) => {
   const user = selected
-  console.log("transactions in profile", guest, host)
-  console.log("user in profile", user)
   return (
     <div className="panel panel-default">
       <div className="col-lg-3 col-md-3 hidden-sm hidden-xs panel-body">
