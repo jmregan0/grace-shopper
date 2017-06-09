@@ -37,6 +37,55 @@ ul {
   padding-right: 10px;
 }
 
+
 .bottom-padding {
   margin-bottom: 10px;
+}
+
+.order {
+  padding: 14px 18px;
+  border: 1px #ddd solid;
+
+}
+
+.order-header {
+  border-radius: 4px 4px 0 0;
+  background-color: #f6f6f6;
+  margin: 0px;
+}
+
+.order-body {
+  border-radius: 0 0 4px 4px;
+}
+
+.order-column {
+  margin-right: 10%;
+  float: left;
+}
+
+.order-thumb {
+  width: 100px;
+  height: 100px;
+}
+
+.flex {
+  display: flex;
+}
+
+.no-flex {
+  flex: 0 0 100%;
+  margin: 0 2%
+}
+
+.price {
+  color: darkred;
+}
+
+.center {
+  text-align: center;
+}
+
+.link {
+  text-decoration: none;
+  font-weight: bold;
 }
