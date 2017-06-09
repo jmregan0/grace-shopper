@@ -10,6 +10,7 @@ import Landing from './components/Landing'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
+import EditHomeContainer from './containers/EditHomeContainer'
 import NewHomeContainer from './containers/NewHomeContainer'
 import HomesContainer from './containers/HomesContainer'
 import SelectedHomeContainer from './containers/SelectedHomeContainer'
@@ -70,14 +71,12 @@ const fetchHomesList = () => {
 
 const fetchSelectedHome = (nextRouterState) => {
   const homeId = nextRouterState.params.homeId;
-  console.log('router state', nextRouterState);
   store.dispatch(getHomeById(homeId));
   store.dispatch(getAvailabilityById(homeId))
 }
 
 const fetchUserInfo = (nextRouterState) => {
   const userId = nextRouterState.params.userId;
-  console.log('router state', nextRouterState);
   store.dispatch(getUserById(userId));
 }
 
@@ -99,6 +98,7 @@ render(
         <Route path="/homes" component={HomesContainer} onEnter={fetchHomesList}/>
         <Route path="/new-home" component={NewHomeContainer} onEnter={fetchCurrentUser}/>
         <Route path="/homes/:homeId" component={SelectedHomeContainer} onEnter={fetchSelectedHome}/>
+        <Route path="/homes/:homeId/edit" component={EditHomeContainer} onEnter={fetchSelectedHome}/>
         <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
       </Route>
       <Route path='*' component={NotFound} />

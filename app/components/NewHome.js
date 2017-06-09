@@ -27,7 +27,6 @@ class NewHome extends Component {
       imageUrl: this.state.homeImageUrl,
       price: parseInt(this.state.homePrice),
     })
-
   }
 
   handleChange(e) {
