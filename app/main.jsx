@@ -18,10 +18,8 @@ import CartContainer from './containers/CartContainer'
 import SignUpContainer from './containers/SignUpContainer'
 import { fetchHomes, fetchLatestHomes, getHomeById } from './action-creators/homes'
 import { getAvailabilityById } from './action-creators/availability'
-import { fetchUsers, getUserById } from './action-creators/users'
-import { getGuestTransactionsByUser, getHostTransactionsByUser } from './action-creators/transactions'
-import ProfileContainer from './containers/ProfileContainer'
 import { fetchUsers, getUserById, setCurrentUser } from './action-creators/users'
+import { getGuestTransactionsByUser, getHostTransactionsByUser } from './action-creators/transactions'
 import { getCartByUserId } from './action-creators/cart'
 
 const ExampleApp = connect(
