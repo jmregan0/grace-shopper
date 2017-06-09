@@ -2,12 +2,9 @@ import React from 'react'
 import { Link } from 'react-router'
 
 const SelectedHome = (props) => {
-  console.log('props', props)
   const home = props.selected
   const host = props.selected.Host
   const dates = props.availability.list
-  console.log('host', host);
-  console.log('dates', dates);
   return (
     <div className = "container">
       <h1>{home.name}</h1>

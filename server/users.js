@@ -26,6 +26,9 @@ module.exports = require('express').Router()
   .get('/:id',
     mustBeLoggedIn,
     (req, res, next) =>
-      User.findById(req.params.id)
+      User.find({
+        where: {id: req.params.id}
+      })
       .then(user => res.json(user))
       .catch(next))
+  .use('/:id/transactions', require('./transactions'))

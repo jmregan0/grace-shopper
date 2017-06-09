@@ -11,11 +11,14 @@ import NotFound from './components/NotFound'
 import EditHomeContainer from './containers/EditHomeContainer'
 import NewHomeContainer from './containers/NewHomeContainer'
 import HomesContainer from './containers/HomesContainer'
+import ProfileContainer from './containers/ProfileContainer'
 import LandingContainer from './containers/LandingContainer'
 import SelectedHomeContainer from './containers/SelectedHomeContainer'
 import CartContainer from './containers/CartContainer'
 import { fetchHomes, fetchLatestHomes, getHomeById } from './action-creators/homes'
 import { getAvailabilityById } from './action-creators/availability'
+import { fetchUsers, getUserById } from './action-creators/users'
+import { getGuestTransactionsByUser, getHostTransactionsByUser } from './action-creators/transactions'
 import ProfileContainer from './containers/ProfileContainer'
 import { fetchUsers, getUserById, setCurrentUser } from './action-creators/users'
 import { getCartByUserId } from './action-creators/cart'
@@ -89,6 +92,8 @@ const fetchSelectedHome = (nextRouterState) => {
 const fetchUserInfo = (nextRouterState) => {
   const userId = nextRouterState.params.userId;
   store.dispatch(getUserById(userId));
+  store.dispatch(getGuestTransactionsByUser(userId));
+  store.dispatch(getHostTransactionsByUser(userId));
 }
 
 const fetchCurrentUser = () => {
@@ -115,6 +120,7 @@ render(
         <Route path="/homes" component={HomesContainer} onEnter={fetchHomesList}/>
         <Route path="/new-home" component={NewHomeContainer} onEnter={fetchCurrentUser}/>
         <Route path="/homes/:homeId" component={SelectedHomeContainer} onEnter={fetchSelectedHome}/>
+        <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
         <Route path="/homes/:homeId/edit" component={EditHomeContainer} onEnter={fetchSelectedHome}/>
         <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
         <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
