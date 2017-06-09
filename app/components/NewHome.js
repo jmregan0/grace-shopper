@@ -17,8 +17,8 @@ class NewHome extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    let userId = this.props.user.id
-    this.props.getUserById(userId);
+    let userId = this.props.auth.id
+    // this.props.getUserById(userId);
     let payload = {
       host_id: userId,
       name: this.state.homeName,
@@ -32,7 +32,7 @@ class NewHome extends Component {
 
     if (this.hasFormError(payload)) {
       this.setState({
-        error: "An error occured. Please make sure Name, Location, and Price are populated.",
+        error: "An error occured. Please make sure Name, Location, and Price are populated. Price must also be greater than $0.00/night.",
       })
     } else {
       Object.keys(payload).forEach(key => {
@@ -50,7 +50,8 @@ class NewHome extends Component {
   }
 
   hasFormError(payload) {
-    if(payload.name.length === 0 || payload.location.length === 0 || payload.price === 0) return true
+    console.log('payload', payload)
+    if(payload.name.length === 0 || payload.location.length === 0 || payload.price.length === 0 || parseFloat(payload.price) <= 0.0) return true
     return false;
   }
 

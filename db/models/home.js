@@ -37,7 +37,6 @@ module.exports = db => db.define('homes', {
 
 module.exports.associations = (Home, {User}) => {
 	Home.belongsTo(User, {as: 'Host'})
-
 }
 
 
