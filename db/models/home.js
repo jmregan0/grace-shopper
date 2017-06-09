@@ -4,26 +4,35 @@ var db = require('../index.js')
 
 
 module.exports = db => db.define('homes', {
-  name: Sequelize.STRING,
-  location: Sequelize.STRING,
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  location: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
   description: Sequelize.TEXT,
   imageUrl: {
 	  type: Sequelize.STRING,
-    //defaultValue: '',
+    defaultValue: 'http://i.imgur.com/3BrMZK8.png',
 	  validate: {
 	  		isUrl: true
 	  		}
   },
   rating: Sequelize.FLOAT,
-  price: Sequelize.FLOAT
-
+  price: {
+    type: Sequelize.FLOAT,
+    allowNull: false,
+  }
 },
 {
   getterMethods: {
     excerpt: function() {
-      return `${this.description.slice(0, 200)}...`;
+      if(this.description) return `${this.description.slice(0, 200)}...`;
+      return 'No description yet!'
     },
-  }
+  },
 })
 
 module.exports.associations = (Home, {User}) => {

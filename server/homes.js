@@ -37,8 +37,8 @@ module.exports = require('express').Router({mergeParams: true})
   .post('/',
     (req, res, next) => {
       console.log('create route hit');
-      console.log(req.body)
-      Home.create(req.body)
+      console.log('body in post route', req.body)
+      return Home.create(req.body)
       .then(home => res.status(201).json(home))
       .catch(next)
     })

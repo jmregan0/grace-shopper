@@ -22,16 +22,13 @@ export const addNewHome = home => {
   console.log('home', home)
   return dispatch => {
     axios.post('/api/homes/', home)
-      .then(res => {
-        console.log('res.data', res.data);
-        return res.data
-      })
+      .then(res => res.data)
       .then(home => {
         console.log('dispatch sent');
         dispatch(getHomeById(home.id));
         browserHistory.push(`/homes/${home.id}`)
       })
-      .catch(console.error.bind(console))
+      .catch(err => console.error(err))
   }
 
 }
