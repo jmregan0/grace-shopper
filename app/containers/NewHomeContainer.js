@@ -8,6 +8,7 @@ import { getUserById } from '../action-creators/users'
 const mapStateToProps = (state) => {
   return {
     user: state.users.selected,
+    auth: state.auth,
   }
 }
 const mapDispatchToProps = (dispatch) => {
