@@ -89,3 +89,7 @@ ul {
   text-decoration: none;
   font-weight: bold;
 }
+
+a .btn {
+  color: #222222;
+}

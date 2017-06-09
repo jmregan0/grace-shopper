@@ -24,22 +24,35 @@ const SelectedHome = (props) => {
         <div className = "col-md-6 col-sm-12">
           <h1>Insert calendar here</h1>
         </div>
-        <div className = "col-md-6 col-sm-12">
-          <h4>Select your dates:</h4>
-          <h4>Start Date:</h4>
-          <select className="form-control padding-bottom" id = "startDate">
-          {dates.map(date =>
-            <option key={`${date.id}`} value={`${date.date}`}>{date.date}</option>
-          )}
-          </select>
-          <h4>End Date:</h4>
-          <select className="form-control padding-bottom" id = "endDate">
-          {dates.map(date =>
-            <option key={`${date.id}`} value={`${date.date}`}>{date.date}</option>
-          )}
-          </select>
-          <button className = 'btn btn-primary' onClick = {() => {}} >Add to Cart</button>
-        </div>
+        {
+          dates.length
+          ? (
+              <div className = "col-md-6 col-sm-12">
+                <h4>Select your dates:</h4>
+                <h4>Start Date:</h4>
+                <select className="form-control padding-bottom" id = "startDate">
+                {dates.map(date =>
+                  <option key={`${date.id}`} value={`${date.date}`}>{date.date}</option>
+                )}
+                </select>
+                <h4>End Date:</h4>
+                <select className="form-control padding-bottom" id = "endDate">
+                {dates.map(date =>
+                  <option key={`${date.id}`} value={`${date.date}`}>{date.date}</option>
+                )}
+                </select>
+                <button className = 'btn btn-primary' onClick = {() => {}} >Add to Cart</button>
+              </div>
+            )
+          : (
+              <div>
+                <h3>No dates currently available.</h3>
+                <Link to = {`/homes/${home.id}/edit`} ><button className = 'btn btn-secondary'>Edit this Listing</button></Link>
+              </div>
+            )
+        }
+
+
       </div>
 
     </div>

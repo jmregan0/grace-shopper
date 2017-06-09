@@ -10,6 +10,15 @@ const Availability = db.model('availability')
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
 module.exports = require('express').Router({mergeParams: true})
+
+  .get('/latest', (req, res, next) =>
+    Home.findAll({
+      limit: 8,
+      order: 'id DESC'
+    })
+    .then(homes => res.json(homes))
+    .catch(next)
+  )
   .get('/',
     // The forbidden middleware will fail *all* requests to list users.
     // Remove it if you want to allow anyone to list all users on the site.
@@ -26,12 +35,13 @@ module.exports = require('express').Router({mergeParams: true})
 // you should consider setting up a batch route on availability such that POST /api/availability
 // in the body you would add startDate, endDate, and then it would create an individual availability for each day between the two
   .post('/',
-    (req, res, next) =>
+    (req, res, next) => {
+      console.log('create route hit');
+      console.log(req.body)
       Home.create(req.body)
-      .then(home => {
-        res.status(201).json(home)
-      })
-      .catch(next))
+      .then(home => res.status(201).json(home))
+      .catch(next)
+    })
   .get('/:id',
     (req, res, next) =>
       Home.find({

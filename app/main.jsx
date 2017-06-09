@@ -4,19 +4,24 @@ import {Router, Route, IndexRedirect, browserHistory, Link} from 'react-router'
 import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
 import axios from 'axios';
-
 import store from './store'
-import Landing from './components/Landing'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
+import EditHomeContainer from './containers/EditHomeContainer'
+import NewHomeContainer from './containers/NewHomeContainer'
 import HomesContainer from './containers/HomesContainer'
 import ProfileContainer from './containers/ProfileContainer'
+import LandingContainer from './containers/LandingContainer'
 import SelectedHomeContainer from './containers/SelectedHomeContainer'
-import { fetchHomes, getHomeById } from './action-creators/homes'
+import CartContainer from './containers/CartContainer'
+import { fetchHomes, fetchLatestHomes, getHomeById } from './action-creators/homes'
 import { getAvailabilityById } from './action-creators/availability'
 import { fetchUsers, getUserById } from './action-creators/users'
 import { getGuestTransactionsByUser, getHostTransactionsByUser } from './action-creators/transactions'
+import ProfileContainer from './containers/ProfileContainer'
+import { fetchUsers, getUserById, setCurrentUser } from './action-creators/users'
+import { getCartByUserId } from './action-creators/cart'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -45,6 +50,12 @@ const ExampleApp = connect(
                       <li>
                           {user ? <Link to={`/users/${user.id}`}>Profile</Link> : null}
                       </li>
+                      <li>
+                        {user ? <Link to='/new-home'>Add Home</Link> : null}
+                      </li>
+                      <li>
+                          {user ? <Link to={`/cart/${user.id}`}>Cart</Link> : null}
+                      </li>
                   </ul>
               </div>
                 <div className="collapse navbar-collapse right">
@@ -55,6 +66,14 @@ const ExampleApp = connect(
       {children}
     </div>
 )
+
+const fetchLatestHomesList = () => {
+  axios.get('/api/homes/latest')
+  .then(res => res.data)
+  .then(latestHomes =>{
+    store.dispatch(fetchLatestHomes(latestHomes))
+  })
+}
 
 const fetchHomesList = () => {
   axios.get('/api/homes')
@@ -77,16 +96,35 @@ const fetchUserInfo = (nextRouterState) => {
   store.dispatch(getHostTransactionsByUser(userId));
 }
 
+const fetchCurrentUser = () => {
+  axios.get('/api/auth/whoami')
+    .then(res => res.data)
+    .then(user => {
+      store.dispatch(setCurrentUser(user))
+    })
+}
+
+
+const fetchUserCart = (nextRouterState) => {
+  const cartId = nextRouterState.params.cartId;
+  console.log('router state', nextRouterState);
+  store.dispatch(getCartByUserId(cartId));
+}
 
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={ExampleApp}>
+      <Route path="/" component={ExampleApp} onEnter={fetchLatestHomesList}>
         <IndexRedirect to="/landing" />
-        <Route path="/landing" component={Landing} />
+        <Route path="/landing" component={LandingContainer} onEnter={fetchHomesList}/>
         <Route path="/homes" component={HomesContainer} onEnter={fetchHomesList}/>
+        <Route path="/new-home" component={NewHomeContainer} onEnter={fetchCurrentUser}/>
         <Route path="/homes/:homeId" component={SelectedHomeContainer} onEnter={fetchSelectedHome}/>
         <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
+        <Route path="/homes/:homeId/edit" component={EditHomeContainer} onEnter={fetchSelectedHome}/>
+        <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
+        <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
+        <Route path="/cart/:cartId" component={CartContainer} onEnter={fetchUserCart} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
