@@ -4,18 +4,19 @@ import {Router, Route, IndexRedirect, browserHistory, Link} from 'react-router'
 import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
 import axios from 'axios';
-
 import store from './store'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import HomesContainer from './containers/HomesContainer'
-import LandingContainer from './containers/LandingContainer'
+import Landing from './components/Landing'
 import SelectedHomeContainer from './containers/SelectedHomeContainer'
+import CartContainer from './containers/CartContainer'
 import { fetchHomes, fetchLatestHomes, getHomeById } from './action-creators/homes'
 import { getAvailabilityById } from './action-creators/availability'
 import ProfileContainer from './containers/ProfileContainer'
 import { fetchUsers, getUserById } from './action-creators/users'
+import { getCartByUserId } from './action-creators/cart'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -43,6 +44,9 @@ const ExampleApp = connect(
                       </li>
                       <li>
                           {user ? <Link to={`/profile/${user.id}`}>Profile</Link> : null}
+                      </li>
+                      <li>
+                          {user ? <Link to={`/cart/${user.id}`}>Cart</Link> : null}
                       </li>
                   </ul>
               </div>
@@ -83,15 +87,22 @@ const fetchUserInfo = (nextRouterState) => {
 }
 
 
+const fetchUserCart = (nextRouterState) => {
+  const cartId = nextRouterState.params.cartId;
+  console.log('router state', nextRouterState);
+  store.dispatch(getCartByUserId(cartId));
+}
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp} onEnter={fetchLatestHomesList}>
         <IndexRedirect to="/landing" />
-        <Route path="/landing" component={LandingContainer} />
+        <Route path="/landing" component={Landing} onEnter={fetchHomesList}/>
         <Route path="/homes" component={HomesContainer} onEnter={fetchHomesList}/>
         <Route path="/homes/:homeId" component={SelectedHomeContainer} onEnter={fetchSelectedHome}/>
         <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
+        <Route path="/cart/:cartId" component={CartContainer} onEnter={fetchUserCart} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
