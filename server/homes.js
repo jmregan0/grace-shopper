@@ -27,10 +27,12 @@ module.exports = require('express').Router({mergeParams: true})
     // have to add a role column to the users table to support
     // the concept of admin users.
     //forbidden('listing users is not allowed'),
-    (req, res, next) =>
-      Home.findAll({order: 'id ASC'})
+    (req, res, next) => {
+      console.log('req.session', req.session)
+      return Home.findAll({order: 'id ASC'})
         .then(homes => res.json(homes))
-        .catch(next))
+        .catch(next)
+    })
 //TODO: when creating a home, you don't want to recreate a home every time you want to list it as available,
 // you should consider setting up a batch route on availability such that POST /api/availability
 // in the body you would add startDate, endDate, and then it would create an individual availability for each day between the two
