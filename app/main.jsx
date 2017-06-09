@@ -12,6 +12,7 @@ import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import HomesContainer from './containers/HomesContainer'
 import ProfileContainer from './containers/ProfileContainer'
+import CheckoutContainer from './containers/CheckoutContainer'
 import SelectedHomeContainer from './containers/SelectedHomeContainer'
 import { fetchHomes, getHomeById } from './action-creators/homes'
 import { getAvailabilityById } from './action-creators/availability'
@@ -77,6 +78,9 @@ const fetchUserInfo = (nextRouterState) => {
   store.dispatch(getHostTransactionsByUser(userId));
 }
 
+const fetchCart = () => {
+
+}
 
 render(
   <Provider store={store}>
@@ -87,6 +91,7 @@ render(
         <Route path="/homes" component={HomesContainer} onEnter={fetchHomesList}/>
         <Route path="/homes/:homeId" component={SelectedHomeContainer} onEnter={fetchSelectedHome}/>
         <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
+        <Route path="/checkout" component={CheckoutContainer} onEnter={fetchCart}/>
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
