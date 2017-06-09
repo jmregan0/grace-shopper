@@ -19,10 +19,13 @@ module.exports = require('express').Router()
         .then(users => res.json(users))
         .catch(next))
   .post('/',
-    (req, res, next) =>
-      User.create(req.body)
+    (req, res, next) =>{
+      
+      return User.create(req.body)
       .then(user => res.status(201).json(user))
-      .catch(next))
+      .catch(next)
+    }
+  )
   .get('/:id',
     mustBeLoggedIn,
     (req, res, next) =>

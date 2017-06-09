@@ -21,63 +21,63 @@ const users = seed(User, {
     userType: 'host',
     email: 'yoda@example.com',
     password: '1234',
-    id: 1
+    
   },
   lando: {
     name: 'Lando Calrissian',
     userType: 'host',
     email: 'lando@example.gov',
     password: '1234',
-    id: 2
+    
   },
   kirk: {
     name: 'Captain Kirk',
     userType: 'host',
     email: 'captainkirk@example.gov',
     password: '1234',
-    id: 3
+    
   },
   drWho: {
     name: 'Dr. Who',
     userType: 'host',
     email: 'drwho@example.gov',
     password: '1234',
-    id: 4
+    
   },
   stormTrooper: {
     name: 'Storm Trooper 074',
     userType: 'host',
     email: 'st074@example.gov',
     password: '1234',
-    id: 5
+    
   },
   vader: {
     name: 'Darth Vader',
     userType: 'host',
     email: 'vaded@example.gov',
     password: '1234',
-    id: 6
+    
   },
   Jabba: {
     name: 'Jabba the Hut',
     userType: 'host',
     email: 'jh@example.gov',
     password: '1234',
-    id: 7
+    
   },
   Coop: {
     name: 'Joseph Cooper',
     userType: 'host',
     email: 'jc@example.gov',
     password: '1234',
-    id: 8
+    
   },
   Thanos: {
     name: 'Thanos',
     userType: 'host',
     email: 'thanos@example.gov',
     password: '1234',
-    id: 9
+    
   }})
 
 

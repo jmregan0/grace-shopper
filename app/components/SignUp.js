@@ -15,6 +15,15 @@ class SignUp extends React.Component {
       <div className="signin-container">
         <div className="buffer local">
           <form onSubmit={this.onSignupSubmit}>
+          <div className="form-group">
+              <label>name</label>
+              <input
+                name="name"
+                type="text"
+                className="form-control"
+                required
+              />
+            </div>
             <div className="form-group">
               <label>email</label>
               <input
@@ -56,10 +65,12 @@ class SignUp extends React.Component {
     );
   }
 
-  onSignupSubmit(event) {
+  onSignupSubmit(evt) {
     const { message } = this.props;
-    event.preventDefault();
+    evt.preventDefault();
+    this.props.addNewUser({name: evt.target.name.value, email:evt.target.email.value, password:evt.target.password.value})
     console.log(`${message} isn't implemented yet`);
+    console.log("new user: ", {name: evt.target.name.value, email:evt.target.email.value, password:evt.target.password.value})
   }
 }
 
