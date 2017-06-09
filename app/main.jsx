@@ -6,15 +6,15 @@ import {connect, Provider} from 'react-redux'
 import axios from 'axios';
 
 import store from './store'
-import Landing from './components/Landing'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import EditHomeContainer from './containers/EditHomeContainer'
 import NewHomeContainer from './containers/NewHomeContainer'
 import HomesContainer from './containers/HomesContainer'
+import LandingContainer from './containers/LandingContainer'
 import SelectedHomeContainer from './containers/SelectedHomeContainer'
-import { fetchHomes, getHomeById } from './action-creators/homes'
+import { fetchHomes, fetchLatestHomes, getHomeById } from './action-creators/homes'
 import { getAvailabilityById } from './action-creators/availability'
 import ProfileContainer from './containers/ProfileContainer'
 import { fetchUsers, getUserById, setCurrentUser } from './action-creators/users'
@@ -60,11 +60,18 @@ const ExampleApp = connect(
     </div>
 )
 
+const fetchLatestHomesList = () => {
+  axios.get('/api/homes/latest')
+  .then(res => res.data)
+  .then(latestHomes =>{
+    store.dispatch(fetchLatestHomes(latestHomes))
+  })
+}
+
 const fetchHomesList = () => {
   axios.get('/api/homes')
   .then(res => res.data)
   .then(homes =>{
-    console.log(homes)
     store.dispatch(fetchHomes(homes))
   })
 }
@@ -92,9 +99,9 @@ const fetchCurrentUser = () => {
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={ExampleApp}>
+      <Route path="/" component={ExampleApp} onEnter={fetchLatestHomesList}>
         <IndexRedirect to="/landing" />
-        <Route path="/landing" component={Landing} />
+        <Route path="/landing" component={LandingContainer} />
         <Route path="/homes" component={HomesContainer} onEnter={fetchHomesList}/>
         <Route path="/new-home" component={NewHomeContainer} onEnter={fetchCurrentUser}/>
         <Route path="/homes/:homeId" component={SelectedHomeContainer} onEnter={fetchSelectedHome}/>
