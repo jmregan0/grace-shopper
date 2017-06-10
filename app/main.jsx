@@ -147,7 +147,7 @@ render(
         <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
         <Route path="/cart/:cartId" component={CartContainer} onEnter={fetchUserCart} />
         <Route path="/signup" component={SignUpContainer} />
-        <Route path="/cart" component={CartContainer} onEnter={fetchUserCart} />
+        <Route path="/cart" component={CartContainer} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
