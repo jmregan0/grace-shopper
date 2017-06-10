@@ -94,7 +94,7 @@ const homes = seed(Home, ({users}) => ({
     description: 'Suspended high among the pastel clouds of Bespin is a floating metropolis of sophisticated beauty and political freedom. Cloud City exists not only as a mining colony, extracting valuable Tibanna gas from the depths of the giant planet, but also as a sanctuary for those trying to escape the turmoil gripping the galaxy. Though profitable, Cloud City is small enough not to be noticed by larger authorities such as the Mining Guild. It prospered under the capable stewardship of Baron-Administrator Lando Calrissian. Calrissian, assisted by his aide Lobot, contended with self-sufficiency issues and labor difficulties throughout his brief term.',
     imageUrl: 'https://s-media-cache-ak0.pinimg.com/736x/a2/58/7f/a2587f87d021095a1350ce58a999494b.jpg',
     price: 150,
-    host_id: 2,
+    host_id: users.lando.id,
     // id: 2
   },
   enterprise: {
@@ -103,7 +103,7 @@ const homes = seed(Home, ({users}) => ({
     description: 'A living space assigned to a temporary resident of a space station or spacecraft. Standard guest quarters on a Galaxy-class starship were considered far more luxurious than those on board a 23rd century starbase, and were not the largest quarters available. (TNG: Relics). The guest quarters aboard Deep Space 9 were located in corridor H-12-A',
     imageUrl: 'http://www.startrekuncharted.com/uploads/2/5/7/3/25731757/4231759_orig.jpg',
     price: 150,
-    host_id: users.lando.id,
+    host_id: users.kirk.id,
     // id: 3
   },
   tardis: {
