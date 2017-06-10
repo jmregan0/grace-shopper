@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import moment from 'moment'
 import CalendarForm from './CalendarForm'
-import NewHomeForm from './NewHomeForm'
+import HomeInformationForm from './HomeInformationForm'
 
 
 class NewHome extends Component {
@@ -99,7 +99,8 @@ class NewHome extends Component {
             />
           </div>
           <div className = "col-sm-6">
-            <NewHomeForm
+            <h2>Home Details:</h2>
+            <HomeInformationForm
               homeName={this.state.homeName}
               homeLocation={this.state.homeLocation}
               homeImageUrl={this.state.homeImageUrl}

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router'
+import HomeInformationForm from './HomeInformationForm'
 
 class EditHome extends Component {
   constructor(props) {
@@ -55,76 +56,15 @@ class EditHome extends Component {
       <div className = "container">
         <h1>Edit Home: {}</h1>
         <hr/>
-        <form onSubmit = {this.handleSubmit}>
-          <div className = "form-group row">
-            <div className = "col-sm-3">
-              <h3>Home name:</h3>
-            </div>
-            <div className = "col-sm-9">
-              <input
-                type="text"
-                className="form-control"
-                name="name"
-                value = {this.state.name}
-                onChange = {this.handleChange}
-              />
-            </div>
-          </div>
-          <div className = "form-group row">
-            <div className = "col-sm-3">
-              <h3>Location:</h3>
-            </div>
-            <div className = "col-sm-9">
-              <input
-                type="text"
-                className="form-control"
-                name="location"
-                value = {this.state.location}
-                onChange = {this.handleChange}
-                />
-            </div>
-          </div>
-          <div className = "form-group row">
-            <div className = "col-sm-3">
-              <h3>Image URL:</h3>
-            </div>
-            <div className = "col-sm-9">
-              <input
-                type="text"
-                className="form-control"
-                name="imageUrl"
-                value = {this.state.imageUrl}
-                onChange = {this.handleChange}
-                />
-            </div>
-          </div>
-          <div className = "form-group row">
-            <div className = "col-sm-3">
-              <h3>Price/Night:</h3>
-            </div>
-            <div className = "col-sm-9">
-              <input
-                type="number"
-                className="form-control"
-                name="price"
-                value = {this.state.price}
-                onChange = {this.handleChange}
-                />
-            </div>
-          </div>
-          <div className = "form-group">
-            <h3>Description:</h3>
-            <textarea
-              className="form-control"
-              name="description"
-              rows="5"
-              value = {this.state.description}
-              onChange = {this.handleChange}
-            />
-          </div>
-
-          <button type = "submit" className = "btn btn-primary">Submit</button>
-        </form>
+        <HomeInformationForm
+          homeName={this.state.homeName}
+          homeLocation={this.state.homeLocation}
+          homeImageUrl={this.state.homeImageUrl}
+          homePrice={this.state.homePrice}
+          homeDescription={this.state.homeDescription}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
     </div>
     )
   }

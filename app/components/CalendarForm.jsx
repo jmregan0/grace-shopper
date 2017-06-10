@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import InfiniteCalendar, { Calendar, withRange } from 'react-infinite-calendar'
-import 'react-infinite-calendar/umd/react-infinite-calendar.js'
+// import 'react-infinite-calendar/umd/react-infinite-calendar.js'
 import moment from 'moment'
 
 class CalendarForm extends Component {
