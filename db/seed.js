@@ -10,14 +10,9 @@ function seedEverything() {
     }
     seeded.homes = homes(seeded);
     seeded.availabilities = availabilities(seeded);
+    seeded.carts = carts(seeded);
     return Promise.props(seeded)
-    // return users()
-    // .then(function(users) {
-    //   return homes()
-    // })
-    // .then(function(homes) {
-    //   return availabilities()
-    // })
+
 }
 
 
@@ -86,7 +81,7 @@ const homes = seed(Home, ({users}) => ({
     imageUrl: 'https://lumiere-a.akamaihd.net/v1/images/yodas-hut_a3d1133d.jpeg?region=0%2C75%2C1560%2C880&width=768',
     price: 150,
     host_id: users.yoda.id,
-    // id: 1
+   
   },
   lando: {
     name: 'Lando\'s Pad',
@@ -95,7 +90,7 @@ const homes = seed(Home, ({users}) => ({
     imageUrl: 'https://s-media-cache-ak0.pinimg.com/736x/a2/58/7f/a2587f87d021095a1350ce58a999494b.jpg',
     price: 150,
     host_id: users.lando.id,
-    // id: 2
+  
   },
   enterprise: {
     name: 'U.S.S. Enterprise Standard Cabin',
@@ -104,7 +99,7 @@ const homes = seed(Home, ({users}) => ({
     imageUrl: 'http://www.startrekuncharted.com/uploads/2/5/7/3/25731757/4231759_orig.jpg',
     price: 150,
     host_id: users.kirk.id,
-    // id: 3
+  
   },
   tardis: {
     name: 'Tardis',
@@ -113,7 +108,7 @@ const homes = seed(Home, ({users}) => ({
     imageUrl: 'https://upload.wikimedia.org/wikipedia/en/4/48/TARDIS_console_1996.jpg',
     price: 80,
     host_id: users.drWho.id,
-    // id: 4
+    
   },
   deathStar1: {
     name: 'Basic 1 bedroom',
@@ -122,7 +117,7 @@ const homes = seed(Home, ({users}) => ({
     imageUrl: 'https://lumiere-a.akamaihd.net/v1/images/Death-Star-II_b5760154.jpeg?region=0%2C68%2C2160%2C1080',
     price: 100,
     host_id: users.stormTrooper.id,
-    // id: 5
+    
   },
   deathStar2: {
     name: 'VIP Suite',
@@ -131,7 +126,7 @@ const homes = seed(Home, ({users}) => ({
     imageUrl: 'https://vignette3.wikia.nocookie.net/starwars/images/7/72/DeathStar1-SWE.png/revision/latest?cb=20150121020639',
     price: 200,
     host_id: users.vader.id,
-    // id: 6
+  
   },
   jabba: {
     name: 'Basic 1 Bedroom',
@@ -140,7 +135,7 @@ const homes = seed(Home, ({users}) => ({
     imageUrl: 'http://i.imgur.com/1RyZ95r.jpg',
     price: 25,
     host_id: users.jabba.id,
-    // id: 7
+   
   },
   cooperStation: {
     name: 'The Lodge',
@@ -149,7 +144,7 @@ const homes = seed(Home, ({users}) => ({
     imageUrl: 'https://s-media-cache-ak0.pinimg.com/originals/e9/ed/6f/e9ed6f0fbb87e2c086fa17725d8da4dd.jpg',
     price: 150,
     host_id: users.coop.id,
-    // id: 8
+   
   },
   xandar: {
     name: '1 bedroom apt',
@@ -158,7 +153,7 @@ const homes = seed(Home, ({users}) => ({
     imageUrl: 'https://s-media-cache-ak0.pinimg.com/originals/17/f1/3a/17f13a1ea2f5674339240e0a54d787ff.jpg',
     price: 60,
     host_id: users.thanos.id,
-    // id: 9
+    
   }
 }))
 
@@ -201,6 +196,18 @@ const availabilities = seed(Availability, ({homes}) => ({
   date36: {date: "2017-08-05", home_id: homes.yoda.id},
 }))
 
+const carts = seed(Cart, ({users}) => ({
+  yoda: {user_id: users.yoda.id},
+  lando: {user_id: users.lando.id},
+  kirk: {user_id: users.kirk.id},
+  drWho: {user_id: users.drWho.id},
+  stormTrooper: {user_id: users.stormTrooper.id},
+  vader: {user_id: users.vader.id},
+  jabba: {user_id: users.jabba.id},
+  coop: {user_id: users.coop.id},
+  thanos: {user_id: users.thanos.id}
+
+}))
 
 
 if (module === require.main) {
