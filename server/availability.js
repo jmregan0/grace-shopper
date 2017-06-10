@@ -41,7 +41,6 @@ module.exports = require('express').Router({mergeParams: true})
     for(let i = 0; i < diff; i++) {
       dateRange.push(new Date(startDate.add(1, 'days')));
     }
-    console.log('dates', dateRange);
 
     Promise.all(dateRange.map(date => Availability.create({
       date,

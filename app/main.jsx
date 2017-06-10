@@ -12,6 +12,7 @@ import EditHomeContainer from './containers/EditHomeContainer'
 import NewHomeContainer from './containers/NewHomeContainer'
 import HomesContainer from './containers/HomesContainer'
 import ProfileContainer from './containers/ProfileContainer'
+import CheckoutContainer from './containers/CheckoutContainer'
 import LandingContainer from './containers/LandingContainer'
 import SelectedHomeContainer from './containers/SelectedHomeContainer'
 import CartContainer from './containers/CartContainer'
@@ -98,6 +99,10 @@ const fetchUserInfo = (nextRouterState) => {
   store.dispatch(getHostTransactionsByUser(userId));
 }
 
+
+const fetchCart = () => {
+}
+  
 const fetchCurrentUser = () => {
   axios.get('/api/auth/whoami')
     .then(res => res.data)
@@ -136,6 +141,7 @@ render(
         <Route path="/new-home" component={NewHomeContainer} onEnter={fetchCurrentUser}/>
         <Route path="/homes/:homeId" component={SelectedHomeContainer} onEnter={fetchSelectedHome}/>
         <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
+        <Route path="/checkout" component={CheckoutContainer} onEnter={fetchCart}/>
         <Route path="/homes/:homeId/edit" component={EditHomeContainer} onEnter={fetchSelectedHome}/>
         <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
         <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
