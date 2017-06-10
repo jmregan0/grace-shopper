@@ -28,12 +28,14 @@ module.exports = require('express').Router()
   //   })
   //   .catch(next)
   // })
-  .post('/', (req, res, next) => {
-    if(req.session.passport.id === null)
-    Cart.findOrCreate({id: req.session.passport.user})
-    .then(newCart => {
+  .post('/:id/availability/:av', (req, res, next) => {
+    Cart.findOne({
+      where: {id: req.params.id}
+    })
+    .then(cart => {
+      return Promise.spread({})
+      cart.addAvailability({availability_id: req.params.av})
 
     })
-
   })
 
