@@ -13,7 +13,7 @@ const Homes = (props) => {
           <div className="row list-group-item" key={ home.id }>
             <div className="row">
               <div className="col-sm-3">
-                <img className="col-xs-12" src={home.imageUrl}/>
+                <img className="col-sm-12" src={home.imageUrl}/>
               </div>
               <div className="col-sm-9">
                 <h3><Link to={`/homes/${home.id}`}>{home.name}</Link></h3>
