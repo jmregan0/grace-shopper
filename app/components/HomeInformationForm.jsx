@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-const NewHomeForm = (props) => {
+const HomeInformationForm = (props) => {
   return (
     <div>
-      <h2>Home Details:</h2>
       <form onSubmit = {props.handleSubmit}>
         <div className = "form-group row">
           <div className = "col-sm-3">
@@ -84,4 +83,4 @@ const NewHomeForm = (props) => {
   )
 }
 
-export default NewHomeForm;
+export default HomeInformationForm;
