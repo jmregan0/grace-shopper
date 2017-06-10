@@ -2,9 +2,7 @@ import { FETCH_USERS, SET_CURRENT_USER } from '../constants'
 
 const initialState = {
   list: [],
-  selected: {
-  
-  }
+  selected: {}
 }
 
 export default function(state=initialState, action) {

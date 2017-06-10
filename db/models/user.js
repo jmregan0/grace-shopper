@@ -42,6 +42,7 @@ module.exports = db => db.define('users', {
 
 module.exports.associations = (User, {OAuth, Home}) => {
   User.hasOne(OAuth)
+  User.hasMany(Home, {foreignKey: 'host_id'})
 }
 
 function setEmailAndPassword(user) {

@@ -11,14 +11,16 @@ import NotFound from './components/NotFound'
 import EditHomeContainer from './containers/EditHomeContainer'
 import NewHomeContainer from './containers/NewHomeContainer'
 import HomesContainer from './containers/HomesContainer'
+import ProfileContainer from './containers/ProfileContainer'
+import CheckoutContainer from './containers/CheckoutContainer'
 import LandingContainer from './containers/LandingContainer'
 import SelectedHomeContainer from './containers/SelectedHomeContainer'
 import CartContainer from './containers/CartContainer'
 import SignUpContainer from './containers/SignUpContainer'
 import { fetchHomes, fetchLatestHomes, getHomeById } from './action-creators/homes'
 import { getAvailabilityById } from './action-creators/availability'
-import ProfileContainer from './containers/ProfileContainer'
 import { fetchUsers, getUserById, setCurrentUser } from './action-creators/users'
+import { getGuestTransactionsByUser, getHostTransactionsByUser } from './action-creators/transactions'
 import { getCartByUserId } from './action-creators/cart'
 
 const ExampleApp = connect(
@@ -55,7 +57,7 @@ const ExampleApp = connect(
                         {user ? <Link to='/new-home'>Add Home</Link> : null}
                       </li>
                       <li>
-                          {user ? <Link to={`/cart/${user.id}`}>Cart</Link> : null}
+                          {<Link to={'/cart'}>Cart</Link>}
                       </li>
                   </ul>
               </div>
@@ -93,8 +95,14 @@ const fetchSelectedHome = (nextRouterState) => {
 const fetchUserInfo = (nextRouterState) => {
   const userId = nextRouterState.params.userId;
   store.dispatch(getUserById(userId));
+  store.dispatch(getGuestTransactionsByUser(userId));
+  store.dispatch(getHostTransactionsByUser(userId));
 }
 
+
+const fetchCart = () => {
+}
+  
 const fetchCurrentUser = () => {
   axios.get('/api/auth/whoami')
     .then(res => res.data)
@@ -110,6 +118,19 @@ const fetchUserCart = (nextRouterState) => {
   store.dispatch(getCartByUserId(cartId));
 }
 
+const initialize = function(nextRouterState) {
+  var current = store.getState()
+  console.log(store.getState())
+    if(current.auth === null || current.auth === ""){
+      console.log('not a user', current.auth)
+    } else {
+      console.log('you are a user!', current.auth)
+    }
+
+  // store.dispatch(createNewCart())
+  //import this func
+}
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
@@ -119,11 +140,14 @@ render(
         <Route path="/homes" component={HomesContainer} onEnter={fetchHomesList}/>
         <Route path="/new-home" component={NewHomeContainer} onEnter={fetchCurrentUser}/>
         <Route path="/homes/:homeId" component={SelectedHomeContainer} onEnter={fetchSelectedHome}/>
+        <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
+        <Route path="/checkout" component={CheckoutContainer} onEnter={fetchCart}/>
         <Route path="/homes/:homeId/edit" component={EditHomeContainer} onEnter={fetchSelectedHome}/>
         <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
         <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
         <Route path="/cart/:cartId" component={CartContainer} onEnter={fetchUserCart} />
         <Route path="/signup" component={SignUpContainer} />
+        <Route path="/cart" component={CartContainer} onEnter={fetchUserCart} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

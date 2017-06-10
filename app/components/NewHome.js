@@ -17,16 +17,30 @@ class NewHome extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    let userId = this.props.user.id
-    this.props.getUserById(userId);
-    this.props.addNewHome({
+    let userId = this.props.auth.id
+    // this.props.getUserById(userId);
+    let payload = {
       host_id: userId,
       name: this.state.homeName,
       location: this.state.homeLocation,
       description: this.state.homeDescription,
       imageUrl: this.state.homeImageUrl,
-      price: parseInt(this.state.homePrice),
-    })
+      price: this.state.homePrice,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
+
+    if (this.hasFormError(payload)) {
+      this.setState({
+        error: "An error occured. Please make sure Name, Location, and Price are populated. Price must also be greater than $0.00/night.",
+      })
+    } else {
+      Object.keys(payload).forEach(key => {
+        console.log(key, payload[key])
+        if(payload[key] === '') delete payload[key];
+      })
+      this.props.addNewHome(payload)
+    }
   }
 
   handleChange(e) {
@@ -35,9 +49,24 @@ class NewHome extends Component {
     })
   }
 
+  hasFormError(payload) {
+    console.log('payload', payload)
+    if(payload.name.length === 0 || payload.location.length === 0 || payload.price.length === 0 || parseFloat(payload.price) <= 0.0) return true
+    return false;
+  }
+
   render() {
     return (
       <div className = "container">
+            {
+              this.state.error
+              ? (
+                  <div className="alert alert-danger">
+                    <strong>{this.state.error}</strong>
+                  </div>
+                )
+              : null
+            }
             <h1>Add New Home</h1>
             <hr/>
             <form onSubmit = {this.handleSubmit}>
