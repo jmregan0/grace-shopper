@@ -29,7 +29,7 @@ const SelectedUser= ({selected, guest, host}) => {
                 <div className="panel-body">
                     <h1>Your Reservations</h1>
                     <div className="table table-striped table-hover">
-                        {guest.map(transaction => {
+                        {guest.length ? guest.map(transaction => {
                             return (
                                 <div key={transaction.id}>
                                     <div className="order order-header row thead-inverse">
@@ -56,13 +56,13 @@ const SelectedUser= ({selected, guest, host}) => {
                                     </div>
                                 </div>
                             )
-                        })}
+                        }) : <p>You have no reservations for other hosts' homes.</p>}
                     </div>
                     <hr/>
                     <div className="table table-striped table-hover">
                         <h1>Transaction History as Host</h1>
                         <div className="table table-striped table-hover">
-                            {host.map(transaction => {
+                            {host.length ? host.map(transaction => {
                                 return (
                                     <div key={transaction.id}>
                                         <div className="order order-header row thead-inverse">
@@ -93,7 +93,7 @@ const SelectedUser= ({selected, guest, host}) => {
                                     </div>
                                 </div>
                                 )
-                            })}
+                            }) : <p>No one has made reservations for your home yet.</p>}
                         </div>
                     </div>
                 </div>
