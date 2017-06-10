@@ -51,6 +51,9 @@ module.exports = app
   // Serve static files from ../public
   .use(express.static(resolve(__dirname, '..', 'public')))
 
+  // Serve the CSS for React Infinite Calendar
+  .use('/react-infinite-calendar', express.static(resolve(__dirname, '..', 'node_modules/react-infinite-calendar')))
+
   // Serve our api - ./api also requires in ../db, which syncs with our database
   .use('/api', require('./api'))
 
