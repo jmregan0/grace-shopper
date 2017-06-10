@@ -41,6 +41,8 @@ module.exports = require('express').Router({mergeParams: true})
     (req, res, next) => {
       console.log('create route hit');
       console.log('body in post route', req.body)
+
+      //Code below closely resembles the post route for availability. Not sure how to refactor.
       let newHome;
       return Home.create(req.body)
       // .then(home => res.status(201).json(home))
