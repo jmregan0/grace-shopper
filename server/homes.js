@@ -6,6 +6,7 @@ const Home = db.model('homes')
 const User = db.model('users')
 const Availability = db.model('availability')
 
+const moment = require('moment')
 
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
@@ -40,7 +41,34 @@ module.exports = require('express').Router({mergeParams: true})
     (req, res, next) => {
       console.log('create route hit');
       console.log('body in post route', req.body)
+
+      //Code below closely resembles the post route for availability. Not sure how to refactor.
+      let newHome;
       return Home.create(req.body)
+      // .then(home => res.status(201).json(home))
+      .then(home => {
+          newHome = home
+          console.log('newhome', newHome);
+          if(req.body.startDate && req.body.endDate) {
+            let startDate = moment(req.body.startDate, "YYYY/MM/DD");
+            let endDate = moment(req.body.endDate, "YYYY/MM/DD");
+
+            let diff = endDate.diff(startDate, 'days');
+            let dateRange = [new Date(startDate)];
+
+            for(let i = 0; i < diff; i++) {
+              dateRange.push(new Date(startDate.add(1, 'days')));
+            }
+
+            return Promise.all(dateRange.map(date => Availability.create({
+              date,
+              home_id: newHome.id,
+            })))
+              .then(dateArr => newHome)
+              .catch(next)
+          }
+          else return newHome
+      })
       .then(home => res.status(201).json(home))
       .catch(next)
     })

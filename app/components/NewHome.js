@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
+import moment from 'moment'
+import CalendarForm from './CalendarForm'
+import NewHomeForm from './NewHomeForm'
+
 
 class NewHome extends Component {
   constructor(props) {
@@ -10,9 +14,13 @@ class NewHome extends Component {
       homeImageUrl:'',
       homePrice: '',
       homeDescription: '',
+      start: new Date(),
+      end: new Date(),
     }
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
   }
 
   handleSubmit(e) {
@@ -27,7 +35,9 @@ class NewHome extends Component {
       imageUrl: this.state.homeImageUrl,
       price: this.state.homePrice,
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
+      startDate: this.state.start,
+      endDate: this.state.end,
     }
 
     if (this.hasFormError(payload)) {
@@ -49,6 +59,16 @@ class NewHome extends Component {
     })
   }
 
+  handleDateChange(e) {
+    if(e.eventType === 3) {
+      this.setState({
+        start: e.start,
+        end: e.end,
+      })
+    }
+  }
+
+
   hasFormError(payload) {
     console.log('payload', payload)
     if(payload.name.length === 0 || payload.location.length === 0 || payload.price.length === 0 || parseFloat(payload.price) <= 0.0) return true
@@ -58,93 +78,39 @@ class NewHome extends Component {
   render() {
     return (
       <div className = "container">
-            {
-              this.state.error
-              ? (
-                  <div className="alert alert-danger">
-                    <strong>{this.state.error}</strong>
-                  </div>
-                )
-              : null
-            }
-            <h1>Add New Home</h1>
-            <hr/>
-            <form onSubmit = {this.handleSubmit}>
-              <div className = "form-group row">
-                <div className = "col-sm-3">
-                  <h3>Home name:</h3>
-                </div>
-                <div className = "col-sm-9">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="homeName"
-                    value = {this.state.homeName}
-                    onChange = {this.handleChange}
-                    placeholder = "Name"
-                  />
-                </div>
+        {
+          this.state.error
+          ? (
+              <div className="alert alert-danger">
+                <strong>{this.state.error}</strong>
               </div>
-              <div className = "form-group row">
-                <div className = "col-sm-3">
-                  <h3>Location:</h3>
-                </div>
-                <div className = "col-sm-9">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="homeLocation"
-                    placeholder = "Location"
-                    value = {this.state.homeLocation}
-                    onChange = {this.handleChange}
-                    />
-                </div>
-              </div>
-              <div className = "form-group row">
-                <div className = "col-sm-3">
-                  <h3>Image URL:</h3>
-                </div>
-                <div className = "col-sm-9">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="homeImageUrl"
-                    placeholder="Image URL"
-                    value = {this.state.homeImageUrl}
-                    onChange = {this.handleChange}
-                    />
-                </div>
-              </div>
-              <div className = "form-group row">
-                <div className = "col-sm-3">
-                  <h3>Price/Night:</h3>
-                </div>
-                <div className = "col-sm-9">
-                  <input
-                    type="number"
-                    className="form-control"
-                    name="homePrice"
-                    placeholder = "Price"
-                    value = {this.state.homePrice}
-                    onChange = {this.handleChange}
-                    />
-                </div>
-              </div>
-              <div className = "form-group">
-                <h3>Description:</h3>
-                <textarea
-                  className="form-control"
-                  name="homeDescription"
-                  placeholder="Description"
-                  rows="5"
-                  value = {this.state.homeDescription}
-                  onChange = {this.handleChange}
-                />
-              </div>
-
-              <button type = "submit" className = "btn btn-primary">Submit</button>
-            </form>
+            )
+          : null
+        }
+        <h1>Add New Home</h1>
+        <hr/>
+        <div className = "row">
+          <div className = "col-sm-6">
+            <h2>Set Initial Availability:</h2>
+            <CalendarForm
+              handleDateChange={this.handleDateChange}
+              start={this.state.start}
+              end={this.state.end}
+            />
+          </div>
+          <div className = "col-sm-6">
+            <NewHomeForm
+              homeName={this.state.homeName}
+              homeLocation={this.state.homeLocation}
+              homeImageUrl={this.state.homeImageUrl}
+              homePrice={this.state.homePrice}
+              homeDescription={this.state.homeDescription}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+            />
+          </div>
         </div>
+      </div>
       )
 
   }
