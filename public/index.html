@@ -6,9 +6,6 @@
     <meta name=“viewport” content=“width=device-width, initial-scale=1”>
     <meta name=“description” content=“”>
     <meta name=“author” content=“”>
-    <!-- following two lines are PayPal-specific-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
     <!-- following two stylesheets are for profile page bootstrap. Profile page uses a different bootstrap template than the main page-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
@@ -23,36 +20,5 @@
   <body>
     <div id=main></div>
     <script async defer src=/bundle.js></script>
-    <script>
-        paypal.Button.render({
-
-            env: 'sandbox', // Or 'production',
-
-            client: {
-              sandbox: 'AcV3XzxRI7-014DVjov3OEzI9o9cP6OgnAQaPve_IZiQ7uZSqEy5IIjaEfVPkAj0fjc3-s1ct8BoU0Xl'
-            },
-
-            commit: true, // Show a 'Pay Now' button
-
-            payment: function() {
-                return actions.payment.create({
-                transactions: [
-                    {
-                        amount: { total: '1.00', currency: 'USD' }
-                    }
-                ]
-            });
-            },
-
-            onAuthorize: function(data, actions) {
-              return actions.payment.execute()
-              .then(function(payment) {
-                  // The payment is complete!
-                  res.redirect('/success')
-              });
-           }
-
-        }, '#paypal-button');
-    </script>
   </body>
 </html>
