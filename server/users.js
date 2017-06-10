@@ -2,6 +2,7 @@
 
 const db = require('APP/db')
 const User = db.model('users')
+const Cart = db.model('cart')
 
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
@@ -20,9 +21,17 @@ module.exports = require('express').Router()
         .catch(next))
   .post('/',
     (req, res, next) =>{
-      
+//--------------------------      
       return User.create(req.body)
-      .then(user => res.status(201).json(user))
+              .then(user => {
+                console.log(user)
+                Cart.create()
+                .then(cart=>{
+                  cart.setUser(user)
+                })
+                res.status(201).json(user)
+//--------------------------
+              })
       .catch(next)
     }
   )

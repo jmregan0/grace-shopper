@@ -8,5 +8,7 @@ module.exports = db => db.define('cart', {
 })
 
 module.exports.associations = (Cart, {User, Availability}) => {
+	Cart.belongsTo(User)
+	Cart.belongsToMany(Availability, {through: 'guest_cart_items'})
 	// Cart.hasOne(User)
 }
