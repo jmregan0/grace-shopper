@@ -13,7 +13,7 @@ module.exports = require('express').Router({mergeParams: true})
 
   .get('/latest', (req, res, next) =>
     Home.findAll({
-      limit: 8,
+      limit: 4,
       order: 'id DESC'
     })
     .then(homes => res.json(homes))
