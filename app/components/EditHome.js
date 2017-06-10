@@ -8,7 +8,11 @@ class EditHome extends Component {
     this.handleChange = this.handleChange.bind(this)
     console.log('props in construct', props);
     this.state = {
-      props
+      name: props.name,
+      location: props.location,
+      imageUrl:props.imageUrl,
+      price: props.price,
+      description: props.description,
     }
   }
 
@@ -26,11 +30,23 @@ class EditHome extends Component {
     console.log('mounted', this.props);
 
     this.setState({
-      // homeName: home.name,
-      // homeLocation: home.location,
-      // homeImageUrl:home.imageUrl,
-      // homePrice: home.price,
-      // homeDescription: home.description,
+      name: this.props.name,
+      location: this.props.location,
+      imageUrl:this.props.imageUrl,
+      price: this.props.price,
+      description: this.props.description,
+    })
+  }
+
+  componentWillReceiveProps() {
+    console.log('mounted', this.props);
+
+    this.setState({
+      name: this.props.name,
+      location: this.props.location,
+      imageUrl:this.props.imageUrl,
+      price: this.props.price,
+      description: this.props.description,
     })
   }
 
@@ -48,8 +64,8 @@ class EditHome extends Component {
               <input
                 type="text"
                 className="form-control"
-                name="homeName"
-                value = {this.state.homeName}
+                name="name"
+                value = {this.state.name}
                 onChange = {this.handleChange}
               />
             </div>
@@ -62,8 +78,8 @@ class EditHome extends Component {
               <input
                 type="text"
                 className="form-control"
-                name="homeLocation"
-                value = {this.state.homeLocation}
+                name="location"
+                value = {this.state.location}
                 onChange = {this.handleChange}
                 />
             </div>
@@ -76,8 +92,8 @@ class EditHome extends Component {
               <input
                 type="text"
                 className="form-control"
-                name="homeImageUrl"
-                value = {this.state.homeImageUrl}
+                name="imageUrl"
+                value = {this.state.imageUrl}
                 onChange = {this.handleChange}
                 />
             </div>
@@ -90,8 +106,8 @@ class EditHome extends Component {
               <input
                 type="number"
                 className="form-control"
-                name="homePrice"
-                value = {this.state.homePrice}
+                name="price"
+                value = {this.state.price}
                 onChange = {this.handleChange}
                 />
             </div>
@@ -100,9 +116,9 @@ class EditHome extends Component {
             <h3>Description:</h3>
             <textarea
               className="form-control"
-              name="homeDescription"
+              name="description"
               rows="5"
-              value = {this.state.homeDescription}
+              value = {this.state.description}
               onChange = {this.handleChange}
             />
           </div>

@@ -3,13 +3,13 @@ import { connect } from 'react-redux'
 import EditHome from '../components/EditHome'
 
 const mapStateToProps = (state) => {
-  console.log('state', state);
+  console.log('container state in ehc', state);
   return {
-    // homeName: home.name,
-    // homeLocation: home.location,
-    // homeImageUrl:home.imageUrl,
-    // homePrice: home.price,
-    // homeDescription: home.description,
+    name: state.homes.selected.name,
+    location: state.homes.selected.location,
+    imageUrl:state.homes.selected.imageUrl,
+    price: state.homes.selected.price,
+    description: state.homes.selected.description,
   }
 }
 const mapDispatchToProps = (dispatch) => {
