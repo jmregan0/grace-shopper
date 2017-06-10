@@ -10,10 +10,6 @@ module.exports = db => db.define('users', {
     allowNull: false
   },
   picture: STRING,
-  userType: {
-    type: STRING,
-    allowNull: false
-  },
   email: {
     type: STRING,
     allowNull: false,
