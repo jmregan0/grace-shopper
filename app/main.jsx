@@ -74,7 +74,7 @@ const fetchLatestHomesList = () => {
   axios.get('/api/homes/latest')
   .then(res => res.data)
   .then(latestHomes =>{
-    store.dispatch(fetchLatestHomes(latestHomes.slice(-4)))
+    store.dispatch(fetchLatestHomes(latestHomes))
   })
 }
 
@@ -102,7 +102,7 @@ const fetchUserInfo = (nextRouterState) => {
 
 const fetchCart = () => {
 }
-  
+
 const fetchCurrentUser = () => {
   axios.get('/api/auth/whoami')
     .then(res => res.data)
