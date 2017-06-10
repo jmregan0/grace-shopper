@@ -7,6 +7,11 @@ const SelectedHome = (props) => {
   const dates = props.availability.list
   return (
     <div className = "container">
+      <div className="alert">
+        <h5><em>This is your home listing. Edit your listing here:</em></h5>
+        <Link to = {`/homes/${home.id}/edit`} ><button className = 'btn btn-secondary'>Edit this Listing</button></Link>
+      </div>
+        <hr/>
       <h1>{home.name}</h1>
       <h4>Host: <Link to={`/users/${home.host_id}`}>{host.name}</Link></h4>
       <div className = "row">

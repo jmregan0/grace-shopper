@@ -73,7 +73,7 @@ const fetchLatestHomesList = () => {
   axios.get('/api/homes/latest')
   .then(res => res.data)
   .then(latestHomes =>{
-    store.dispatch(fetchLatestHomes(latestHomes))
+    store.dispatch(fetchLatestHomes(latestHomes.slice(-4)))
   })
 }
 
