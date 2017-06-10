@@ -18,9 +18,6 @@ const SelectedUser= ({selected, guest, host}) => {
                   <hr/>
                   <h3><strong>Email</strong></h3>
                   <p>{user.email}</p>
-                  <hr/>
-                  <h3><strong>Type</strong></h3>
-                  <p>{user.userType}</p>
               </div>
           </div>
       </div>
