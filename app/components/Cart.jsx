@@ -1,15 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-class Cart extends React.Component{
-  constructor(props){
-    super(props)
-  }
-  render(){
-		console.log('user cart from props', this.props.cart)
+const Cart = (props) => {
+		const cart = props.cart
+		const home1 = cart[0]
+		console.dir(cart)
+
     return (
       <div className="container">
-	<table id="cart" className="table table-hover table-condensed">
+			<table id="cart" className="table table-hover table-condensed">
     				<thead>
 						<tr>
 							<th style={{width:'50%'}}>Home</th>
@@ -19,28 +18,37 @@ class Cart extends React.Component{
 							<th style={{width:'10%'}}></th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td data-th="Product">
-								<div className="row">
-									<div className="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." className="img-responsive"/></div>
-									<div className="col-sm-10">
-										<h4 className="nomargin">Product 1</h4>
-										<p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
-									</div>
-								</div>
-							</td>
-							<td data-th="Price">$1.99</td>
-							<td data-th="Quantity">
-								<input type="number" className="form-control text-center" value="1" />
-							</td>
-							<td data-th="Subtotal" className="text-center">1.99</td>
-							<td className="actions" data-th="">
-								<button className="btn btn-info btn-sm"><i className="fa fa-refresh"></i></button>
-								<button className="btn btn-danger btn-sm"><i className="fa fa-trash-o"></i></button>
-							</td>
-						</tr>
-					</tbody>
+
+					{
+						cart.map( item => {
+							return (
+							<tbody>
+								<tr>
+									<td data-th="Product">
+										<div className="row">
+											<div className="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." className="img-responsive"/></div>
+											<div className="col-sm-10">
+												<h4 className="nomargin">{item.status}</h4>
+												<p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
+											</div>
+										</div>
+									</td>
+									<td data-th="Price">$1.99</td>
+									<td data-th="Quantity">
+										<input type="number" className="form-control text-center" value="1" />
+									</td>
+									<td data-th="Subtotal" className="text-center">1.99</td>
+									<td className="actions" data-th="">
+										<button className="btn btn-info btn-sm"><i className="fa fa-refresh"></i></button>
+										<button className="btn btn-danger btn-sm"><i className="fa fa-trash-o"></i></button>
+									</td>
+								</tr>
+							</tbody>
+							)
+						})
+					}
+
+
 					<tfoot>
 						<tr className="visible-xs">
 							<td className="text-center"><strong>Total 1.99</strong></td>
@@ -55,9 +63,7 @@ class Cart extends React.Component{
 				</table>
 </div>
     )
-  }
 }
-
 
 
 export default Cart

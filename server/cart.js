@@ -3,6 +3,7 @@
 const db = require('APP/db')
 const Cart = db.model('cart')
 const Availability = db.model('availability')
+const Homes = db.model('homes')
 const guest_cart_items = db.model('guest_cart_items')
 
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
@@ -17,9 +18,11 @@ module.exports = require('express').Router()
         return Cart.create({user_id: req.params.id})
         .then(newCart => res.json(newCart))
       } else {
-        return guestCart.getAvailabilities(
-          // where: {cart_id: guestCart.user_id}
-        )
+        return guestCart.getAvailabilities({
+          include: [
+            { model: Homes }
+          ]
+        })
         .then(foundItems => res.json(foundItems))
       }
     })
