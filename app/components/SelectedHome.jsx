@@ -69,7 +69,9 @@ const SelectedHome = (props) => {
                   <option key={`${date.id}`} value={`${date.date}`}>{date.date}</option>
                 )}
                 </select>
-                <button className = 'btn btn-primary' onClick = {() => {}} >Add to Cart</button>
+                <button className = 'btn btn-primary' onClick = {() => {
+                  
+                  props.addAvailabilityToCart(home.id, startDate.value, endDate.value)}} >Add to Cart</button>
               </div>
             )
           : (

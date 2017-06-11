@@ -72,6 +72,7 @@ module.exports = require('express').Router({mergeParams: true})
       .then(home => res.status(201).json(home))
       .catch(next)
     })
+  
   .get('/:id',
     (req, res, next) =>
       Home.find({
@@ -105,4 +106,7 @@ module.exports = require('express').Router({mergeParams: true})
       res.sendStatus(202))
     .catch(next)
   )
+
+
+
   .use('/:id/availability', require('./availability'))
