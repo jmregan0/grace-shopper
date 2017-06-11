@@ -37,9 +37,9 @@ export const addAvailabilityToCartAC = (homeId, startDate, endDate) => {
 
   return dispatch => {
     axios.get('/api/auth/whoami')
-    .then(user=>{ 
+    .then(user=>{
 
-        if(user.data!==""){   
+        if(user.data!==""){
             axios.post(`/api/cart/${user.data.id}`, {homeId:homeId, startDate:startDate, endDate:endDate})
         }else{
             console.log("CANNOT ADD CART ITEMS WHEN NOT SIGNED IN")
