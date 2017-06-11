@@ -4,10 +4,9 @@ import { Link } from 'react-router'
 class Cart extends React.Component{
   constructor(props){
     super(props)
-
   }
-
   render(){
+		console.log('user cart from props', this.props.cart)
     return (
       <div className="container">
 	<table id="cart" className="table table-hover table-condensed">
