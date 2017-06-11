@@ -4,7 +4,7 @@ import Checkout from '../components/Checkout'
 
 const mapStateToProps = (state) => {
   return {
-    // cart: state.cart.items,
+    cart: state.cart.items,
   }
 }
 

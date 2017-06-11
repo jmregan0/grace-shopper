@@ -19,7 +19,7 @@ import CartContainer from './containers/CartContainer'
 import SignUpContainer from './containers/SignUpContainer'
 import { fetchHomes, fetchLatestHomes, getHomeById } from './action-creators/homes'
 import { getAvailabilityById } from './action-creators/availability'
-import { fetchUsers, getUserById, setCurrentUser } from './action-creators/users'
+import { getUserHomes, getUserById, setCurrentUser } from './action-creators/users'
 import { getGuestTransactionsByUser, getHostTransactionsByUser } from './action-creators/transactions'
 import { getCartByUserId } from './action-creators/cart'
 
@@ -95,12 +95,9 @@ const fetchSelectedHome = (nextRouterState) => {
 const fetchUserInfo = (nextRouterState) => {
   const userId = nextRouterState.params.userId;
   store.dispatch(getUserById(userId));
+  store.dispatch(getUserHomes(userId));
   store.dispatch(getGuestTransactionsByUser(userId));
   store.dispatch(getHostTransactionsByUser(userId));
-}
-
-
-const fetchCart = () => {
 }
 
 const fetchCurrentUser = () => {
@@ -111,11 +108,13 @@ const fetchCurrentUser = () => {
     })
 }
 
-
 const fetchUserCart = (nextRouterState) => {
   const cartId = nextRouterState.params.cartId;
   console.log('router state', nextRouterState);
   store.dispatch(getCartByUserId(cartId));
+}
+
+const fetchCart = () => {
 }
 
 const initialize = function(nextRouterState) {
@@ -147,7 +146,7 @@ render(
         <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
         <Route path="/cart/:cartId" component={CartContainer} onEnter={fetchUserCart} />
         <Route path="/signup" component={SignUpContainer} />
-        <Route path="/cart" component={CartContainer} />
+        <Route path="/cart" component={CartContainer} onEnter={fetchUserCart} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

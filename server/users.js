@@ -21,7 +21,7 @@ module.exports = require('express').Router()
         .catch(next))
   .post('/',
     (req, res, next) =>{
-//--------------------------      
+//--------------------------
       return User.create(req.body)
               .then(user => {
                 console.log(user)
@@ -44,3 +44,4 @@ module.exports = require('express').Router()
       .then(user => res.json(user))
       .catch(next))
   .use('/:id/transactions', require('./transactions'))
+  .use('/:id/homes', require('./homes'))

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import moment from 'moment'
 
-const SelectedUser= ({selected, guest, host}) => {
+const SelectedUser= ({selected, userHomes, guest, host}) => {
   const user = selected
   return (
     <div className="panel panel-default">
@@ -18,6 +18,15 @@ const SelectedUser= ({selected, guest, host}) => {
                   <hr/>
                   <h3><strong>Email</strong></h3>
                   <p>{user.email}</p>
+                  <hr/>
+                  <h3><strong>My Homes</strong></h3>
+                  {userHomes.map(home => {
+                    return (
+                      <div key={home.id}>
+                        {home.name}
+                      </div>
+                    )
+                  })}
               </div>
           </div>
       </div>
@@ -36,7 +45,7 @@ const SelectedUser= ({selected, guest, host}) => {
                                         </div>
                                         <div className="order-column">
                                             <div><strong>Total</strong></div>
-                                            <div>${transaction.price}</div>
+                                            <div>${transaction.price * (moment(transaction.endDate).diff(moment(transaction.startDate), 'days'))}</div>
                                         </div>
                                         <div className="right">
                                             <div><strong>Order #</strong></div>
@@ -47,7 +56,7 @@ const SelectedUser= ({selected, guest, host}) => {
                                         <div className="left"><img src={transaction.home.imageUrl} className="order-thumb"/></div>
                                         <div className="no-flex">
                                             <div className="bottom-padding"><Link to="/homes/{transaction.home.id}" className="link">{transaction.home.name}</Link></div>
-                                            <div className="bottom-padding">From <strong>{moment(transaction.startDate).format('LL')}</strong> to <strong>{moment(transaction.endDate).format('LL')}</strong></div>
+                                            <div className="bottom-padding">From <strong>{moment.utc(transaction.startDate).format('LL')}</strong> to <strong>{moment.utc(transaction.endDate).format('LL')}</strong></div>
                                             <div className="price">${transaction.price}</div>
                                         </div>
                                     </div>
@@ -60,6 +69,7 @@ const SelectedUser= ({selected, guest, host}) => {
                         <h1>Transaction History as Host</h1>
                         <div className="table table-striped table-hover">
                             {host.length ? host.map(transaction => {
+                                console.log("host", host)
                                 return (
                                     <div key={transaction.id}>
                                         <div className="order order-header row thead-inverse">
@@ -69,7 +79,7 @@ const SelectedUser= ({selected, guest, host}) => {
                                         </div>
                                         <div className="order-column">
                                             <div><strong>Total</strong></div>
-                                            <div>${transaction.price}</div>
+                                            <div>${transaction.price * (moment(transaction.endDate).diff(moment(transaction.startDate), 'days'))}</div>
                                         </div>
                                         <div className="order-column">
                                             <div><strong>Guest</strong></div>
@@ -84,7 +94,7 @@ const SelectedUser= ({selected, guest, host}) => {
                                         <div className="left"><img src={transaction.home.imageUrl} className="order-thumb"/></div>
                                         <div className="no-flex">
                                             <div className="bottom-padding"><Link to="/homes/{transaction.home.id}" className="link">{transaction.home.name}</Link></div>
-                                            <div className="bottom-padding">From <strong>{moment(transaction.startDate).format('LL')}</strong> to <strong>{moment(transaction.endDate).format('LL')}</strong></div>
+                                            <div className="bottom-padding">From <strong>{moment.utc(transaction.startDate).format('LL')}</strong> to <strong>{moment.utc(transaction.endDate).format('LL')}</strong></div>
                                             <div className="price">${transaction.price}</div>
                                         </div>
                                     </div>
