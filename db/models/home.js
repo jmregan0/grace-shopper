@@ -1,6 +1,7 @@
 'use strict';
 var Sequelize = require('sequelize')
 var db = require('../index.js')
+var User = require('./user')
 
 
 module.exports = db => db.define('homes', {
@@ -27,12 +28,24 @@ module.exports = db => db.define('homes', {
   }
 },
 {
+  hooks: {
+    beforeValidate: (user, options) => {
+      if(user.imageUrl === '') user.imageUrl = 'http://i.imgur.com/3BrMZK8.png';
+    },
+  },
   getterMethods: {
     excerpt: function() {
       if(this.description) return `${this.description.slice(0, 200)}...`;
       return 'No description yet!'
     },
   },
+  // defaultScope: {
+  //   attributes: {
+  //   include: [
+  //     {model: User, as: 'Host'},
+  //   ]
+  //   },
+  // },
 })
 
 module.exports.associations = (Home, {User}) => {

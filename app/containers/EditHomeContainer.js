@@ -1,9 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import EditHome from '../components/EditHome'
+import { editHome } from '../action-creators/homes'
 
 const mapStateToProps = (state) => {
-  console.log('container state in ehc', state);
+  console.log('container state in ehc', state)
   return {
     name: state.homes.selected.name,
     location: state.homes.selected.location,
@@ -14,7 +15,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    editHome(home) {
+      return dispatch(editHome(home))
+    }
   }
 }
 
