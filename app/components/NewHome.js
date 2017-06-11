@@ -9,11 +9,11 @@ class NewHome extends Component {
   constructor(props) {
     super()
     this.state = {
-      homeName: '',
-      homeLocation: '',
-      homeImageUrl:'',
-      homePrice: '',
-      homeDescription: '',
+      name: '',
+      location: '',
+      imageUrl:'',
+      price: '',
+      description: '',
       start: new Date(),
       end: new Date(),
     }
@@ -29,11 +29,11 @@ class NewHome extends Component {
     // this.props.getUserById(userId);
     let payload = {
       host_id: userId,
-      name: this.state.homeName,
-      location: this.state.homeLocation,
-      description: this.state.homeDescription,
-      imageUrl: this.state.homeImageUrl,
-      price: this.state.homePrice,
+      name: this.state.name,
+      location: this.state.location,
+      description: this.state.description,
+      imageUrl: this.state.imageUrl,
+      price: this.state.price,
       createdAt: new Date(),
       updatedAt: new Date(),
       startDate: this.state.start,
@@ -45,10 +45,10 @@ class NewHome extends Component {
         error: "An error occured. Please make sure Name, Location, and Price are populated. Price must also be greater than $0.00/night.",
       })
     } else {
-      Object.keys(payload).forEach(key => {
-        console.log(key, payload[key])
-        if(payload[key] === '') delete payload[key];
-      })
+      // Object.keys(payload).forEach(key => {
+      //   console.log(key, payload[key])
+      //   if(payload[key] === '') delete payload[key];
+      // })
       this.props.addNewHome(payload)
     }
   }
@@ -101,11 +101,11 @@ class NewHome extends Component {
           <div className = "col-sm-6">
             <h2>Home Details:</h2>
             <HomeInformationForm
-              homeName={this.state.homeName}
-              homeLocation={this.state.homeLocation}
-              homeImageUrl={this.state.homeImageUrl}
-              homePrice={this.state.homePrice}
-              homeDescription={this.state.homeDescription}
+              name={this.state.name}
+              location={this.state.location}
+              imageUrl={this.state.imageUrl}
+              price={this.state.price}
+              description={this.state.description}
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
             />

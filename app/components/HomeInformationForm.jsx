@@ -13,8 +13,8 @@ const HomeInformationForm = (props) => {
             <input
               type="text"
               className="form-control"
-              name="homeName"
-              value = {props.homeName}
+              name="name"
+              value = {props.name}
               onChange = {props.handleChange}
               placeholder = "Name"
             />
@@ -28,9 +28,9 @@ const HomeInformationForm = (props) => {
             <input
               type="text"
               className="form-control"
-              name="homeLocation"
+              name="location"
               placeholder = "Location"
-              value = {props.homeLocation}
+              value = {props.location}
               onChange = {props.handleChange}
               />
           </div>
@@ -43,9 +43,9 @@ const HomeInformationForm = (props) => {
             <input
               type="text"
               className="form-control"
-              name="homeImageUrl"
+              name="imageUrl"
               placeholder="Image URL"
-              value = {props.homeImageUrl}
+              value = {props.imageUrl}
               onChange = {props.handleChange}
               />
           </div>
@@ -58,9 +58,9 @@ const HomeInformationForm = (props) => {
             <input
               type="number"
               className="form-control"
-              name="homePrice"
+              name="price"
               placeholder = "Price"
-              value = {props.homePrice}
+              value = {props.price}
               onChange = {props.handleChange}
               />
           </div>
@@ -69,15 +69,15 @@ const HomeInformationForm = (props) => {
           <h3>Description:</h3>
           <textarea
             className="form-control"
-            name="homeDescription"
+            name="description"
             placeholder="Description"
             rows="5"
-            value = {props.homeDescription}
+            value = {props.description}
             onChange = {props.handleChange}
           />
         </div>
 
-        <button type = "submit" className = "btn btn-primary" onSubmit={props.handleSubmit}>Submit</button>
+        <button type = "submit" className = "btn btn-primary">Submit</button>
       </form>
     </div>
   )
