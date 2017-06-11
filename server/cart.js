@@ -2,6 +2,7 @@
 
 const db = require('APP/db')
 const Cart = db.model('cart')
+const Availability = db.model('availability')
 const guest_cart_items = db.model('guest_cart_items')
 
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
@@ -30,26 +31,28 @@ module.exports = require('express').Router()
   // })
   .post('/:id', (req, res, next) => {
   
-    var availabilities = req.body;
+    var ok = req.body;
 
 
-    Cart.findOne({
-      where: {id: req.params.id}
-    })
-    .then(cart => {
-    //   return Promise.spread({})
-    console.log("CART", cart)
-    console.log("AVAIL",availabilities)
-    return cart.addAvailabilities(availabilities)
-
-    // availabilities.map(avail=>{
-    //   return cart.addAvailability(avail)
-    // })
-
-    // Promise.all(availabilities)
+    Availability.findAll({
+      order: 'id ASC',
+      where: {
+        date:{
+          $between: [ok.startDate, ok.endDate]
+        },
+        home_id: ok.homeId,
+      }
 
     })
-    .then(()=>{res.sendStatus(201)})
+    .then(availabilities => {
+        Cart.findOne({
+          where: {id: req.params.id}
+        })
+        .then((cart)=>{
+          res.sendStatus(201)
+          return cart.addAvailabilities(availabilities)
+        })
+    })
     .catch(console.log.bind(console))
   })
 

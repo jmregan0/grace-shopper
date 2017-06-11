@@ -67,8 +67,8 @@ module.exports = require('express').Router({mergeParams: true})
       }
 
     })
-    .then(availability => {
-      if(availability) res.json(availability);
+    .then(availabilities => {
+      if(availabilities) res.json(availabilities);
       else res.sendStatus(404);
     })
     .catch(next);
