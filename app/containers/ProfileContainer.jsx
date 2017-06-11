@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import Profile from '../components/Profile'
 
 const mapStateToProps = (state) => {
-  console.log("state.users.userHomes", state.users.userHomes)
+  console.log("state.homes.userHomes", state.homes.userHomes)
   return {
     selected: state.users.selected,
     guest: state.transactions.guest,
     host: state.transactions.host,
-    userHomes: state.users.userHomes,
+    userHomes: state.homes.userHomes,
   }
 }
 

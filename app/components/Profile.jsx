@@ -23,7 +23,7 @@ const SelectedUser= ({selected, userHomes, guest, host}) => {
                   {userHomes.map(home => {
                     return (
                       <div key={home.id}>
-                        {home.name}
+                        <Link to={`/homes/${home.id}`}>{home.name}</Link>
                       </div>
                     )
                   })}
