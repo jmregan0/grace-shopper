@@ -19,11 +19,13 @@ module.exports = require('express').Router({mergeParams: true})
 // or do /api/home/:homeId/availabilities
 
   .get('/', (req, res, next) => {
+    console.log(req.body)
     Availability.findAll({
       order: 'id ASC',
       where: {
         home_id: req.params.id,
       }
+
     })
       .then(availability => {
         if(availability) res.json(availability);
@@ -51,4 +53,24 @@ module.exports = require('express').Router({mergeParams: true})
 
   })
 
+
+  .get('/:homeId', (req, res, next) => {
+    console.log(req.query)
+    console.log(req.query.startDate, req.query.endDate)
+    Availability.findAll({
+      order: 'id ASC',
+      where: {
+        date:{
+          $between: [req.query.startDate, req.query.endDate]
+        },
+        home_id: req.params.homeId,
+      }
+
+    })
+    .then(availability => {
+      if(availability) res.json(availability);
+      else res.sendStatus(404);
+    })
+    .catch(next);
+  })
 

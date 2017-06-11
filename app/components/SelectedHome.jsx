@@ -5,6 +5,8 @@ const SelectedHome = (props) => {
   const home = props.selected
   const host = props.selected.Host
   const dates = props.availability.list
+  console.log("PROPS", props)
+
   return (
     <div className = "container">
       <div className="alert">
@@ -47,7 +49,9 @@ const SelectedHome = (props) => {
                   <option key={`${date.id}`} value={`${date.date}`}>{date.date}</option>
                 )}
                 </select>
-                <button className = 'btn btn-primary' onClick = {() => {}} >Add to Cart</button>
+                <button className = 'btn btn-primary' onClick = {() => {
+                  
+                  props.addAvailabilityToCart(home.id, startDate.value, endDate.value)}} >Add to Cart</button>
               </div>
             )
           : (

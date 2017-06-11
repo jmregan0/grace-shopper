@@ -28,14 +28,29 @@ module.exports = require('express').Router()
   //   })
   //   .catch(next)
   // })
-  .post('/:id/availability/:av', (req, res, next) => {
+  .post('/:id', (req, res, next) => {
+  
+    var availabilities = req.body;
+
+
     Cart.findOne({
       where: {id: req.params.id}
     })
     .then(cart => {
-      return Promise.spread({})
-      cart.addAvailability({availability_id: req.params.av})
+    //   return Promise.spread({})
+    console.log("CART", cart)
+    console.log("AVAIL",availabilities)
+    return cart.addAvailabilities(availabilities)
+
+    // availabilities.map(avail=>{
+    //   return cart.addAvailability(avail)
+    // })
+
+    // Promise.all(availabilities)
 
     })
+    .then(()=>{res.sendStatus(201)})
+    .catch(console.log.bind(console))
   })
+
 
