@@ -9,6 +9,44 @@ const guest_cart_items = db.model('guest_cart_items')
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
 module.exports = require('express').Router()
+
+  .post('/cart', (req, res, next) => {
+    var rb = req.body;
+    Availability.findAll({
+      order: 'id ASC',
+      where: {
+        date:{
+          $between: [rb.startDate, rb.endDate]
+        },
+        home_id: rb.homeId,
+      }
+
+    })
+    .then((avails)=>{
+      if(req.session.cart){
+       req.session.passport.cart.push(avails)
+        
+      }else{
+        req.session.passport={cart:avails}
+      }
+      console.log(req.session)
+      res.sendStatus(200)
+      
+      
+  })
+
+
+
+  })
+
+  .get('/sessioncart', (req, res, next) => {
+
+    res.status(200).json(req.session.passport.cart) 
+
+
+  })
+
+
   .get('/:id', (req, res, next) => {
     return Cart.findOne({
       where: {user_id: req.params.id}
@@ -31,8 +69,8 @@ module.exports = require('express').Router()
   .post('/:id', (req, res, next) => {
 
     var ok = req.body;
-
-
+    console.log(req.session)
+    req.session.tag="hello"
     Availability.findAll({
       order: 'id ASC',
       where: {
@@ -44,6 +82,7 @@ module.exports = require('express').Router()
 
     })
     .then(availabilities => {
+        req.session.passport.cart=availabilities;
         Cart.findOne({
           where: {user_id: req.params.id}
         })
