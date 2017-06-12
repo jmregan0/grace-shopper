@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Checkout from '../components/Checkout'
+import Success from '../components/Success'
 import { updateAvailability } from '../action-creators/availability'
 
 const mapStateToProps = (state) => {
@@ -16,6 +16,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const CheckoutContainer = connect(mapStateToProps, mapDispatchToProps)(Checkout)
+const SuccessContainer = connect(mapStateToProps, mapDispatchToProps)(Success)
 
-export default CheckoutContainer
+export default SuccessContainer

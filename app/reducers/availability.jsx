@@ -1,7 +1,8 @@
-import { FETCH_AVAILABILITY } from '../constants'
+import { FETCH_AVAILABILITY, MAKE_UNAVAILABLE } from '../constants'
 
 const initialState = {
-  list: []
+  list: [],
+  unavailable: [],
 }
 
 export default function(state=initialState, action) {
@@ -11,6 +12,8 @@ export default function(state=initialState, action) {
     case FETCH_AVAILABILITY:
       newState.list = action.dates
       break
+    case MAKE_UNAVAILABLE:
+      newState.unavailable = action.updatedDates
     default:
       return state
   }
