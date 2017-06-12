@@ -10,7 +10,7 @@ const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
 module.exports = require('express').Router()
 
-  .post('/cart', (req, res, next) => {
+  .post('/sessioncart', (req, res, next) => {
     var rb = req.body;
     Availability.findAll({
       order: 'id ASC',
@@ -43,6 +43,23 @@ module.exports = require('express').Router()
 
     res.status(200).json(req.session.passport.cart) 
 
+  })
+
+  .delete('/sessioncart', (req, res, next) => {
+
+    res.session.passport.cart={}
+
+  })
+
+
+  .post('/sync/:id', (req, res, next) => {
+
+    Cart.findOne({
+      where: {user_id: req.params.id}
+    })
+    .then(cart=>{
+      cart.addAvailabilities(req.session.passport.cart)
+    })
 
   })
 
@@ -82,7 +99,9 @@ module.exports = require('express').Router()
 
     })
     .then(availabilities => {
+      if(req.session.passport){
         req.session.passport.cart=availabilities;
+      }
         Cart.findOne({
           where: {user_id: req.params.id}
         })

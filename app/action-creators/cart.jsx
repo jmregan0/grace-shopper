@@ -28,7 +28,7 @@ export const getCartByUserId = userId => {
           dispatch(fetchCart(res.data));
         })
       }else{
-        axios.get(`api/cart/guestcart`)
+        axios.get(`api/cart/sessioncart`)
       }
   };
 };
@@ -52,7 +52,7 @@ export const addAvailabilityToCartAC = (homeId, startDate, endDate) => {
             })
         }else{
             console.log("CANNOT ADD CART ITEMS WHEN NOT SIGNED IN")
-            axios.post(`/api/cart/guestcart`, {homeId:homeId, startDate:startDate, endDate:endDate})
+            axios.post(`/api/cart/sessioncart`, {homeId:homeId, startDate:startDate, endDate:endDate})
         }
       })
 
