@@ -31,8 +31,7 @@ const Landing = (props) => {
                             <h3>{home.name}</h3>
                             <p>{home.excerpt}</p>
                             <p>
-                                <Link to='/' className='btn btn-primary'>Book Now!</Link>
-                                <Link to={`/homes/${home.id}`} className='btn btn-default'>More Info</Link>
+                                <Link to={`/homes/${home.id}`} className='btn btn-primary'>More Info</Link>
                             </p>
                         </div>
                     </div>
