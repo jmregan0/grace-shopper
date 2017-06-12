@@ -7,8 +7,6 @@ export const fetchCart = cart => ({
   cart
 });
 
-
-
 export const createNewCart = () => {
   return dispatch => {
     axios.post('/api/cart/')
@@ -28,9 +26,6 @@ export const getCartByUserId = cartId => {
     });
   };
 };
-
-
-
 
 export const addAvailabilityToCartAC = (homeId, startDate, endDate) => {
 

@@ -3,14 +3,15 @@ import { connect } from 'react-redux'
 import Checkout from '../components/Checkout'
 
 const mapStateToProps = (state) => {
-  return {
-    cart: state.cart.items,
-  }
+ return {
+  cart: state.cart.selected,
+  user: state.auth
+ }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-  }
+ return {
+ }
 }
 
 const CheckoutContainer = connect(mapStateToProps, mapDispatchToProps)(Checkout)

@@ -117,9 +117,6 @@ const fetchUserCart = (nextRouterState) => {
   })
 }
 
-const fetchCart = () => {
-}
-
 const initialize = function(nextRouterState) {
   var current = store.getState()
   console.log(store.getState())
@@ -152,7 +149,7 @@ render(
         <Route path="/new-home" component={NewHomeContainer} onEnter={fetchCurrentUser}/>
         <Route path="/homes/:homeId" component={SelectedHomeContainer} onEnter={fetchSelectedHome}/>
         <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
-        <Route path="/checkout" component={CheckoutContainer} onEnter={fetchCart}/>
+        <Route path="/checkout" component={CheckoutContainer} onEnter={fetchUserCart}/>
         <Route path="/homes/:homeId/edit" component={EditHomeContainer} onEnter={fetchSelectedHome}/>
         <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
         <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
