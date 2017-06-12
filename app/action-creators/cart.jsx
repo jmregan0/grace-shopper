@@ -1,12 +1,16 @@
 import axios from 'axios'
 import {browserHistory} from 'react-router';
-import { FETCH_USER_CART, CREATE_USER_CART } from '../constants';
+import { FETCH_USER_CART, CREATE_USER_CART, REMOVE_CART_ITEM } from '../constants';
 
 export const fetchCart = cart => ({
   type: FETCH_USER_CART,
   cart
 });
 
+export const deleteItem = item => ({
+  type: REMOVE_CART_ITEM,
+  item
+})
 
 
 export const createNewCart = () => {
@@ -29,7 +33,15 @@ export const getCartByUserId = cartId => {
   };
 };
 
-
+export const deleteCartItem = availId => {
+  return dispatch => {
+    axios.delete(`api/cart/${availId}`)
+    .then(res => {
+      console.log('deleted item', res.data)
+      dispatch(deleteItem(res.data))
+    })
+  }
+}
 
 
 export const addAvailabilityToCartAC = (homeId, startDate, endDate) => {

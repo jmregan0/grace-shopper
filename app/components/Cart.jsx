@@ -12,27 +12,28 @@ const Cart = (props) => {
 						<tr>
 							<th style={{width:'50%'}}>Home</th>
 							<th style={{width:'10%'}}>Price</th>
-							<th style={{width:'22%'}}className="text-center">Subtotal</th>
+							<th style={{width:'22%'}}className="text-center">Guests</th>
 							<th style={{width:'10%'}}></th>
 						</tr>
 					</thead>
 
 					{
+						cart.length > 0 ?
 						cart.map( item => {
 							return (
 							<tbody>
 								<tr>
 									<td data-th="Product">
 										<div className="row">
-											<div className="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." className="img-responsive"/></div>
+											<div className="col-sm-2 hidden-xs"><img src={item.home.imageUrl} alt="..." className="img-responsive"/></div>
 											<div className="col-sm-10">
 												<h4 className="nomargin">{item.home.name}</h4>
-												<p>{item.date}</p>
+												<p>{"booking for " + item.date}</p>
 											</div>
 										</div>
 									</td>
 									<td data-th="Price">{"$"+ item.home.price}</td>
-									<td data-th="Subtotal" className="text-center">1.99</td>
+									<td data-th="Subtotal" className="text-center">1</td>
 									<td className="actions" data-th="">
 										<button className="btn btn-info btn-sm"><i className="fa fa-refresh"></i></button>
 										<button className="btn btn-danger btn-sm"><i className="fa fa-trash-o"></i></button>
@@ -40,7 +41,14 @@ const Cart = (props) => {
 								</tr>
 							</tbody>
 							)
-						})}
+						})
+						:
+						<div class="jumbotron">
+							<h1>No Bookings in Your Cart Yet!</h1>
+							<p>Why don't you add a few...</p>
+							<p><Link to={'/homes'} class="btn btn-primary btn-lg" role="button">Current Listings</Link></p>
+						</div>
+						}
 
 					<tfoot>
 						<tr className="visible-xs">

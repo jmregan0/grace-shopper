@@ -1,4 +1,4 @@
-import { FETCH_USER_CART } from '../constants'
+import { FETCH_USER_CART, REMOVE_CART_ITEM } from '../constants'
 
 const initialState = {
   selected: []

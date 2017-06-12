@@ -55,4 +55,24 @@ module.exports = require('express').Router()
     .catch(console.log.bind(console))
   })
 
+  .delete('/:id', (req, res, next) => {
+
+    var ok = req.body;
+
+    Availability.findOne({
+      where: {home_id: ok.homeId,
+      }
+
+    })
+    .then(availability => {
+        Cart.findOne({
+          where: {user_id: req.params.id}
+        })
+        .then((cart)=>{
+          res.sendStatus(201)
+          return cart.removeAvailability(availability)
+        })
+    })
+    .catch(console.log.bind(console))
+  })
 
