@@ -21,10 +21,14 @@ class EditHome extends Component {
       endAdd: props.startAdd,
       minDateAdd: props.minDateAdd,
       storedDates: props.storedDates,
+      //state for delete availability form
+      startDelete: null,
+      endDelete: null,
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleDateChange = this.handleDateChange.bind(this)
+    this.handleDateDeleteChange = this.handleDateDeleteChange.bind(this)
   }
 
   handleSubmit(e) {
@@ -54,6 +58,17 @@ class EditHome extends Component {
     }
   }
 
+  //could refactor and make dry later
+  handleDateDeleteChange(e) {
+    console.log(e)
+    if(e.eventType === 3) {
+      this.setState({
+        startDelete: e.start,
+        endDelete: e.end
+      })
+    }
+  }
+
   hasFormError(payload) {
     if(payload.name.length === 0 || payload.location.length === 0 || payload.price.length === 0 || parseFloat(payload.price) <= 0.0) return true
     return false;
@@ -72,6 +87,9 @@ class EditHome extends Component {
       storedDates: this.props.storedDates,
       startAdd: this.props.startAdd,
       endAdd: this.props.startAdd,
+      //state for delete availability form
+      startDelete: null,
+      endDelete: null,
     })
   }
 
@@ -89,11 +107,15 @@ class EditHome extends Component {
         storedDates: nextProps.storedDates,
         startAdd: nextProps.startAdd,
         endAdd: nextProps.startAdd,
+        //state for delete availability form
+        startDelete: null,
+        endDelete: null,
       })
     }
   }
 
   render() {
+    console.log('edithome state', this.state);
     return (
       <div className = "container">
         <h1>Edit Home Listing</h1>
@@ -113,7 +135,10 @@ class EditHome extends Component {
           <div className = "col-sm-6">
             <h3>Delete Availability:</h3>
             <p><em>Select a date range to delete pre-existing availability to your home listing.</em></p>
-            <CalendarForm/>
+            <CalendarForm
+              handleDateChange={this.handleDateDeleteChange}
+              disabledDates={[]}
+            />
           </div>
         </div>
         <hr/>

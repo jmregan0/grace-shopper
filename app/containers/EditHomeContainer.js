@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
   let startAdd = new Date();
 
   let storedDates = []
-  let disabledDates = [];
+  // let disabledDates = [];
   let dates = state.availability.list;
   console.log('dates', dates)
   if(dates.length){
@@ -25,7 +25,7 @@ const mapStateToProps = (state) => {
       return acc;
     }).date)
 
-    disabledDates = dates.filter(date => date.status === 'reserved').map(date => new Date(date.date))
+    // disabledDates = dates.filter(date => date.status === 'reserved').map(date => new Date(date.date))
 
     storedDates = dates.map(date => new Date(date.date))
 
@@ -34,7 +34,7 @@ const mapStateToProps = (state) => {
     console.log('startAdd', startAdd)
     console.log('mapstatetoprops mindate', minDate);
     console.log('mapstatetoprops maxdate', maxDate);
-    console.log('mapstatetoprops disabledDates', disabledDates);
+    // console.log('mapstatetoprops disabledDates', disabledDates);
   }
 
   return {
@@ -50,6 +50,7 @@ const mapStateToProps = (state) => {
     startAdd: startAdd,
     storedDates: storedDates,
     //state for the remove availability form
+
   }
 }
 const mapDispatchToProps = (dispatch) => {

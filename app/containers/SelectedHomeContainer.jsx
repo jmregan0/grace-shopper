@@ -43,7 +43,9 @@ const mapStateToProps = (state) => {
 
     //the prior filter does not leave reserved availabilities in disabledDates, so add them back in below
     let reservedDates = dates.filter(date => date.status === 'reserved').map(date => new Date(date.date))
+    console.log('reservedDates', reservedDates)
     disabledDates = [...disabledDates, ...reservedDates]
+    console.log('disabledDates', disabledDates)
   }
 
   return {
