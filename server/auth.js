@@ -50,8 +50,8 @@ OAuth.setupStrategy({
   provider: 'google',
   strategy: require('passport-google-oauth').OAuth2Strategy,
   config: {
-    clientID: "426548479608-9139nr79d7inio3cpn9k9q3ilj1ng2gu.apps.googleusercontent.com",
-    clientSecret: "C3BivoDDGBxXord9Pxe0VBa-",
+    clientID: env.GOOGLE_CLIENT_ID,
+    clientSecret: env.GOOGLE_CLIENT_SECRET,
     callbackURL: `${app.baseUrl}/api/auth/login/google`,
   },
   passport
@@ -124,20 +124,6 @@ auth.get('/whoami', (req, res) => res.send(req.user))
 
 // POST requests for local login:
 auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
-
-
-
-// GET requests for OAuth login:
-// Register this route as a callback URL with OAuth provider
-// auth.get('/login/google', passport.authenticate('google', { scope: 'email' })
-// )
-
-// auth.get('/google/callback',
-//   passport.authenticate('google', {
-//     successRedirect: '/', // or wherever
-//     failureRedirect: '/' // or wherever
-//   })
-// )
 
 auth.get('/login/:strategy', (req, res, next) =>{
   console.log(req.session)  
