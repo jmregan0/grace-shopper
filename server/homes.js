@@ -11,11 +11,17 @@ const moment = require('moment')
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
 module.exports = require('express').Router({mergeParams: true})
-
   .get('/latest', (req, res, next) =>
     Home.findAll({
       limit: 4,
       order: 'id DESC'
+    })
+    .then(homes => res.json(homes))
+    .catch(next)
+  )
+  .get('/userHomes', (req, res, next) =>
+    Home.findAll({
+      where: {host_id: req.params.id}
     })
     .then(homes => res.json(homes))
     .catch(next)
