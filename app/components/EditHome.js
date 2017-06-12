@@ -119,6 +119,7 @@ class EditHome extends Component {
   }
 
   render() {
+    console.log('storedDates', this.state.storedDates)
     return (
       <div className = "container">
         <h1>Edit Home Listing</h1>
@@ -136,12 +137,23 @@ class EditHome extends Component {
           <div className = "col-sm-6">
             <h3>Delete Availability:</h3>
             <p><em>Select a date range to delete pre-existing availability to your home listing.</em></p>
-            <CalendarForm
-              handleDateChange={this.handleDateDeleteChange}
-              maxDate={this.state.maxDateDelete}
-              minDate={this.state.minDate}
-              disabledDates={this.state.disabledDeleteDates}
-            />
+            {
+              this.state.storedDates.length
+              ? (
+                <CalendarForm
+                  handleDateChange={this.handleDateDeleteChange}
+                  maxDate={this.state.maxDateDelete}
+                  minDate={this.state.minDate}
+                  disabledDates={this.state.disabledDeleteDates}
+                />
+                )
+              : (
+                  <div>
+                    <h3>No dates available for this listing at the moment.</h3>
+                  </div>
+                )
+            }
+
           </div>
         </div>
         <hr/>
