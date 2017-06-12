@@ -23,9 +23,9 @@ export const createNewCart = () => {
   };
 };
 
-export const getCartByUserId = cartId => {
+export const getCartByUserId = userId => {
   return dispatch => {
-    axios.get(`/api/cart/${cartId}`)
+    axios.get(`/api/cart/${userId}`)
     .then(res => {
       console.log('got cart!', res.data);
       dispatch(fetchCart(res.data));
@@ -35,10 +35,16 @@ export const getCartByUserId = cartId => {
 
 export const deleteCartItem = availId => {
   return dispatch => {
-    axios.delete(`api/cart/${availId}`)
+    axios.delete(`/api/cart/${availId}`)
     .then(res => {
-      console.log('deleted item', res.data)
-      dispatch(deleteItem(res.data))
+      axios.get('/api/auth/whoami')
+      .then(res => res.data)
+      .then(user => {
+        axios.get(`/api/cart/${user.id}`)
+        .then(cart => {
+          dispatch(fetchCart(cart))
+        })
+      })
     })
   }
 }

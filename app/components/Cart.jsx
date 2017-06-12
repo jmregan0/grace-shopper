@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { deleteCartItem } from '../action-creators/cart'
+import store from '../store'
 
 const Cart = (props) => {
 		const cart = props.cart
@@ -36,7 +38,7 @@ const Cart = (props) => {
 									<td data-th="Subtotal" className="text-center">1</td>
 									<td className="actions" data-th="">
 										<button className="btn btn-info btn-sm"><i className="fa fa-refresh"></i></button>
-										<button className="btn btn-danger btn-sm"><i className="fa fa-trash-o"></i></button>
+										<button onClick={()=> store.dispatch(deleteCartItem(item.guest_cart_items.availability_id))}className="btn btn-danger btn-sm"><i className="fa fa-trash-o"></i></button>
 									</td>
 								</tr>
 							</tbody>
