@@ -28,6 +28,8 @@ module.exports = require('express').Router()
     })
   })
 
+  //Why are we posting to a specific ID? It looks like a cart ID
+  //Maybe POST /user/:id/cart
   .post('/:id', (req, res, next) => {
 
     var ok = req.body;
@@ -55,13 +57,15 @@ module.exports = require('express').Router()
     .catch(console.log.bind(console))
   })
 
+  //Do we care about the cart ID at all. Maybe just delete a cart based on user ID?
+  // DELETE /user/:id/cart
   .delete('/:id', (req, res, next) => {
     return Cart.findOne({
       where: {id: req.user.id}
     })
     .then(cart => {
       Availability.findOne({
-        where: {id: req.params.id}
+        where: {id: req.params.id}  //This is a availability ID?? huh???
       })
       .then(avail => {
         return cart.removeAvailability(avail)

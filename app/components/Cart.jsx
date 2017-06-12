@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { deleteCartItem } from '../action-creators/cart'
-import store from '../store'
+import store from '../store' //no! use mapDispatchToProps
+
+//Maybe use more granular components
 
 const Cart = (props) => {
 		const cart = props.cart

@@ -8,11 +8,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-const LandingContainer = connect(mapStateToProps, mapDispatchToProps)(Landing)
+const LandingContainer = connect(mapStateToProps)(Landing)
 
 export default LandingContainer

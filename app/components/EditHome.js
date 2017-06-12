@@ -8,6 +8,8 @@ class EditHome extends Component {
   constructor(props) {
     console.log('edithome props', props)
     super()
+
+    //This is by definition a container
     this.state = {
       //state for home information form
       id: props.params.homeId,

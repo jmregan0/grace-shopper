@@ -9,6 +9,7 @@ class CalendarForm extends Component {
     super()
   }
 
+  // Could have wrapped it in react-redux
   shouldComponentUpdate(nextProps, nextState) {
     if((this.props.start === nextProps.start && this.props.end === nextProps.end)
        && (this.props.minDate === nextProps.minDate)) return false;

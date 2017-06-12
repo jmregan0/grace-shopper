@@ -9,6 +9,8 @@ const User = db.model('users')
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
 module.exports = require('express').Router({mergeParams: true})
+//This resembles RPC
+// Should be query parameters to query specific dates
   .get('/guestfuture', (req, res, next) => {
     Transaction.findAll({
       where: {
@@ -23,6 +25,8 @@ module.exports = require('express').Router({mergeParams: true})
     })
     .catch(next)
   })
+  //This resembles RPC
+// Should be query parameters to query specific dates
   .get('/guestpast', (req, res, next) => {
     Transaction.findAll({
       where: {

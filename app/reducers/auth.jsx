@@ -8,6 +8,7 @@ const reducer = (state=null, action) => {
   return state
 }
 
+// copy pasted. Delete me
 const AUTHENTICATED = 'AUTHENTICATED'
 export const authenticated = user => ({
   type: AUTHENTICATED, user

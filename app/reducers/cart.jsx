@@ -1,7 +1,7 @@
 import { FETCH_USER_CART, REMOVE_CART_ITEM } from '../constants'
 
 const initialState = {
-  selected: []
+  selected: []  //Also probably an object of availabilities?
 }
 
 export default function(state=initialState, action) {

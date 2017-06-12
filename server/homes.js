@@ -21,7 +21,7 @@ module.exports = require('express').Router({mergeParams: true})
   )
   .get('/userHomes', (req, res, next) =>
     Home.findAll({
-      where: {host_id: req.params.id}
+      where: {host_id: req.params.id} //Where does this id come from?
     })
     .then(homes => res.json(homes))
     .catch(next)

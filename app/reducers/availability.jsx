@@ -1,7 +1,7 @@
 import { FETCH_AVAILABILITY } from '../constants'
 
 const initialState = {
-  list: []
+  list: [] //Probably should be an object?
 }
 
 export default function(state=initialState, action) {

@@ -4,6 +4,7 @@ import EditHome from '../components/EditHome'
 import { editHome } from '../action-creators/homes'
 import moment from 'moment'
 
+//Is our state necessarily in the right format?
 const mapStateToProps = (state) => {
   console.log('ehc state', state);
   let minDate = new Date();
@@ -15,6 +16,7 @@ const mapStateToProps = (state) => {
   let dates = state.availability.list;
   console.log('dates', dates)
   if(dates.length){
+    //Can't we just use a min function? Reduce is so misleading
     minDate = new Date(dates.reduce((acc, val) => {
       if(moment(acc.date).isAfter(moment(val.date)) && val.status === 'available') return val;
       return acc;

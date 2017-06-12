@@ -1,9 +1,9 @@
 import { FETCH_HOMES, FETCH_USER_HOMES,FETCH_LATEST_HOMES, SET_CURRENT_HOME } from '../constants'
 
 const initialState = {
-  list: [],
-  selected: {
-    Host: {},
+  list: [],  //definitely an object
+  selected: { // just a PK
+    Host: {},  //Do we need to nest our state?
   },
   latest: [],
   userHomes: [],

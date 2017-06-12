@@ -3,6 +3,7 @@ import axios from 'axios'
 import {browserHistory} from 'react-router';
 import { FETCH_HOMES,  FETCH_USER_HOMES,FETCH_LATEST_HOMES, SET_CURRENT_HOME } from '../constants'
 
+//bad usage of fetch
 export const fetchHomes = homes => ({
   type: FETCH_HOMES,
   homes

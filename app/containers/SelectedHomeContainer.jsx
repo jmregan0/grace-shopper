@@ -15,6 +15,7 @@ const mapStateToProps = (state) => {
   console.log('dates', dates)
   if(dates.length){
     //find the minimum date in which the selected home has availability
+    //Looks super similar to earlier code
     minDate = new Date(dates.reduce((acc, val) => {
       if(moment(acc.date).isAfter(moment(val.date)) && val.status === 'available') return val;
       return acc;

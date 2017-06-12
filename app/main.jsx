@@ -33,7 +33,7 @@ const ExampleApp = connect(
               <div className='navbar-header'>
                   <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1'>
                       <span className='sr-only'>Toggle navigation</span>
-                      <span className='icon-bar'></span>
+                      <span className='icon-bar'></span> 
                       <span className='icon-bar'></span>
                       <span className='icon-bar'></span>
                   </button>
@@ -90,6 +90,7 @@ const fetchSelectedHome = (nextRouterState) => {
   store.dispatch(getAvailabilityById(homeId))
 }
 
+// All of this every time!!? Could get HUGE
 const fetchUserInfo = (nextRouterState) => {
   const userId = nextRouterState.params.userId;
   store.dispatch(getUserById(userId));
