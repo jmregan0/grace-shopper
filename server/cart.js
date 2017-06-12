@@ -55,4 +55,21 @@ module.exports = require('express').Router()
     .catch(console.log.bind(console))
   })
 
+  .delete('/:id', (req, res, next) => {
+    return Cart.findOne({
+      where: {id: req.user.id}
+    })
+    .then(cart => {
+      Availability.findOne({
+        where: {id: req.params.id}
+      })
+      .then(avail => {
+        return cart.removeAvailability(avail)
+      })
+      .then(deleted => {
+        res.sendStatus(200)
+      })
+    })
+    .catch(next)
+  })
 
