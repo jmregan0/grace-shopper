@@ -92,6 +92,7 @@ class NewHome extends Component {
         <div className = "row">
           <div className = "col-sm-6">
             <h2>Set Initial Availability:</h2>
+            <p>Select a date range to set initial availability for your home listing.</p>
             <CalendarForm
               handleDateChange={this.handleDateChange}
               start={this.state.start}
@@ -100,6 +101,7 @@ class NewHome extends Component {
           </div>
           <div className = "col-sm-6">
             <h2>Home Details:</h2>
+            <p>Add details for your new home listing.</p>
             <HomeInformationForm
               name={this.state.name}
               location={this.state.location}
