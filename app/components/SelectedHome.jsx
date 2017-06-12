@@ -73,83 +73,69 @@ class SelectedHome extends Component {
           <Link to = {`/homes/${home.id}/edit`} ><button className = 'btn btn-secondary'>Edit this Listing</button></Link>
         </div>
           <hr/>
-        <h1>{home.name}</h1>
-        <h4>Host: <Link to={`/users/${home.host_id}`}>{host.name}</Link></h4>
         <div className = "row">
-          <img src={home.imageUrl} className="col-md-6 col-sm-12"/>
+          <div className="col-md-6 col-sm-12">
+            <h1>{home.name}</h1>
+            <h4>Host: <Link to={`/users/${home.host_id}`}>{host.name}</Link></h4>
+            <img src={home.imageUrl} className="col-xs-12"/>
+            <div className = "col-sm-12">
+              <h4>Price/Night: ${home.price}</h4>
+              <h4>Location: {home.location}</h4>
+              <p>{home.description}</p>
+            </div>
+          </div>
           <div className = "col-md-6 col-sm-12">
-            <h4>Price/Night: ${home.price}</h4>
-            <h4>Location: {home.location}</h4>
-            <p>{home.description}</p>
+            {
+              dates.length
+              ? (
+                  <div>
+                    <h2>Booking Details:</h2>
+                    {
+                      this.state.error
+                      ? (
+                          <div className="col-xs-12 alert alert-danger">
+                            <strong>{this.state.error}</strong>
+                          </div>
+                        )
+                      : null
+                    }
+                    <div className="row">
+                      <CalendarForm
+                        minDate={this.state.minDate}
+                        maxDate={this.state.maxDate}
+                        start={this.state.start || new Date()}
+                        end={this.state.end || new Date()}
+                        unavailableDays={this.state.unavailableDays}
+                        handleDateChange={this.handleDateChange}
+                      />
+                    </div>
+                    <div className = "row">
+                      <button
+                        className = 'btn btn-primary'
+                        disabled={this.state.error||false}
+                        onClick ={
+                          () => {
+                            // this.props.addAvailabilityToCart(home.id, startDate1.value, endDate1.value)
+                            console.log('onclick', this.state.start, this.state.end)
+                            this.props.addAvailabilityToCart(home.id, this.state.start, this.state.end)
+                          }
+                        }>
+                        Add to Cart
+                      </button>
+                    </div>
+                  </div>
+                )
+              : (
+                  <div>
+                    <h2>Booking Details:</h2>
+                    <h3>No dates currently available.</h3>
+                    <Link to = {`/homes/${home.id}/edit`} ><button className = 'btn btn-secondary'>Edit this Listing</button></Link>
+                  </div>
+                )
+            }
           </div>
         </div>
         <hr/>
-        <div className = "row">
-          <div className = "col-md-6 col-sm-12">
-            <h1>Section for something here...</h1>
-          </div>
-          {
-            dates.length
-            ? (
-                <div className = "col-md-6 col-sm-12">
-                  <h2>Booking Details:</h2>
-                  {
-                    this.state.error
-                    ? (
-                        <div className="alert alert-danger">
-                          <strong>{this.state.error}</strong>
-                        </div>
-                      )
-                    : null
-                  }
-                  <div className="row">
-                    <CalendarForm
-                      minDate={this.state.minDate}
-                      maxDate={this.state.maxDate}
-                      start={this.state.start || new Date()}
-                      end={this.state.end || new Date()}
-                      unavailableDays={this.state.unavailableDays}
-                      handleDateChange={this.handleDateChange}
-                    />
-                  </div>
-                  <h4>Select your dates:</h4>
-                  <h4>Start Date:</h4>
-                  {/*<select className="form-control padding-bottom" id = "startDate1">
-                  {dates.map(date =>
-                    <option key={`${date.id}`} value={`${date.date}`}>{date.date}</option>
-                  )}
-                  </select>
-                  <h4>End Date:</h4>
-                  <select className="form-control padding-bottom" id = "endDate1">
-                  {dates.map(date =>
-                    <option key={`${date.id}`} value={`${date.date}`}>{date.date}</option>
-                  )}
-                  </select>*/}
-                  <div className = "row">
-                    <button
-                      className = 'btn btn-primary'
-                      disabled={this.state.error||false}
-                      onClick ={
-                        () => {
-                          // this.props.addAvailabilityToCart(home.id, startDate1.value, endDate1.value)
-                          console.log('onclick', this.state.start, this.state.end)
-                          this.props.addAvailabilityToCart(home.id, this.state.start, this.state.end)
-                        }
-                      }>
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
-              )
-            : (
-                <div className = "col-md-6 col-sm-12">
-                  <h2>Booking Details:</h2>
-                  <h3>No dates currently available.</h3>
-                  <Link to = {`/homes/${home.id}/edit`} ><button className = 'btn btn-secondary'>Edit this Listing</button></Link>
-                </div>
-              )
-          }
-        </div>
       </div>
     )
   }
