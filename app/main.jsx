@@ -127,7 +127,7 @@ const initialize = function(nextRouterState) {
     } else {
       console.log('you are a user!', current.auth)
     }
-  
+  }
 // const initialize = function(nextRouterState) {
 //   var current = store.getState()
 //   console.log(store.getState())
