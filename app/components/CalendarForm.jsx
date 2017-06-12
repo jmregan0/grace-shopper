@@ -17,7 +17,10 @@ class CalendarForm extends Component {
   render() {
     console.log(this.props,'props in CalendarForm')
     let minDate = this.props.minDate || new Date();
+    let maxDate = this.props.maxDate || null;
+    let unavailableDays = this.props.unavailableDays || null;
     console.log('mindate in calendarform', minDate)
+    console.log('maxdate in calendarform', maxDate)
     return (
       <InfiniteCalendar
         Component={withRange(Calendar)}
@@ -32,8 +35,8 @@ class CalendarForm extends Component {
         }}
         onSelect={this.props.handleDateChange}
         minDate={minDate}
-
-        // disabledDays={[0,6]}
+        {...(maxDate && { maxDate: maxDate})}
+        {...(unavailableDays && { disabledDates: unavailableDays})}
       />
     )
   }

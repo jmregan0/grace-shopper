@@ -93,3 +93,21 @@ ul {
 a .btn {
   color: #222222;
 }
+
+.Cal__Container__root {
+  padding: 25px;
+  margin: auto;
+  width: 50%;
+}
+
+/*.Cal__Header__root {
+  background-color: #008cba !important;
+}
+.Cal__Weekdays__root {
+  background-color: #008cba !important;
+}
+
+.Cal__Day__selection {
+  background-color: #008cba !important;
+}
+*/
