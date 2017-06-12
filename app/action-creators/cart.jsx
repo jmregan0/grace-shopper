@@ -12,7 +12,6 @@ export const deleteItem = item => ({
   item
 })
 
-
 export const createNewCart = () => {
   return dispatch => {
     axios.post('/api/cart/')
@@ -42,7 +41,6 @@ export const deleteCartItem = (availId, userId) => {
     })
   }
 }
-
 
 export const addAvailabilityToCartAC = (homeId, startDate, endDate) => {
 

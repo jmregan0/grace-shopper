@@ -7,6 +7,7 @@ import axios from 'axios';
 import store from './store'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
+import Success from './components/Success'
 import NotFound from './components/NotFound'
 import EditHomeContainer from './containers/EditHomeContainer'
 import NewHomeContainer from './containers/NewHomeContainer'
@@ -18,7 +19,7 @@ import SelectedHomeContainer from './containers/SelectedHomeContainer'
 import CartContainer from './containers/CartContainer'
 import SignUpContainer from './containers/SignUpContainer'
 import { fetchHomes, getUserHomes, fetchLatestHomes, getHomeById } from './action-creators/homes'
-import { getAvailabilityById } from './action-creators/availability'
+import { getAvailabilityById, updateAvailability } from './action-creators/availability'
 import { getUserById, setCurrentUser } from './action-creators/users'
 import { getPastGuestTransactionsByUser, getFutureGuestTransactionsByUser, getHostTransactionsByUser } from './action-creators/transactions'
 import { getCartByUserId } from './action-creators/cart'
@@ -117,8 +118,14 @@ const fetchUserCart = (nextRouterState) => {
   })
 }
 
-const fetchCart = () => {
-}
+// const submitTransactions = (nextRouterState) => {
+//   fetchUserCart(nextRouterState)
+//   axios.put('/api/availability')
+//   .then(res => res.data)
+//   .then(dates => {
+//     store.dispatch(updateAvailability(dates))
+//   })
+// }
 
 const initialize = function(nextRouterState) {
   var current = store.getState()
@@ -152,13 +159,14 @@ render(
         <Route path="/new-home" component={NewHomeContainer} onEnter={fetchCurrentUser}/>
         <Route path="/homes/:homeId" component={SelectedHomeContainer} onEnter={fetchSelectedHome}/>
         <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
-        <Route path="/checkout" component={CheckoutContainer} onEnter={fetchCart}/>
+        <Route path="/checkout" component={CheckoutContainer} onEnter={fetchUserCart}/>
         <Route path="/homes/:homeId/edit" component={EditHomeContainer} onEnter={fetchSelectedHome}/>
         <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
         <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
         <Route path="/cart/:userId" component={CartContainer} onEnter={fetchUserCart} />
         <Route path="/signup" component={SignUpContainer} />
         <Route path="/cart" component={CartContainer} onEnter={fetchUserCart} />
+        <Route path="/success" component={Success} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

@@ -74,3 +74,18 @@ module.exports = require('express').Router({mergeParams: true})
     .catch(next);
   })
 
+  .put('/:availabilityId', (req, res, next) => {
+    const id = req.params.availabilityId
+    Availability.update(req.body, {
+        where: {
+          id: id,
+          status: 'reserved',
+        },
+        returning: true,
+    })
+    .spread((numItemsUpdated, dates) => {
+        res.sendStatus(201)
+    })
+    .catch(next)
+  })
+
