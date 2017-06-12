@@ -41,9 +41,7 @@ const ExampleApp = connect(
               </div>
               <div className='collapse navbar-collapse left' id='bs-example-navbar-collapse-1'>
                   <ul className='nav navbar-nav'>
-                      <li>
-                          <Link to='#'>About</Link>
-                      </li>
+
                       <li>
                           <Link to='/homes'>Homes</Link>
                       </li>
