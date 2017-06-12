@@ -81,7 +81,7 @@ const homes = seed(Home, ({users}) => ({
     imageUrl: 'https://lumiere-a.akamaihd.net/v1/images/yodas-hut_a3d1133d.jpeg?region=0%2C75%2C1560%2C880&width=768',
     price: 150,
     host_id: users.yoda.id,
-   
+
   },
   lando: {
     name: 'Lando\'s Pad',
@@ -90,7 +90,7 @@ const homes = seed(Home, ({users}) => ({
     imageUrl: 'https://s-media-cache-ak0.pinimg.com/736x/a2/58/7f/a2587f87d021095a1350ce58a999494b.jpg',
     price: 150,
     host_id: users.lando.id,
-  
+
   },
   enterprise: {
     name: 'U.S.S. Enterprise Standard Cabin',
@@ -99,7 +99,7 @@ const homes = seed(Home, ({users}) => ({
     imageUrl: 'http://www.startrekuncharted.com/uploads/2/5/7/3/25731757/4231759_orig.jpg',
     price: 150,
     host_id: users.kirk.id,
-  
+
   },
   tardis: {
     name: 'Tardis',
@@ -108,7 +108,7 @@ const homes = seed(Home, ({users}) => ({
     imageUrl: 'https://upload.wikimedia.org/wikipedia/en/4/48/TARDIS_console_1996.jpg',
     price: 80,
     host_id: users.drWho.id,
-    
+
   },
   deathStar1: {
     name: 'Basic 1 bedroom',
@@ -117,7 +117,7 @@ const homes = seed(Home, ({users}) => ({
     imageUrl: 'https://lumiere-a.akamaihd.net/v1/images/Death-Star-II_b5760154.jpeg?region=0%2C68%2C2160%2C1080',
     price: 100,
     host_id: users.stormTrooper.id,
-    
+
   },
   deathStar2: {
     name: 'VIP Suite',
@@ -126,7 +126,7 @@ const homes = seed(Home, ({users}) => ({
     imageUrl: 'https://vignette3.wikia.nocookie.net/starwars/images/7/72/DeathStar1-SWE.png/revision/latest?cb=20150121020639',
     price: 200,
     host_id: users.vader.id,
-  
+
   },
   jabba: {
     name: 'Basic 1 Bedroom',
@@ -135,7 +135,7 @@ const homes = seed(Home, ({users}) => ({
     imageUrl: 'http://i.imgur.com/1RyZ95r.jpg',
     price: 25,
     host_id: users.jabba.id,
-   
+
   },
   cooperStation: {
     name: 'The Lodge',
@@ -144,7 +144,7 @@ const homes = seed(Home, ({users}) => ({
     imageUrl: 'https://s-media-cache-ak0.pinimg.com/originals/e9/ed/6f/e9ed6f0fbb87e2c086fa17725d8da4dd.jpg',
     price: 150,
     host_id: users.coop.id,
-   
+
   },
   xandar: {
     name: '1 bedroom apt',
@@ -153,47 +153,47 @@ const homes = seed(Home, ({users}) => ({
     imageUrl: 'https://s-media-cache-ak0.pinimg.com/originals/17/f1/3a/17f13a1ea2f5674339240e0a54d787ff.jpg',
     price: 60,
     host_id: users.thanos.id,
-    
+
   }
 }))
 
 const availabilities = seed(Availability, ({homes}) => ({
-  date1: {date: "2017-07-01", home_id: homes.yoda.id},
-  date2: {date: "2017-07-02", home_id: homes.yoda.id},
-  date3: {date: "2017-07-03", home_id: homes.yoda.id},
-  date4: {date: "2017-07-04", home_id: homes.yoda.id},
-  date5: {date: "2017-07-05", home_id: homes.yoda.id},
-  date6: {date: "2017-07-06", home_id: homes.yoda.id},
-  date7: {date: "2017-07-07", home_id: homes.yoda.id},
-  date8: {date: "2017-07-08", home_id: homes.yoda.id},
-  date9: {date: "2017-07-09", home_id: homes.yoda.id},
-  date10: {date: "2017-07-10", home_id: homes.yoda.id},
-  date11: {date: "2017-07-11", home_id: homes.yoda.id},
-  date12: {date: "2017-07-12", home_id: homes.yoda.id},
-  date13: {date: "2017-07-13", home_id: homes.yoda.id},
-  date14: {date: "2017-07-14", home_id: homes.yoda.id},
-  date15: {date: "2017-07-15", home_id: homes.yoda.id},
-  date16: {date: "2017-07-16", home_id: homes.yoda.id},
-  date17: {date: "2017-07-17", home_id: homes.yoda.id},
-  date18: {date: "2017-07-18", home_id: homes.yoda.id},
-  date19: {date: "2017-07-19", home_id: homes.yoda.id},
-  date20: {date: "2017-07-20", home_id: homes.yoda.id},
-  date21: {date: "2017-07-21", home_id: homes.yoda.id},
-  date22: {date: "2017-07-22", home_id: homes.yoda.id},
-  date23: {date: "2017-07-23", home_id: homes.yoda.id},
-  date24: {date: "2017-07-24", home_id: homes.yoda.id},
-  date25: {date: "2017-07-25", home_id: homes.yoda.id},
-  date26: {date: "2017-07-26", home_id: homes.yoda.id},
-  date27: {date: "2017-07-27", home_id: homes.yoda.id},
-  date28: {date: "2017-07-28", home_id: homes.yoda.id},
-  date29: {date: "2017-07-29", home_id: homes.yoda.id},
-  date30: {date: "2017-07-30", home_id: homes.yoda.id},
-  date31: {date: "2017-07-31", home_id: homes.yoda.id},
-  date32: {date: "2017-08-01", home_id: homes.yoda.id},
-  date33: {date: "2017-08-02", home_id: homes.yoda.id},
-  date34: {date: "2017-08-03", home_id: homes.yoda.id},
-  date35: {date: "2017-08-04", home_id: homes.yoda.id},
-  date36: {date: "2017-08-05", home_id: homes.yoda.id},
+  date1: {date: "2017-07-01T05:00:00.000Z", home_id: homes.yoda.id},
+  date2: {date: "2017-07-02T05:00:00.000Z", home_id: homes.yoda.id},
+  date3: {date: "2017-07-03T05:00:00.000Z", home_id: homes.yoda.id},
+  date4: {date: "2017-07-04T05:00:00.000Z", home_id: homes.yoda.id},
+  date5: {date: "2017-07-05T05:00:00.000Z", home_id: homes.yoda.id},
+  date6: {date: "2017-07-06T05:00:00.000Z", home_id: homes.yoda.id},
+  date7: {date: "2017-07-07T05:00:00.000Z", home_id: homes.yoda.id},
+  date8: {date: "2017-07-08T05:00:00.000Z", home_id: homes.yoda.id},
+  date9: {date: "2017-07-09T05:00:00.000Z", home_id: homes.yoda.id},
+  date10: {date: "2017-07-10T05:00:00.000Z", home_id: homes.yoda.id},
+  date11: {date: "2017-07-11T05:00:00.000Z", home_id: homes.yoda.id},
+  date12: {date: "2017-07-12T05:00:00.000Z", home_id: homes.yoda.id},
+  date13: {date: "2017-07-13T05:00:00.000Z", home_id: homes.yoda.id},
+  date14: {date: "2017-07-14T05:00:00.000Z", home_id: homes.yoda.id},
+  date15: {date: "2017-07-15T05:00:00.000Z", home_id: homes.yoda.id},
+  date16: {date: "2017-07-16T05:00:00.000Z", home_id: homes.yoda.id},
+  date17: {date: "2017-07-17T05:00:00.000Z", home_id: homes.yoda.id},
+  date18: {date: "2017-07-18T05:00:00.000Z", home_id: homes.yoda.id},
+  date19: {date: "2017-07-19T05:00:00.000Z", home_id: homes.yoda.id},
+  date20: {date: "2017-07-20T05:00:00.000Z", home_id: homes.yoda.id},
+  date21: {date: "2017-07-21T05:00:00.000Z", home_id: homes.yoda.id},
+  date22: {date: "2017-07-22T05:00:00.000Z", home_id: homes.yoda.id},
+  date23: {date: "2017-07-23T05:00:00.000Z", home_id: homes.yoda.id},
+  date24: {date: "2017-07-24T05:00:00.000Z", home_id: homes.yoda.id},
+  date25: {date: "2017-07-25T05:00:00.000Z", home_id: homes.yoda.id},
+  date26: {date: "2017-07-26T05:00:00.000Z", home_id: homes.yoda.id},
+  date27: {date: "2017-07-27T05:00:00.000Z", home_id: homes.yoda.id},
+  date28: {date: "2017-07-28T05:00:00.000Z", home_id: homes.yoda.id},
+  date29: {date: "2017-07-29T05:00:00.000Z", home_id: homes.yoda.id},
+  date30: {date: "2017-07-30T05:00:00.000Z", home_id: homes.yoda.id},
+  date31: {date: "2017-07-31T05:00:00.000Z", home_id: homes.yoda.id},
+  date32: {date: "2017-08-01T05:00:00.000Z", home_id: homes.yoda.id},
+  date33: {date: "2017-08-02T05:00:00.000Z", home_id: homes.yoda.id},
+  date34: {date: "2017-08-03T05:00:00.000Z", home_id: homes.yoda.id},
+  date35: {date: "2017-08-04T05:00:00.000Z", home_id: homes.yoda.id},
+  date36: {date: "2017-08-05T05:00:00.000Z", home_id: homes.yoda.id},
 }))
 
 const carts = seed(Cart, ({users}) => ({
