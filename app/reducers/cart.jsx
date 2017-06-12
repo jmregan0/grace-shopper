@@ -1,7 +1,7 @@
 import { FETCH_USER_CART } from '../constants'
 
 const initialState = {
-  selected: {}
+  selected: []
 }
 
 export default function(state=initialState, action) {

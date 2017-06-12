@@ -4,7 +4,7 @@ import Cart from '../components/Cart'
 
 const mapStateToProps = (state) => {
  return {
-  cart: state.cart.selected
+  cart: state.cart.selected,
  }
 }
 
