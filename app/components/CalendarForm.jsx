@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import InfiniteCalendar, { Calendar, withRange } from 'react-infinite-calendar'
-import 'react-infinite-calendar/umd/react-infinite-calendar.js'
+// import 'react-infinite-calendar/umd/react-infinite-calendar.js'
 import moment from 'moment'
 
 class CalendarForm extends Component {
-  constructor() {
+  constructor(props) {
     super()
   }
 
@@ -15,7 +15,9 @@ class CalendarForm extends Component {
   }
 
   render() {
-    let today = new Date();
+    console.log(this.props,'props in CalendarForm')
+    let minDate = this.props.minDate || new Date();
+    console.log('mindate in calendarform', minDate)
     return (
       <InfiniteCalendar
         Component={withRange(Calendar)}
@@ -29,7 +31,7 @@ class CalendarForm extends Component {
           end: this.props.end
         }}
         onSelect={this.props.handleDateChange}
-        minDate={today}
+        minDate={minDate}
 
         // disabledDays={[0,6]}
       />

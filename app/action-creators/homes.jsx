@@ -41,8 +41,22 @@ export const addNewHome = home => {
     axios.post('/api/homes/', home)
       .then(res => res.data)
       .then(home => {
-        console.log('dispatch sent');
-        dispatch(getHomeById(home.id));
+        console.log('dispatch sent')
+        dispatch(getHomeById(home.id))
+        browserHistory.push(`/homes/${home.id}`)
+      })
+      .catch(err => console.error(err))
+  }
+}
+
+export const editHome = home => {
+  return dispatch => {
+    console.log('dispatch hit for editHome', home);
+    axios.put(`/api/homes/${home.id}`, home)
+      .then(res => res.data)
+      .then(updatedHome => {
+        console.log('dispatch sent to update home', updatedHome)
+        dispatch(setCurrentHome(updatedHome))
         browserHistory.push(`/homes/${home.id}`)
       })
       .catch(err => console.error(err))

@@ -1,10 +1,30 @@
 import React from 'react'
 import { Link } from 'react-router'
+import CalendarForm from './CalendarForm'
+import moment from 'moment'
 
 const SelectedHome = (props) => {
+  console.log('selectedhome props', props);
   const home = props.selected
   const host = props.selected.Host
   const dates = props.availability.list
+
+  let minDate, maxDate;
+  console.log('dates', dates)
+  if(dates.length){
+    const minDate = new Date(dates.reduce((acc, val) => {
+      if(moment(acc.date).isBefore(moment(val.date))) return val;
+      return acc;
+    }).date)
+
+    const maxDate = new Date(dates.reduce((acc, val) => {
+      if(moment(acc.date).isAfter(moment(val.date))) return val;
+      return acc;
+    }).date)
+    console.log(minDate);
+    console.log(maxDate);
+  }
+
   return (
     <div className = "container">
       <div className="alert">
@@ -24,16 +44,18 @@ const SelectedHome = (props) => {
       </div>
       <hr/>
       <div className = "row">
-        <h2>Booking Details:</h2>
-      </div>
-      <div className = "row">
         <div className = "col-md-6 col-sm-12">
-          <h1>Insert calendar here</h1>
+          <h1>Section for something here...</h1>
         </div>
         {
           dates.length
           ? (
               <div className = "col-md-6 col-sm-12">
+                <h2>Booking Details:</h2>
+                <CalendarForm
+                  minDate={minDate}
+                  maxDate={maxDate}
+                />
                 <h4>Select your dates:</h4>
                 <h4>Start Date:</h4>
                 <select className="form-control padding-bottom" id = "startDate">
@@ -47,11 +69,14 @@ const SelectedHome = (props) => {
                   <option key={`${date.id}`} value={`${date.date}`}>{date.date}</option>
                 )}
                 </select>
-                <button className = 'btn btn-primary' onClick = {() => {}} >Add to Cart</button>
+                <button className = 'btn btn-primary' onClick = {() => {
+                  
+                  props.addAvailabilityToCart(home.id, startDate.value, endDate.value)}} >Add to Cart</button>
               </div>
             )
           : (
-              <div>
+              <div className = "col-md-6 col-sm-12">
+                <h2>Booking Details:</h2>
                 <h3>No dates currently available.</h3>
                 <Link to = {`/homes/${home.id}/edit`} ><button className = 'btn btn-secondary'>Edit this Listing</button></Link>
               </div>

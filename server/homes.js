@@ -78,6 +78,7 @@ module.exports = require('express').Router({mergeParams: true})
       .then(home => res.status(201).json(home))
       .catch(next)
     })
+  
   .get('/:id',
     (req, res, next) =>
       Home.find({
@@ -88,6 +89,21 @@ module.exports = require('express').Router({mergeParams: true})
       })
       .then(home => res.json(home))
       .catch(next))
+  .put('/:id', (req, res, next) => {
+      console.log('we hit the put route in homes', req.body);
+      return Home.find({
+        where: {id: req.params.id},
+        include: [
+          {model: User, as: 'Host' }
+        ]
+        })
+        .then(home => home.update(req.body))
+         .then(updatedHome => {
+            console.log('updated home in the then in the put route', updatedHome)
+            res.json(updatedHome)
+          })
+         .catch(next)
+     })
   .delete('/:id', (req, res, next) =>
     Home.destroy({
       where: {id: req.params.id}
@@ -96,4 +112,7 @@ module.exports = require('express').Router({mergeParams: true})
       res.sendStatus(202))
     .catch(next)
   )
+
+
+
   .use('/:id/availability', require('./availability'))

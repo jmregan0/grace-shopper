@@ -41,9 +41,7 @@ const ExampleApp = connect(
               </div>
               <div className='collapse navbar-collapse left' id='bs-example-navbar-collapse-1'>
                   <ul className='nav navbar-nav'>
-                      <li>
-                          <Link to='#'>About</Link>
-                      </li>
+
                       <li>
                           <Link to='/homes'>Homes</Link>
                       </li>
@@ -57,7 +55,7 @@ const ExampleApp = connect(
                         {user ? <Link to='/new-home'>Add Home</Link> : null}
                       </li>
                       <li>
-                          {<Link to={'/cart'}>Cart</Link>}
+                        {user ? <Link to={`/cart/${user.id}`}>Cart</Link> : null}
                       </li>
                   </ul>
               </div>
@@ -109,9 +107,13 @@ const fetchCurrentUser = () => {
 }
 
 const fetchUserCart = (nextRouterState) => {
-  const cartId = nextRouterState.params.cartId;
+  // const cartId = nextRouterState.params.cartId;
   console.log('router state', nextRouterState);
-  store.dispatch(getCartByUserId(cartId));
+  axios.get('/api/auth/whoami')
+  .then(res => res.data)
+  .then(user => {
+    store.dispatch(getCartByUserId(user.id));
+  })
 }
 
 const fetchCart = () => {
@@ -125,10 +127,19 @@ const initialize = function(nextRouterState) {
     } else {
       console.log('you are a user!', current.auth)
     }
+  
+// const initialize = function(nextRouterState) {
+//   var current = store.getState()
+//   console.log(store.getState())
+//     if(current.auth === null || current.auth === ""){
+//       console.log('not a user', current.auth)
+//     } else {
+//       console.log('you are a user!', current.auth)
+//     }
 
-  // store.dispatch(createNewCart())
-  //import this func
-}
+//   // store.dispatch(createNewCart())
+//   //import this func
+// }
 
 render(
   <Provider store={store}>
@@ -144,7 +155,7 @@ render(
         <Route path="/homes/:homeId/edit" component={EditHomeContainer} onEnter={fetchSelectedHome}/>
         <Route path="/users/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
         <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
-        <Route path="/cart/:cartId" component={CartContainer} onEnter={fetchUserCart} />
+        <Route path="/cart/:userId" component={CartContainer} onEnter={fetchUserCart} />
         <Route path="/signup" component={SignUpContainer} />
         <Route path="/cart" component={CartContainer} onEnter={fetchUserCart} />
       </Route>
