@@ -16,6 +16,7 @@ class CalendarForm extends Component {
   }
 
   render() {
+    console.log('props in calendarform', this.props)
     let minDate = this.props.minDate || new Date();
     let maxDate = this.props.maxDate || null;
     let disabledDates = this.props.disabledDates || null;

@@ -14,6 +14,7 @@ const mapStateToProps = (state) => {
   let dates = state.availability.list;
   console.log('dates', dates)
   if(dates.length){
+    //similar logic exists in edithomecontainer - probably can refactor
     //find the minimum date in which the selected home has availability
     minDate = new Date(dates.reduce((acc, val) => {
       if(moment(acc.date).isAfter(moment(val.date)) && val.status === 'available') return val;

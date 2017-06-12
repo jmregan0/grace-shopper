@@ -52,7 +52,7 @@ class SelectedHome extends Component {
   }
 
   checkDateErrors(start, end) {
-   let startDate = new Date(start)
+    let startDate = new Date(start)
     let endDate = new Date(end)
     for(let i = 0; i < this.state.disabledDates.length; i++) {
       let unavailableDate = new Date(this.state.disabledDates[i])
@@ -111,8 +111,8 @@ class SelectedHome extends Component {
                       <CalendarForm
                         minDate={this.state.minDate}
                         maxDate={this.state.maxDate}
-                        start={this.state.start || new Date()}
-                        end={this.state.end || new Date()}
+                        start={this.state.start || null}
+                        end={this.state.end || null}
                         disabledDates={this.state.disabledDates}
                         handleDateChange={this.handleDateChange}
                       />

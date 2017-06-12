@@ -76,8 +76,6 @@ module.exports = require('express').Router({mergeParams: true})
       .then(home => res.json(home))
       .catch(next))
   .put('/:id', (req, res, next) => {
-      console.log('we hit the put route in homes', req.body);
-
       let savedHome;
       return Home.find({
         where: {id: req.params.id},
@@ -88,17 +86,25 @@ module.exports = require('express').Router({mergeParams: true})
         .then(home => home.update(req.body))
          .then(updatedHome => {
           savedHome = updatedHome;
-            console.log('updated home in the then in the put route', updatedHome)
             // if req.body contains information related to start and end date, then also create availability instances corresponding to the included dates
             if(req.body.startAdd && req.body.endAdd){
               return addAvailabilities(updatedHome.id, req.body.startAdd, req.body.endAdd)
-              //once the availabilities have been created return the updated home
-              .then(dateArr => savedHome)
-              .catch(next)
+                //once the availabilities have been created return the updated home
+                .then(dateArr => savedHome)
+                .catch(next)
             }
             //if req.body does not contain start and end date information, return the newly created home
             else return savedHome
           })
+         .then(home => {
+          if(req.body.startDelete && req.body.endDelete){
+            return deleteAvailabilities(home.id, req.body.startDelete, req.body.endDelete)
+              .then(affectrows => {
+                return savedHome
+              })
+          }
+          else return savedHome
+         })
          .then(home => res.json(home))
          .catch(next)
      })
@@ -112,7 +118,7 @@ module.exports = require('express').Router({mergeParams: true})
   )
   .use('/:id/availability', require('./availability'))
 
-  //for a give homeId, startDate, and endDate, add new availabilties in between startDate and endDate to the home
+  //for a given homeId, startDate, and endDate, add new availabilties in between startDate and endDate to the home
   const addAvailabilities = (homeId, startDate, endDate) =>{
     let startMom = moment(startDate, "YYYY/MM/DD");
     let endMom = moment(endDate, "YYYY/MM/DD");
@@ -131,5 +137,27 @@ module.exports = require('express').Router({mergeParams: true})
       date,
       home_id: homeId,
     }})))
-
   }
+
+  //for a given homeId, startDate, and endDate, add new availabilties in between startDate and endDate to the home
+  const deleteAvailabilities = (homeId, startDate, endDate) =>{
+    let startMom = moment(startDate, "YYYY/MM/DD");
+    let endMom = moment(endDate, "YYYY/MM/DD");
+    let daterange = [];
+
+    //create array dateRange containing the dates of all the dates inbetween the specified range
+    let diff = endMom.diff(startMom, 'days');
+    let dateRange = [new Date(startMom)];
+    for(let i = 0; i < diff; i++) {
+      dateRange.push(new Date(startMom.add(1, 'days')));
+    }
+
+    //resolve an array of promises where each promise in the array creates a new availability instance. for put routes, the availability may already exist, so findOrCreate is called instead of create
+    return Promise.all(dateRange.map(date => Availability.destroy({
+      where: {
+      date,
+      home_id: homeId,
+    }})))
+  }
+
+
