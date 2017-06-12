@@ -76,8 +76,6 @@ const HomeInformationForm = (props) => {
             onChange = {props.handleChange}
           />
         </div>
-
-        <button type = "submit" className = "btn btn-primary">Submit</button>
       </form>
     </div>
   )

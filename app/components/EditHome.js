@@ -6,7 +6,6 @@ import moment from 'moment'
 
 class EditHome extends Component {
   constructor(props) {
-    console.log('edithome props', props)
     super()
     this.state = {
       //state for home information form
@@ -17,13 +16,15 @@ class EditHome extends Component {
       price: props.price,
       description: props.description,
       //state for add availability form
-      startAdd: props.startAdd,
-      endAdd: props.startAdd,
-      minDateAdd: props.minDateAdd,
+      startAdd: null,
+      endAdd: null,
+      minDate: props.minDate,
       storedDates: props.storedDates,
       //state for delete availability form
       startDelete: null,
       endDelete: null,
+      maxDateDelete: props.maxDateDelete,
+      disabledDeleteDates: props.disabledDeleteDates,
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -35,7 +36,7 @@ class EditHome extends Component {
     e.preventDefault();
     if (this.hasFormError(this.state)) {
       this.setState({
-        error: "An error occured. Please make sure Name, Location, and Price are populated. Price must also be greater than $0.00/night.",
+        error: "An error occured. Please make sure Name, Location, and Price are populated. You can also not delete a date with an overlapping reservation. Price must also be greater than $0.00/night. ",
       })
     } else {
       this.props.editHome(this.state)
@@ -49,7 +50,6 @@ class EditHome extends Component {
   }
 
   handleDateChange(e) {
-    console.log(e)
     if(e.eventType === 3) {
       this.setState({
         startAdd: e.start,
@@ -60,7 +60,6 @@ class EditHome extends Component {
 
   //could refactor and make dry later
   handleDateDeleteChange(e) {
-    console.log(e)
     if(e.eventType === 3) {
       this.setState({
         startDelete: e.start,
@@ -70,7 +69,16 @@ class EditHome extends Component {
   }
 
   hasFormError(payload) {
-    if(payload.name.length === 0 || payload.location.length === 0 || payload.price.length === 0 || parseFloat(payload.price) <= 0.0) return true
+    if(payload.name.length === 0 || payload.location.length === 0) return true
+    if(payload.price.length === 0 || parseFloat(payload.price) <= 0.0) return true
+
+
+    for(let i = 0; i < payload.disabledDeleteDates.length; i++) {
+      let unavailableDate = payload.disabledDeleteDates[i]
+      if(payload.startDelete < unavailableDate && payload.endDelete > unavailableDate){
+        return true;
+      }
+    }
     return false;
   }
 
@@ -83,13 +91,11 @@ class EditHome extends Component {
       price: this.props.price,
       description: this.props.description,
       //state for add availability form
-      minDateAdd: this.props.minDateAdd,
+      minDate: this.props.minDate,
       storedDates: this.props.storedDates,
-      startAdd: this.props.startAdd,
-      endAdd: this.props.startAdd,
       //state for delete availability form
-      startDelete: null,
-      endDelete: null,
+      maxDateDelete: this.props.maxDateDelete,
+      disabledDeleteDates: this.props.disabledDeleteDates,
     })
   }
 
@@ -103,19 +109,16 @@ class EditHome extends Component {
         price: nextProps.price,
         description: nextProps.description,
         //state for add availability form
-        minDateAdd: nextProps.minDateAdd,
+        minDate: nextProps.minDate,
         storedDates: nextProps.storedDates,
-        startAdd: nextProps.startAdd,
-        endAdd: nextProps.startAdd,
         //state for delete availability form
-        startDelete: null,
-        endDelete: null,
+        maxDateDelete: nextProps.maxDateDelete,
+        disabledDeleteDates: nextProps.disabledDeleteDates,
       })
     }
   }
 
   render() {
-    console.log('edithome state', this.state);
     return (
       <div className = "container">
         <h1>Edit Home Listing</h1>
@@ -125,10 +128,8 @@ class EditHome extends Component {
             <h3>Add New Availability:</h3>
             <p><em>Select a new date range to add new availability to your home listing.</em></p>
             <CalendarForm
-              minDate={this.state.minDateAdd}
+              minDate={this.state.minDate}
               disabledDates={this.state.storedDates}
-              start={this.state.startAdd}
-              end={this.state.endAdd}
               handleDateChange={this.handleDateChange}
             />
           </div>
@@ -137,7 +138,9 @@ class EditHome extends Component {
             <p><em>Select a date range to delete pre-existing availability to your home listing.</em></p>
             <CalendarForm
               handleDateChange={this.handleDateDeleteChange}
-              disabledDates={[]}
+              maxDate={this.state.maxDateDelete}
+              minDate={this.state.minDate}
+              disabledDates={this.state.disabledDeleteDates}
             />
           </div>
         </div>
@@ -164,6 +167,15 @@ class EditHome extends Component {
               handleSubmit={this.handleSubmit}
             />
           </div>
+        </div>
+        <div className = "row">
+          <button
+            type = "submit"
+            className = "btn btn-primary"
+            onClick = {this.handleSubmit}
+            >
+            Submit
+          </button>
         </div>
     </div>
     )

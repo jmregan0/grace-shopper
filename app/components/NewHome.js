@@ -14,8 +14,8 @@ class NewHome extends Component {
       imageUrl:'',
       price: '',
       description: '',
-      start: new Date(),
-      end: new Date(),
+      start: null,
+      end: null,
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -95,8 +95,6 @@ class NewHome extends Component {
             <p>Select a date range to set initial availability for your home listing.</p>
             <CalendarForm
               handleDateChange={this.handleDateChange}
-              start={this.state.start}
-              end={this.state.end}
             />
           </div>
           <div className = "col-sm-6">
@@ -109,10 +107,18 @@ class NewHome extends Component {
               price={this.state.price}
               description={this.state.description}
               handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
             />
           </div>
         </div>
+        <div className = "row">
+          <button
+            type = "submit"
+            className = "btn btn-primary"
+            onClick = {this.handleSubmit}>
+            Submit
+          </button>
+        </div>
+
       </div>
       )
 
