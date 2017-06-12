@@ -20,7 +20,7 @@ import SignUpContainer from './containers/SignUpContainer'
 import { fetchHomes, getUserHomes, fetchLatestHomes, getHomeById } from './action-creators/homes'
 import { getAvailabilityById } from './action-creators/availability'
 import { getUserById, setCurrentUser } from './action-creators/users'
-import { getGuestTransactionsByUser, getHostTransactionsByUser } from './action-creators/transactions'
+import { getPastGuestTransactionsByUser, getFutureGuestTransactionsByUser, getHostTransactionsByUser } from './action-creators/transactions'
 import { getCartByUserId } from './action-creators/cart'
 
 const ExampleApp = connect(
@@ -96,7 +96,8 @@ const fetchUserInfo = (nextRouterState) => {
   const userId = nextRouterState.params.userId;
   store.dispatch(getUserById(userId));
   store.dispatch(getUserHomes(userId));
-  store.dispatch(getGuestTransactionsByUser(userId));
+  store.dispatch(getPastGuestTransactionsByUser(userId));
+  store.dispatch(getFutureGuestTransactionsByUser(userId));
   store.dispatch(getHostTransactionsByUser(userId));
 }
 
