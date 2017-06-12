@@ -1,12 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Profile from '../components/Profile'
+// import { showUpcoming, showPast, showHostHistory } from '../action-creators/transactions'
 
 const mapStateToProps = (state) => {
   console.log("state.homes.userHomes", state.homes.userHomes)
   return {
     selected: state.users.selected,
-    guest: state.transactions.guest,
+    pastGuest: state.transactions.pastGuest,
+    futureGuest: state.transactions.futureGuest,
     host: state.transactions.host,
     userHomes: state.homes.userHomes,
   }
@@ -14,6 +16,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    // displayUpcoming: () => dispatch(showUpcoming()),
+    // displayPast: () => dispatch(showPast()),
+    // displayHostHistory: () => dispatch(showHostHistory()),
   }
 }
 

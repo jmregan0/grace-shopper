@@ -1,6 +1,7 @@
 'use strict'
 
 const db = require('APP/db')
+const Sequelize = require('sequelize')
 const Transaction = db.model('transactions')
 const Home = db.model('homes')
 const User = db.model('users')
@@ -8,13 +9,31 @@ const User = db.model('users')
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
 module.exports = require('express').Router({mergeParams: true})
-  .get('/guest', (req, res, next) => {
+  .get('/guestfuture', (req, res, next) => {
     Transaction.findAll({
-      where: {guest_id: req.params.id},
+      where: {
+        guest_id: req.params.id,
+        endDate: {$gte: Sequelize.NOW()}
+      },
       include: [{model: Home }]
     })
-    .then(guestTransactions => {
-      res.json(guestTransactions)
+    .then(futureGuestTransactions => {
+      console.log("futureGuestTransactions", futureGuestTransactions)
+      res.json(futureGuestTransactions)
+    })
+    .catch(next)
+  })
+  .get('/guestpast', (req, res, next) => {
+    Transaction.findAll({
+      where: {
+        guest_id: req.params.id,
+        endDate: {$lt: Sequelize.NOW()}
+      },
+      include: [{model: Home }]
+    })
+    .then(pastGuestTransactions => {
+      console.log("pastGuestTransactions", pastGuestTransactions)
+      res.json(pastGuestTransactions)
     })
     .catch(next)
   })
