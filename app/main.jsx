@@ -46,9 +46,9 @@ const ExampleApp = connect(
                       <li>
                           <Link to='/homes'>Homes</Link>
                       </li>
-                      <li>
+                      {/*<li>
                           {user ? null : <Link to='/signup'>SignUp</Link>}
-                      </li>
+                      </li>*/}
                       <li>
                           {user ? <Link to={`/users/${user.id}`}>Profile</Link> : null}
                       </li>

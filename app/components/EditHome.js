@@ -121,75 +121,84 @@ class EditHome extends Component {
   render() {
     console.log('storedDates', this.state.storedDates)
     return (
-      <div className = "container">
-        <h1>Edit Home Listing</h1>
-        <hr/>
-        <div className = "row">
-          <div className = "col-sm-6">
-            <h3>Add New Availability:</h3>
-            <p><em>Select a new date range to add new availability to your home listing.</em></p>
-            <CalendarForm
-              minDate={this.state.minDate}
-              disabledDates={this.state.storedDates}
-              handleDateChange={this.handleDateChange}
-            />
-          </div>
-          <div className = "col-sm-6">
-            <h3>Delete Availability:</h3>
-            <p><em>Select a date range to delete pre-existing availability to your home listing.</em></p>
-            {
-              this.state.storedDates.length
-              ? (
-                <CalendarForm
-                  handleDateChange={this.handleDateDeleteChange}
-                  maxDate={this.state.maxDateDelete}
-                  minDate={this.state.minDate}
-                  disabledDates={this.state.disabledDeleteDates}
-                />
-                )
-              : (
-                  <div>
-                    <h3>No dates available for this listing at the moment.</h3>
-                  </div>
-                )
-            }
+      this.props.user_id === this.props.host_id
+      ? (
+        <div className = "container">
+          <h1>Edit Home Listing</h1>
+          <hr/>
+          <div className = "row">
+            <div className = "col-sm-6">
+              <h3>Add New Availability:</h3>
+              <p><em>Select a new date range to add new availability to your home listing.</em></p>
+              <CalendarForm
+                minDate={this.state.minDate}
+                disabledDates={this.state.storedDates}
+                handleDateChange={this.handleDateChange}
+              />
+            </div>
+            <div className = "col-sm-6">
+              <h3>Delete Availability:</h3>
+              <p><em>Select a date range to delete pre-existing availability to your home listing.</em></p>
+              {
+                this.state.storedDates.length
+                ? (
+                  <CalendarForm
+                    handleDateChange={this.handleDateDeleteChange}
+                    maxDate={this.state.maxDateDelete}
+                    minDate={this.state.minDate}
+                    disabledDates={this.state.disabledDeleteDates}
+                  />
+                  )
+                : (
+                    <div>
+                      <h3>No dates available for this listing at the moment.</h3>
+                    </div>
+                  )
+              }
 
+            </div>
+          </div>
+          <hr/>
+          <div className = "row">
+            <div className = "col-xs-12">
+              {
+                this.state.error
+                ? (
+                    <div className="alert alert-danger">
+                      <strong>{this.state.error}</strong>
+                    </div>
+                  )
+                : null
+              }
+              <h3>Edit Home Details:</h3>
+              <HomeInformationForm
+                name={this.state.name || ""}
+                location={this.state.location || ""}
+                imageUrl={this.state.imageUrl || ""}
+                price={this.state.price || ""}
+                description={this.state.description || ""}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+              />
+            </div>
+          </div>
+          <div className = "row">
+            <button
+              type = "submit"
+              className = "btn btn-primary"
+              onClick = {this.handleSubmit}
+              >
+              Submit
+            </button>
           </div>
         </div>
-        <hr/>
-        <div className = "row">
-          <div className = "col-xs-12">
-            {
-              this.state.error
-              ? (
-                  <div className="alert alert-danger">
-                    <strong>{this.state.error}</strong>
-                  </div>
-                )
-              : null
-            }
-            <h3>Edit Home Details:</h3>
-            <HomeInformationForm
-              name={this.state.name || ""}
-              location={this.state.location || ""}
-              imageUrl={this.state.imageUrl || ""}
-              price={this.state.price || ""}
-              description={this.state.description || ""}
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
-            />
+      )
+      : (
+          <div className = "container">
+            <h2>You do not have permissions to view this page.</h2>
+            <Link to='/homes'><button className = "btn">Return to homes</button></Link>
           </div>
-        </div>
-        <div className = "row">
-          <button
-            type = "submit"
-            className = "btn btn-primary"
-            onClick = {this.handleSubmit}
-            >
-            Submit
-          </button>
-        </div>
-    </div>
+      )
     )
   }
 }
