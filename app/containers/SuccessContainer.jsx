@@ -6,7 +6,7 @@ import { updateAvailability } from '../action-creators/availability'
 const mapStateToProps = (state) => {
  return {
   cart: state.cart.selected,
-  user: state.auth
+  user: state.auth,
  }
 }
 

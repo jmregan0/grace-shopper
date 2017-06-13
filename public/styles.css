@@ -63,10 +63,10 @@ ul {
   float: left;
 }
 
-.order-thumb {
+/*.order-thumb {
   width: 150px;
   height: 150px;
-}
+}*/
 
 .checkout-thumb {
   margin-top: 10.5px;
@@ -112,6 +112,9 @@ a .btn {
 i {
   margin: 0 5px;
 }
+.row {
+  margin: 0px;
+}
 
 .login-form {
   width: 100px;
@@ -120,6 +123,16 @@ i {
 
 .sign-up-separate {
   margin: 25px 0;
+}
+
+img {
+  padding: 5px 0;
+}
+
+.order-section {
+  margin: 25px 0;
+  padding: 15px;
+  border: 1px solid #dddddd;
 }
 
 /*CSS in order to make navbar collapse for md width, default is sm*/
