@@ -7,7 +7,7 @@ const Cart = (props) => {
 		const cart = props.cart
 		const auth = props.auth
 		console.log('props', props)
-		let total = cart.reduce(function(prev, curr){return prev += curr.home.price},0)
+		let total = cart.reduce(function(prev, curr){return prev += curr.home.price},0.00)
 
     return (
       <div className="container">
