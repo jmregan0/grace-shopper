@@ -12,44 +12,74 @@ module.exports = require('express').Router()
 
   .post('/sessioncart', (req, res, next) => {
     var rb = req.body;
-    Availability.findAll({
-      order: 'id ASC',
-      where: {
-        date:{
-          $between: [rb.startDate, rb.endDate]
-        },
-        home_id: rb.homeId,
-      }
+    // Availability.findAll({
+    //   order: 'id ASC',
+    //   include: [
+    //       { model: Homes }
+    //     ],
+    //   where: {
+    //     date:{
+    //       $between: [rb.startDate, rb.endDate]
+    //     },
+    //     home_id: rb.homeId,
+    //   }
 
-    })
-    .then((avails)=>{
+    // })
+    // .then((avails)=>{
+      
+      // avails=avails.map(avail=>{
+      //   avail.dataValues.home ={
+      //     name:avail.dataValues.home.dataValues.name,
+      //     price:avail.dataValues.home.dataValues.price,
+      //     imageUrl:avail.dataValues.home.dataValues.imageUrl
+      //   };
+      //   avail = avail.dataValues;
+      //   return {
+      //     avail
+      //   }
+      // })
+      //compressing instance info into cookie
+      // console.log("----avails", avails[0])
+      console.log("before", req.session)
+      
+      // if(Object.keys(req.session).length!==0 && req.session.cart){
       if(req.session.cart){
-       req.session.passport.cart.push(avails)
+        // console.log("line 33", req.session.cart.length)
+       req.session.cart=req.session.cart.concat(rb)
         
       }else{
-        req.session.passport={cart:avails}
+        req.session.cart=[rb]
       }
-      console.log(req.session)
-      res.sendStatus(200)
+      // console.log("after", req.session.cart.length)
+      res.status(200)
+      res.send(req.session)
       
       
+    // })
+
   })
 
 
-
-  })
 
   .get('/sessioncart', (req, res, next) => {
-
-    res.status(200).json(req.session.passport.cart) 
-
+    console.log("from api/cart/sessionsuser", req.session)
+    if(req.session){
+      console.log("GET ROUTE SESSION CART", req.session)
+      res.status(200).json(req.session.cart) 
+    }else{
+      res.send("no items in session cart")
+    }
   })
+
+
 
   .delete('/sessioncart', (req, res, next) => {
-
-    res.session.passport.cart={}
+    console.log("ATTEMPTING TO DELETE")
+    req.session.cart=[];
+    res.senStatus(203)
 
   })
+
 
 
   .post('/sync/:id', (req, res, next) => {
@@ -58,7 +88,7 @@ module.exports = require('express').Router()
       where: {user_id: req.params.id}
     })
     .then(cart=>{
-      cart.addAvailabilities(req.session.passport.cart)
+      cart.addAvailabilities(req.session.cart)
     })
 
   })
@@ -99,8 +129,8 @@ module.exports = require('express').Router()
 
     })
     .then(availabilities => {
-      if(req.session.passport){
-        req.session.passport.cart=availabilities;
+      if(req.session){
+        req.session.cart=availabilities;
       }
         Cart.findOne({
           where: {user_id: req.params.id}

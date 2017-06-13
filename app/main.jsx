@@ -16,6 +16,7 @@ import CheckoutContainer from './containers/CheckoutContainer'
 import LandingContainer from './containers/LandingContainer'
 import SelectedHomeContainer from './containers/SelectedHomeContainer'
 import CartContainer from './containers/CartContainer'
+import GuestCartContainer from './containers/GuestCartContainer'
 import SignUpContainer from './containers/SignUpContainer'
 import { fetchHomes, getUserHomes, fetchLatestHomes, getHomeById } from './action-creators/homes'
 import { getAvailabilityById } from './action-creators/availability'
@@ -159,7 +160,7 @@ render(
         <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
         <Route path="/cart/:userId" component={CartContainer} onEnter={fetchUserCart} />
         <Route path="/signup" component={SignUpContainer} />
-        <Route path="/cart" component={CartContainer} onEnter={fetchUserCart} />
+        <Route path="/cart" component={GuestCartContainer} onEnter={fetchUserCart} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

@@ -23,12 +23,16 @@ export const login = (username, password) =>
 
 export const logout = () =>
   dispatch =>
-    axios.post('/api/auth/logout')
-      .then(()=>{
-        axios.delete('/api/cart/sessioncart')
-      })
-      .then(() => dispatch(whoami()))
-      .catch(() => dispatch(whoami()))
+    axios.delete('/api/cart/sessioncart')
+    .then(()=>{
+      axios.post('/api/auth/logout')
+        .then(()=>{
+        
+        })
+        .then(() => dispatch(whoami()))
+        .catch(() => dispatch(whoami()))
+      
+    })
 
 export const whoami = () =>
   dispatch =>

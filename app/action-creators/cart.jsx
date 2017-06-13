@@ -20,6 +20,7 @@ export const createNewCart = () => {
 };
 
 export const getCartByUserId = userId => {
+  
   return dispatch => {
       if(userId){
         axios.get(`/api/cart/${userId}`)
@@ -28,7 +29,12 @@ export const getCartByUserId = userId => {
           dispatch(fetchCart(res.data));
         })
       }else{
-        axios.get(`api/cart/sessioncart`)
+        axios.get(`/api/cart/sessioncart`)
+        .then(cart=>{
+          // console.log("***********cart", cart)
+          dispatch(fetchCart(cart.data));
+
+        })
       }
   };
 };
@@ -36,15 +42,15 @@ export const getCartByUserId = userId => {
 
 
 
-export const addAvailabilityToCartAC = (homeId, startDate, endDate) => {
+export const addAvailabilityToCartAC = (homeId, startDate, endDate, auth) => {
 
-      homeId=homeId.toString()
-
+      
+      var user=auth;
   return dispatch => {
-    axios.get('/api/auth/whoami')
-    .then(user=>{
+    // console.log(auth)
+    console.log("auuuuth", auth)
 
-        if(user.data!==""){
+        if(user){
             axios.post(`/api/cart/${user.data.id}`, {homeId:homeId, startDate:startDate, endDate:endDate})
             .then(()=>{
               dispatch(getCartByUserId(user.data.id))
@@ -53,8 +59,13 @@ export const addAvailabilityToCartAC = (homeId, startDate, endDate) => {
         }else{
             console.log("CANNOT ADD CART ITEMS WHEN NOT SIGNED IN")
             axios.post(`/api/cart/sessioncart`, {homeId:homeId, startDate:startDate, endDate:endDate})
+            .then((sessionObj)=>{
+              console.log("AC sessionOBJ", sessionObj)
+              // dispatch(getCartByUserId())
+              browserHistory.push(`/cart`)
+            })
         }
-      })
+      
 
   }
 }

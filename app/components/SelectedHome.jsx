@@ -4,7 +4,7 @@ import CalendarForm from './CalendarForm'
 
 class SelectedHome extends Component {
   constructor(props) {
-    console.log('props in selectedhome constructor', props)
+
     super()
     this.state = {
       minDate: props.minDate,
@@ -17,8 +17,8 @@ class SelectedHome extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('nextprops in selectedhome', nextProps);
-    console.log('currentprops in selectedhome', this.props);
+    // console.log('nextprops in selectedhome', nextProps);
+    // console.log('currentprops in selectedhome', this.props);
     if(nextProps !== this.props) {
       this.setState({
         minDate: nextProps.minDate,
@@ -59,13 +59,14 @@ class SelectedHome extends Component {
 
   render() {
 
-    console.log('selectedhome props', this.props);
-    console.log('selectedhome state', this.state);
+    // console.log('selectedhome props', this.props);
+    // console.log('selectedhome state', this.state);
     const home = this.props.selected
     const host = this.props.selected.Host
     const dates = this.props.availability.list
 
-
+    const auth = this.props.state.auth;
+    console.log(this.props)
     return (
       <div className = "container">
         <div className="alert">
@@ -117,7 +118,7 @@ class SelectedHome extends Component {
                           () => {
                             // this.props.addAvailabilityToCart(home.id, startDate1.value, endDate1.value)
                             console.log('onclick', this.state.start, this.state.end)
-                            this.props.addAvailabilityToCart(home.id, this.state.start, this.state.end)
+                            this.props.addAvailabilityToCart(home.id, this.state.start, this.state.end, auth)
                           }
                         }>
                         Add to Cart

@@ -7,12 +7,14 @@ import moment from 'moment'
 
 
 const mapStateToProps = (state) => {
+  let user = state.users.selected;
+  let auth = state.auth;
 
   let minDate = new Date();
   let maxDate = new Date();
   let unavailableDays = [];
   let dates = state.availability.list;
-  console.log('dates', dates)
+  // console.log('dates', dates)
   if(dates.length){
     minDate = new Date(dates.reduce((acc, val) => {
       if(moment(acc.date).isAfter(moment(val.date)) && val.status === 'available') return val;
@@ -28,9 +30,9 @@ const mapStateToProps = (state) => {
 
 
 
-    console.log('mapstatetoprops mindate', minDate);
-    console.log('mapstatetoprops maxdate', maxDate);
-    console.log('mapstatetoprops unavailableDays', unavailableDays);
+    // console.log('mapstatetoprops mindate', minDate);
+    // console.log('mapstatetoprops maxdate', maxDate);
+    // console.log('mapstatetoprops unavailableDays', unavailableDays);
   }
 
   return {
