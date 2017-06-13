@@ -7,7 +7,7 @@ import { createUserTransaction } from '../action-creators/transactions'
 const mapStateToProps = (state) => {
  return {
   cart: state.cart.selected,
-  user: state.auth
+  user: state.auth,
  }
 }
 

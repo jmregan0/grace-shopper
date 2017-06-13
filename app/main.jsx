@@ -7,7 +7,7 @@ import axios from 'axios';
 import store from './store'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
-import Success from './components/Success'
+import SuccessContainer from './containers/SuccessContainer'
 import NotFound from './components/NotFound'
 import EditHomeContainer from './containers/EditHomeContainer'
 import NewHomeContainer from './containers/NewHomeContainer'
@@ -39,7 +39,7 @@ const ExampleApp = connect(
                       <span className='icon-bar'></span>
                       <span className='icon-bar'></span>
                   </button>
-                  <Link to="/" className='navbar-brand'>Galactic BnB</Link>
+                  <Link to="/" className='navbar-brand'>GalacticBnB</Link>
               </div>
               <div className='collapse navbar-collapse left' id='bs-example-navbar-collapse-1'>
                   <ul className='nav navbar-nav'>
@@ -57,7 +57,7 @@ const ExampleApp = connect(
                         {user ? <Link to='/new-home'>Add Home</Link> : null}
                       </li>
                       <li>
-                        {user ? <Link to={`/cart/${user.id}`}>Cart</Link> : null}
+                        {user ? <Link to={`/cart/${user.id}`}>Cart</Link> : <Link to={`/cart`}>Cart</Link>}
                       </li>
                   </ul>
               </div>
@@ -71,6 +71,7 @@ const ExampleApp = connect(
 )
 
 const fetchLatestHomesList = () => {
+
   axios.get('/api/homes/latest')
   .then(res => res.data)
   .then(latestHomes =>{
@@ -136,19 +137,8 @@ const initialize = function(nextRouterState) {
     } else {
       console.log('you are a user!', current.auth)
     }
-  }
-// const initialize = function(nextRouterState) {
-//   var current = store.getState()
-//   console.log(store.getState())
-//     if(current.auth === null || current.auth === ""){
-//       console.log('not a user', current.auth)
-//     } else {
-//       console.log('you are a user!', current.auth)
-//     }
+}
 
-//   // store.dispatch(createNewCart())
-//   //import this func
-// }
 
 render(
   <Provider store={store}>

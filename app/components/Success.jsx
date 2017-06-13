@@ -46,35 +46,14 @@ let dummyData = [
 
 const Success = (props) => {
   const cart = props.cart
-  const user = props.user
+  const userId = (props.user && props.user.id) || null
   console.log('props', props)
   console.log('cart in props', cart)
   return (
-    <div>
+    <div className = "container">
     <h1>Thank you for your reservation!</h1>
-    {dummyData.map(homeReservation => {
-      return (
-        homeReservation.map(date => {
-          console.log('date in Success', date)
-          return (
-            axios.put(`/api/availability/${date.id}`)
-            .then(res => {
-            //   console.log('res in Success', res)
-            })
-          )
-        })
-        // axios.post('/api/transactions'), {
-        //   price: homeReservation[0].home.price,
-        //   startDate: homeReservation[0].date,
-        //   endDate: homeReservation[homeReservation.length-1].date,
-        //   host_id: ,
-        //   guest_id: user.id,
-        //   home_id: homeReservation.home.id
-        //   }
-        // .then(res => res.data)
-        // .then
-      )
-    })}
+    <h4>Thanks for booking a stay with GalacticBnB. We hope you enjoy your visit! To see a record of your transaction, go to your profile below:</h4>
+    <Link to = {`/users/${userId}`}><button className = 'btn'>View Profile</button></Link>
     </div>
   )
 }
