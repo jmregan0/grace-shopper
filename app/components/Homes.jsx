@@ -12,10 +12,10 @@ const Homes = (props) => {
         return (
           <div className="row list-group-item" key={ home.id }>
             <div className="row">
-              <div className="col-sm-3">
-                <img className="col-sm-12" src={home.imageUrl}/>
+              <div className="col-md-3">
+                <img className="col-xs-12" src={home.imageUrl}/>
               </div>
-              <div className="col-sm-9">
+              <div className="col-md-9">
                 <h3><Link to={`/homes/${home.id}`}>{home.name}</Link></h3>
                 <h4>Price/Night: ${home.price}</h4>
                 <p>{home.excerpt}</p>

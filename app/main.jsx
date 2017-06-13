@@ -7,7 +7,7 @@ import axios from 'axios';
 import store from './store'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
-import Success from './components/Success'
+import SuccessContainer from './containers/SuccessContainer'
 import NotFound from './components/NotFound'
 import EditHomeContainer from './containers/EditHomeContainer'
 import NewHomeContainer from './containers/NewHomeContainer'
@@ -38,7 +38,7 @@ const ExampleApp = connect(
                       <span className='icon-bar'></span>
                       <span className='icon-bar'></span>
                   </button>
-                  <Link to="/" className='navbar-brand'>Galactic BnB</Link>
+                  <Link to="/" className='navbar-brand'>GalacticBnB</Link>
               </div>
               <div className='collapse navbar-collapse left' id='bs-example-navbar-collapse-1'>
                   <ul className='nav navbar-nav'>
@@ -166,7 +166,7 @@ render(
         <Route path="/cart/:userId" component={CartContainer} onEnter={fetchUserCart} />
         <Route path="/signup" component={SignUpContainer} />
         <Route path="/cart" component={CartContainer} onEnter={fetchUserCart} />
-        <Route path="/success" component={Success} />
+        <Route path="/success" component={SuccessContainer} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
