@@ -7,6 +7,7 @@ import moment from 'moment'
 
 
 const mapStateToProps = (state) => {
+  console.log('state in selectedhomecontainer', state);
   let user = state.users.selected;
   let auth = state.auth;
 
@@ -54,7 +55,7 @@ const mapStateToProps = (state) => {
   }
 
   return {
-  	state: state,
+    auth:state.auth,
     selected: state.homes.selected,
     availability: state.availability,
     minDate: minDate,
