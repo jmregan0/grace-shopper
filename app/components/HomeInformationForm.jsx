@@ -7,7 +7,7 @@ const HomeInformationForm = (props) => {
       <form onSubmit = {props.handleSubmit}>
         <div className = "form-group row">
           <div className = "col-sm-3">
-            <h3>Home name:</h3>
+            <h4>Home name:</h4>
           </div>
           <div className = "col-sm-9">
             <input
@@ -22,7 +22,7 @@ const HomeInformationForm = (props) => {
         </div>
         <div className = "form-group row">
           <div className = "col-sm-3">
-            <h3>Location:</h3>
+            <h4>Location:</h4>
           </div>
           <div className = "col-sm-9">
             <input
@@ -37,7 +37,7 @@ const HomeInformationForm = (props) => {
         </div>
         <div className = "form-group row">
           <div className = "col-sm-3">
-            <h3>Image URL:</h3>
+            <h4>Image URL:</h4>
           </div>
           <div className = "col-sm-9">
             <input
@@ -52,7 +52,7 @@ const HomeInformationForm = (props) => {
         </div>
         <div className = "form-group row">
           <div className = "col-sm-3">
-            <h3>Price/Night:</h3>
+            <h4>Price/Night:</h4>
           </div>
           <div className = "col-sm-9">
             <input
@@ -66,7 +66,7 @@ const HomeInformationForm = (props) => {
           </div>
         </div>
         <div className = "form-group">
-          <h3>Description:</h3>
+          <h4>Description:</h4>
           <textarea
             className="form-control"
             name="description"
@@ -76,8 +76,6 @@ const HomeInformationForm = (props) => {
             onChange = {props.handleChange}
           />
         </div>
-
-        <button type = "submit" className = "btn btn-primary">Submit</button>
       </form>
     </div>
   )

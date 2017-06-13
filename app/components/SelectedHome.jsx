@@ -4,31 +4,38 @@ import CalendarForm from './CalendarForm'
 
 class SelectedHome extends Component {
   constructor(props) {
-
     super()
     this.state = {
       auth: props.auth,
+      home: props.selected,
       minDate: props.minDate,
       maxDate: props.maxDate,
-      unavailableDays: props.unavailableDays,
+      disabledDates: props.disabledDates,
       start: props.minDate,
       end: props.minDate,
     }
     this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
 
     if(nextProps !== this.props) {
       this.setState({
+        home: nextProps.selected,
         minDate: nextProps.minDate,
         maxDate: nextProps.maxDate,
         start: nextProps.minDate,
         end: nextProps.minDate,
-        unavailableDays: nextProps.unavailableDays,
+        disabledDates: nextProps.disabledDates,
       })
     }
 
+  }
+
+  handleSubmit() {
+    console.log('onclick', this.state.start, this.state.end)
+    this.props.addAvailabilityToCart(this.state.home.id, this.state.start, this.state.end, auth)
   }
 
   handleDateChange(e) {
@@ -39,40 +46,45 @@ class SelectedHome extends Component {
         error: null,
       })
 
-      let startDate = new Date(e.start)
-      let endDate = new Date(e.end)
-      for(let i = 0; i < this.state.unavailableDays.length; i++) {
-        let unavailableDate = new Date(this.state.unavailableDays[i])
-        if(startDate < unavailableDate && endDate > unavailableDate) {
-          console.log('handlechange info start', startDate);
-          console.log('handlechange info end', endDate);
-          console.log('handlechange info unavail', unavailableDate);
+      this.checkDateErrors(e.start, e.end);
+    }
+  }
 
-          this.setState({
-            error: "You have selected an invalid date range. Please select a new date range."
-          })
-          break;
-        }
+  checkDateErrors(start, end) {
+    let startDate = new Date(start)
+    let endDate = new Date(end)
+    for(let i = 0; i < this.state.disabledDates.length; i++) {
+      let unavailableDate = new Date(this.state.disabledDates[i])
+      if(startDate < unavailableDate && endDate > unavailableDate) {
+        this.setState({
+          error: "You have selected an invalid date range. Please select a new date range."
+        })
+        break;
       }
     }
   }
 
   render() {
 
-    // console.log('selectedhome props', this.props);
     // console.log('selectedhome state', this.state);
     const home = this.props.selected
     const host = this.props.selected.Host
     const dates = this.props.availability.list
-
     const auth = this.props.state.auth;
+    const isHostOwner = (this.props.host_id === this.props.user_id)
 
     return (
       <div className = "container">
-        <div className="alert">
-          <h5><em>This is your home listing. Edit your listing here:</em></h5>
-          <Link to = {`/homes/${home.id}/edit`} ><button className = 'btn btn-secondary'>Edit this Listing</button></Link>
-        </div>
+        {
+          isHostOwner
+          ? (
+            <div className="alert">
+              <h5><em>This is your home listing. Edit your listing here:</em></h5>
+              <Link to = {`/homes/${home.id}/edit`} ><button className = 'btn btn-secondary'>Edit this Listing</button></Link>
+            </div>
+          )
+          : null
+        }
           <hr/>
         <div className = "row">
           <div className="col-md-6 col-sm-12">
@@ -104,9 +116,9 @@ class SelectedHome extends Component {
                       <CalendarForm
                         minDate={this.state.minDate}
                         maxDate={this.state.maxDate}
-                        start={this.state.start || new Date()}
-                        end={this.state.end || new Date()}
-                        unavailableDays={this.state.unavailableDays}
+                        start={this.state.start || null}
+                        end={this.state.end || null}
+                        disabledDates={this.state.disabledDates}
                         handleDateChange={this.handleDateChange}
                       />
                     </div>
@@ -114,13 +126,7 @@ class SelectedHome extends Component {
                       <button
                         className = 'btn btn-primary'
                         disabled={this.state.error||false}
-                        onClick ={
-                          () => {
-                            // this.props.addAvailabilityToCart(home.id, startDate1.value, endDate1.value)
-                            console.log('onclick', home.id, this.state.start, this.state.end, auth)
-                            this.props.addAvailabilityToCart(home.id, this.state.start, this.state.end, auth)
-                          }
-                        }>
+                        onClick ={this.handleSubmit}>
                         Add to Cart
                       </button>
                     </div>
@@ -130,7 +136,16 @@ class SelectedHome extends Component {
                   <div>
                     <h2>Booking Details:</h2>
                     <h3>No dates currently available.</h3>
-                    <Link to = {`/homes/${home.id}/edit`} ><button className = 'btn btn-secondary'>Edit this Listing</button></Link>
+                    {
+                      isHostOwner
+                      ? (
+                        <Link to = {`/homes/${home.id}/edit`} >
+                          <button className = 'btn btn-secondary'>Edit this Listing</button>
+                        </Link>
+                      )
+                      : null
+                    }
+
                   </div>
                 )
             }

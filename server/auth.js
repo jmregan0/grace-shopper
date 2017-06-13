@@ -139,16 +139,18 @@ auth.get('/login/:strategy', (req, res, next) =>{
 // POST requests for local login:
 auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
 
-// GET requests for OAuth login:
-// Register this route as a callback URL with OAuth provider
-auth.get('/login/:strategy', (req, res, next) =>
+auth.get('/login/:strategy', (req, res, next) =>{
+  console.log(req.session)  
   passport.authenticate(req.params.strategy, {
+
     scope: 'email', // You may want to ask for additional OAuth scopes. These are
                     // provider specific, and let you access additional data (like
                     // their friends or email), or perform actions on their behalf.
-    successRedirect: '/',
+    successRedirect: '/landing',
+    failureRedirect: '/',
     // Specify other config here
   })(req, res, next)
+}
 )
 
 auth.post('/logout', (req, res) => {
@@ -157,3 +159,6 @@ auth.post('/logout', (req, res) => {
 })
 
 module.exports = auth
+
+
+

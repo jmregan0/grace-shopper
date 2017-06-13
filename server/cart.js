@@ -84,16 +84,11 @@ module.exports = require('express').Router()
     }
 })
 
-
-
 .delete('/sessioncart', (req, res, next) => {
     console.log("ATTEMPTING TO DELETE")
     req.session.cart = [];
     res.sendStatus(203)
-
 })
-
-
 
 .post('/sync/:id', (req, res, next) => {
 
@@ -135,6 +130,23 @@ module.exports = require('express').Router()
 
 })
 
+  .delete('/:id', (req, res, next) => {
+    return Cart.findOne({
+      where: {id: req.user.id}
+    })
+    .then(cart => {
+      Availability.findOne({
+        where: {id: req.params.id}
+      })
+      .then(avail => {
+        return cart.removeAvailability(avail)
+      })
+      .then(deleted => {
+        res.sendStatus(200)
+      })
+    })
+    .catch(next)
+  })
 
 .get('/:id', (req, res, next) => {
     return Cart.findOne({
