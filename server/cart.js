@@ -83,12 +83,32 @@ module.exports = require('express').Router()
 
 
   .post('/sync/:id', (req, res, next) => {
-
+    availAbbrev = req.session.cart;
     Cart.findOne({
       where: {user_id: req.params.id}
     })
     .then(cart=>{
-      cart.addAvailabilities(req.session.cart)
+    
+      var availProm=availAbbrev.map(avail=>{
+        Availability.findAll({
+                order: 'id ASC',
+                where: {
+                  date:{
+                    $between: [avail.startDate, avail.endDate]
+                  },
+                  home_id: avail.homeId,
+                }
+
+        })
+        .then((avails)=>{
+          return cart.addAvailabilities(avails)
+        })
+      })  
+
+      Promise.all(availProm)
+      req.session.cart = [];
+      res.status(200).send("hopefully cart synced")
+      //cart.addAvailabilities(req.session.cart)
     })
 
   })

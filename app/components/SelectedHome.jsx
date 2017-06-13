@@ -7,6 +7,7 @@ class SelectedHome extends Component {
 
     super()
     this.state = {
+      auth: props.auth,
       minDate: props.minDate,
       maxDate: props.maxDate,
       unavailableDays: props.unavailableDays,
@@ -66,7 +67,7 @@ class SelectedHome extends Component {
     const dates = this.props.availability.list
 
     const auth = this.props.state.auth;
-    console.log(this.props)
+    console.log("AUTH IN SELECTED HOME", this.props.state.auth)
     return (
       <div className = "container">
         <div className="alert">
@@ -117,7 +118,7 @@ class SelectedHome extends Component {
                         onClick ={
                           () => {
                             // this.props.addAvailabilityToCart(home.id, startDate1.value, endDate1.value)
-                            console.log('onclick', this.state.start, this.state.end)
+                            console.log('onclick', home.id, this.state.start, this.state.end, auth)
                             this.props.addAvailabilityToCart(home.id, this.state.start, this.state.end, auth)
                           }
                         }>

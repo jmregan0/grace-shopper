@@ -47,8 +47,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-  	addAvailabilityToCart(homeId, startDate, endDate){
-  		dispatch(addAvailabilityToCartAC(homeId, startDate, endDate))
+  	addAvailabilityToCart(homeId, startDate, endDate, auth){
+  		dispatch(addAvailabilityToCartAC(homeId, startDate, endDate, auth))
   	}
   }
 }

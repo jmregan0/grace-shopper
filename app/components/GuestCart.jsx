@@ -5,7 +5,7 @@ const Cart = (props) => {
 		const cart = props.cart
 		// console.log('props', props)
 		console.log('cart in props', cart)
-
+		
     return (
       <div className="container">
 			<th style={{width:'100%'}}>Abbrev. Cart View</th>
