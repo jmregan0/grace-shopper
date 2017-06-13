@@ -7,16 +7,17 @@ import moment from 'moment'
 
 
 const mapStateToProps = (state) => {
-  console.log('state in selectedhomecontainer mstp', state);
+  let user = state.users.selected;
+  let auth = state.auth;
 
   let minDate = new Date();
   let maxDate = new Date();
   let disabledDates = [];
   let dates = state.availability.list;
+
   let user_id = state.auth ? state.auth.id : null;
   let host_id = state.homes ? state.homes.selected.host_id : null;
 
-  console.log('dates', dates)
   if(dates.length){
     //similar logic exists in edithomecontainer - probably can refactor
     //find the minimum date in which the selected home has availability
@@ -42,7 +43,6 @@ const mapStateToProps = (state) => {
     //convert the availability list into an array of dates. this array will contain a list of all availabilities, even if the status is reserved
     let dateArr = dates.map(date => new Date(date.date))
 
-
     //remove all of the dates in dateArr from inbetweenDates in order to determine a list of dates that should be disabled in the calendar.
     disabledDates = inbetweenDates.filter(date => !(dateArr.find(dateArrVal => dateArrVal.getTime() === date.getTime())))
 
@@ -67,8 +67,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-  	addAvailabilityToCart(homeId, startDate, endDate){
-  		dispatch(addAvailabilityToCartAC(homeId, startDate, endDate))
+  	addAvailabilityToCart(homeId, startDate, endDate, auth){
+  		dispatch(addAvailabilityToCartAC(homeId, startDate, endDate, auth))
   	}
   }
 }

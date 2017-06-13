@@ -24,11 +24,20 @@ export const createNewCart = () => {
 
 export const getCartByUserId = userId => {
   return dispatch => {
-    return axios.get(`/api/cart/${userId}`)
-    .then(res => {
-      console.log('got cart!', res.data);
-      dispatch(fetchCart(res.data));
-    });
+      if(userId){
+        axios.get(`/api/cart/${userId}`)
+        .then(res => {
+          console.log('got cart!', res.data);
+          dispatch(fetchCart(res.data));
+        })
+      }else{
+        axios.get(`/api/cart/sessioncart`)
+        .then(cart=>{
+          
+          dispatch(fetchCart(cart.data));
+
+        })
+      }
   };
 };
 
@@ -42,24 +51,28 @@ export const deleteCartItem = (availId, userId) => {
   }
 }
 
-export const addAvailabilityToCartAC = (homeId, startDate, endDate) => {
+export const addAvailabilityToCartAC = (homeId, startDate, endDate, auth) => {
 
-      homeId=homeId.toString()
-
+      
+      var user=auth;
+    
   return dispatch => {
-    axios.get('/api/auth/whoami')
-    .then(user=>{
 
-        if(user.data!==""){
-            axios.post(`/api/cart/${user.data.id}`, {homeId:homeId, startDate:startDate, endDate:endDate})
+        if(user){
+            axios.post(`/api/cart/${user.id}`, {homeId:homeId, startDate:startDate, endDate:endDate})
             .then(()=>{
-              dispatch(getCartByUserId(user.data.id))
-              browserHistory.push(`/cart/${user.data.id}`)
+              dispatch(getCartByUserId(user.id))
+              browserHistory.push(`/cart/${user.id}`)
             })
         }else{
             console.log("CANNOT ADD CART ITEMS WHEN NOT SIGNED IN")
+            axios.post(`/api/cart/sessioncart`, {homeId:homeId, startDate:startDate, endDate:endDate})
+            .then((sessionObj)=>{
+              dispatch(getCartByUserId())
+              browserHistory.push(`/cart`)
+            })
         }
-      })
+      
 
   }
 }

@@ -122,6 +122,20 @@ passport.use(new (require('passport-local').Strategy)(
 
 auth.get('/whoami', (req, res) => res.send(req.user))
 
+
+auth.post('/login/local', (req, res, next) =>{
+  console.log("LOGGING IN")
+  
+  console.log("req.session", req.session)
+  next();
+})
+
+auth.get('/login/:strategy', (req, res, next) =>{
+  console.log("LOGGING IN")
+  console.log("req.session", req.session)
+  next();
+})
+
 // POST requests for local login:
 auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
 
