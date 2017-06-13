@@ -7,6 +7,7 @@ const Cart = (props) => {
 		const cart = props.cart
 		const auth = props.auth
 		console.log('props', props)
+		let total = cart.reduce(function(prev, curr){return prev += curr.home.price},0)
 
     return (
       <div className="container">
@@ -60,8 +61,8 @@ const Cart = (props) => {
 						<tr>
 							<td><Link to={'/homes'} className="btn btn-warning"><i className="fa fa-angle-left"></i> Continue Shopping</Link></td>
 							<td colSpan="2" className="hidden-xs"></td>
-							<td className="hidden-xs text-center"><strong>Total $1.99</strong></td>
-							<td><a href="#" className="btn btn-success btn-block">Checkout <i className="fa fa-angle-right"></i></a></td>
+							<td className="hidden-xs text-center"><h4>Total: {"$" + total + ".00"}</h4></td>
+							<td><a href="#" className="btn btn-success btn-block">Checkout<i className="fa fa-angle-right"></i></a></td>
 						</tr>
 					</tfoot>
 				</table>
