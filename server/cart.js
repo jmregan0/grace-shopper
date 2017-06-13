@@ -76,21 +76,23 @@ module.exports = require('express').Router()
   .delete('/sessioncart', (req, res, next) => {
     console.log("ATTEMPTING TO DELETE")
     req.session.cart=[];
-    res.senStatus(203)
+    res.sendStatus(203)
 
   })
 
 
 
   .post('/sync/:id', (req, res, next) => {
-    availAbbrev = req.session.cart;
+
+    var availAbbrev = req.session.cart;
     Cart.findOne({
       where: {user_id: req.params.id}
     })
     .then(cart=>{
     
       var availProm=availAbbrev.map(avail=>{
-        Availability.findAll({
+
+        return Availability.findAll({
                 order: 'id ASC',
                 where: {
                   date:{
@@ -101,10 +103,10 @@ module.exports = require('express').Router()
 
         })
         .then((avails)=>{
-          return cart.addAvailabilities(avails)
+          cart.addAvailabilities(avails)
         })
       })  
-
+      console.log(")(*^*&(availprom from cart/sync", availProm)
       Promise.all(availProm)
       req.session.cart = [];
       res.status(200).send("hopefully cart synced")

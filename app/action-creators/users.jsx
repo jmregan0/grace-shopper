@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {browserHistory} from 'react-router';
-import {login} from './auth'
+import {login} from '../reducers/auth'
 import { FETCH_USERS, SET_CURRENT_USER } from '../constants'
 
 export const fetchUsers = users => ({
