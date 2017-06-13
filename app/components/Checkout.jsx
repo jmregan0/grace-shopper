@@ -18,6 +18,8 @@ class Checkout extends React.Component {
   }
 
   render() {
+    console.log('cart props', this.props)
+    console.log('cart state', this.state)
     const cart = this.props.cart
     const user = this.props.user
     const reserveDate = this.props.reserveDate

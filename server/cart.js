@@ -19,6 +19,7 @@ module.exports = require('express').Router()
         .then(newCart => res.json(newCart))
       } else {
         return guestCart.getAvailabilities({
+          order: 'date ASC',
           include: [
             { model: Homes }
           ]
@@ -34,7 +35,7 @@ module.exports = require('express').Router()
 
 
     Availability.findAll({
-      order: 'id ASC',
+      order: 'date ASC',
       where: {
         date:{
           $between: [ok.startDate, ok.endDate]
