@@ -80,7 +80,7 @@ module.exports = require('express').Router()
             })
 
     } else {
-        res.send("no items in session cart")
+        res.send([])
     }
 })
 

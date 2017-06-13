@@ -35,7 +35,7 @@ class SelectedHome extends Component {
 
   handleSubmit() {
     console.log('onclick', this.state.start, this.state.end)
-    this.props.addAvailabilityToCart(this.state.home.id, this.state.start, this.state.end, auth)
+    this.props.addAvailabilityToCart(this.state.home.id, this.state.start, this.state.end, this.state.auth)
   }
 
   handleDateChange(e) {
