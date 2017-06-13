@@ -7,7 +7,7 @@ import HomeInformationForm from './HomeInformationForm'
 
 class NewHome extends Component {
   constructor(props) {
-    super()
+    super(props)
     this.state = {
       name: '',
       location: '',
