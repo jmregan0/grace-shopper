@@ -23,7 +23,6 @@ import { getAvailabilityById, updateAvailability } from './action-creators/avail
 import { getUserById, setCurrentUser } from './action-creators/users'
 import { getPastGuestTransactionsByUser, getFutureGuestTransactionsByUser, getHostTransactionsByUser } from './action-creators/transactions'
 import { getCartByUserId } from './action-creators/cart'
-import SuccessContainer from './containers/SuccessContainer'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
