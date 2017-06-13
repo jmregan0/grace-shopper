@@ -51,7 +51,6 @@ const Cart = (props) => {
 					})
 					: null
 				}
-
 				<tfoot>
 					<tr className="visible-xs">
 						<td className="text-center"><strong>Total 1.99</strong></td>
