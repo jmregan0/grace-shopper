@@ -53,6 +53,8 @@ const Success = (props) => {
   return (
     <div className = "container">
     <h1>Thank you for your reservation!</h1>
+    {dummyData.map(homeReservation => {
+    })}
     <h4>Thanks for booking a stay with GalacticBnB. We hope you enjoy your visit! To see a record of your transaction, go to your profile below:</h4>
     <Link to = {`/users/${userId}`}><button className = 'btn'>View Profile</button></Link>
     </div>
