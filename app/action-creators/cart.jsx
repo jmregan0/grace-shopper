@@ -31,7 +31,7 @@ export const getCartByUserId = userId => {
       }else{
         axios.get(`/api/cart/sessioncart`)
         .then(cart=>{
-          console.log("***********cart", cart)
+          console.log("***********cart", cart )
           dispatch(fetchCart(cart.data));
 
         })

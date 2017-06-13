@@ -160,7 +160,7 @@ render(
         <Route path="/profile/:userId" component={ProfileContainer} onEnter={fetchUserInfo}/>
         <Route path="/cart/:userId" component={CartContainer} onEnter={fetchUserCart} />
         <Route path="/signup" component={SignUpContainer} />
-        <Route path="/cart" component={GuestCartContainer} onEnter={fetchUserCart} />
+        <Route path="/cart" component={CartContainer} onEnter={fetchUserCart} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

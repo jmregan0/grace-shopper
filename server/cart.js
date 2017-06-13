@@ -1,58 +1,32 @@
 'use strict'
 
-const db = require('APP/db')
-const Cart = db.model('cart')
-const Availability = db.model('availability')
-const Homes = db.model('homes')
-const guest_cart_items = db.model('guest_cart_items')
+const db = require('APP/db');
+const Cart = db.model('cart');
+const Availability = db.model('availability');
+const Homes = db.model('homes');
+const guest_cart_items = db.model('guest_cart_items');
 
-const {mustBeLoggedIn, forbidden} = require('./auth.filters')
+const {mustBeLoggedIn, forbidden} = require('./auth.filters');
+const moment = require('moment');
 
 module.exports = require('express').Router()
 
   .post('/sessioncart', (req, res, next) => {
     var rb = req.body;
-    // Availability.findAll({
-    //   order: 'id ASC',
-    //   include: [
-    //       { model: Homes }
-    //     ],
-    //   where: {
-    //     date:{
-    //       $between: [rb.startDate, rb.endDate]
-    //     },
-    //     home_id: rb.homeId,
-    //   }
 
-    // })
-    // .then((avails)=>{
-      
-      // avails=avails.map(avail=>{
-      //   avail.dataValues.home ={
-      //     name:avail.dataValues.home.dataValues.name,
-      //     price:avail.dataValues.home.dataValues.price,
-      //     imageUrl:avail.dataValues.home.dataValues.imageUrl
-      //   };
-      //   avail = avail.dataValues;
-      //   return {
-      //     avail
-      //   }
-      // })
-      //compressing instance info into cookie
-      // console.log("----avails", avails[0])
-      console.log("before", req.session)
+      console.log("before", req.session);
       
       // if(Object.keys(req.session).length!==0 && req.session.cart){
       if(req.session.cart){
         // console.log("line 33", req.session.cart.length)
-       req.session.cart=req.session.cart.concat(rb)
+       req.session.cart=req.session.cart.concat(rb);
         
       }else{
-        req.session.cart=[rb]
+        req.session.cart=[rb];
       }
       // console.log("after", req.session.cart.length)
-      res.status(200)
-      res.send(req.session)
+      res.status(200);
+      res.send(req.session);
       
       
     // })
@@ -62,10 +36,50 @@ module.exports = require('express').Router()
 
 
   .get('/sessioncart', (req, res, next) => {
-    console.log("from api/cart/sessionsuser", req.session)
-    if(req.session){
-      console.log("GET ROUTE SESSION CART", req.session)
-      res.status(200).json(req.session.cart) 
+
+    var arr = [];
+    // console.log("from api/cart/sessionsuser", req.session)
+    if(req.session.cart.length!==0){
+      // console.log("GET ROUTE SESSION CART", req.session)
+
+      var info = req.session.cart;
+      var start = [info[0].startDate];
+      
+
+      info=info.map(info=>{
+
+        return Availability.findAll({
+          order: 'id ASC',
+          where: {
+            // date:info.startDate,
+            date:{ 
+              $between: [info.startDate, info.endDate],
+              // $or: {
+              //   $eq: moment(info.startDate).format("MMMM D YYYY"),
+                // $eq: moment(info.endDate).format("MMMM D YYYY"),
+              // }
+            },
+            home_id: info.homeId,
+          },
+          include: [
+            { model: Homes }
+          ]
+        })
+      })
+
+      Promise.all(info)
+      .then((avails)=>{
+
+        if(avails.length>1){
+          var ok = [].concat.apply(avails[0][0], avails.slice(1));
+        }else{
+          var ok = avails[0];
+        }
+      
+        console.log("TEST", new Date(start), moment(start).format("MMMM D YYYY"), moment(ok[0].date).format("MMMM D YYYY"))
+        res.status(200).json(ok);
+       })
+
     }else{
       res.send("no items in session cart")
     }
@@ -106,11 +120,18 @@ module.exports = require('express').Router()
           cart.addAvailabilities(avails)
         })
       })  
-      console.log(")(*^*&(availprom from cart/sync", availProm)
+      console.log("*^*&(availprom from cart/sync", availProm)
       Promise.all(availProm)
-      req.session.cart = [];
-      res.status(200).send("hopefully cart synced")
-      //cart.addAvailabilities(req.session.cart)
+      .then(()=>{
+        Cart.findOne({
+          where: {user_id: req.params.id}
+        })
+        .then((cart)=>{
+            req.session.cart = [];
+            res.status(200).json(cart)
+        })
+      })
+
     })
 
   })
