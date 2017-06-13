@@ -67,19 +67,25 @@ class SelectedHome extends Component {
 
   render() {
 
-    // console.log('selectedhome props', this.props);
+    console.log('selectedhome props', this.props);
     // console.log('selectedhome state', this.state);
     const home = this.props.selected
     const host = this.props.selected.Host
     const dates = this.props.availability.list
-
+    const isHostOwner = (this.props.host_id === this.props.user_id)
 
     return (
       <div className = "container">
-        <div className="alert">
-          <h5><em>This is your home listing. Edit your listing here:</em></h5>
-          <Link to = {`/homes/${home.id}/edit`} ><button className = 'btn btn-secondary'>Edit this Listing</button></Link>
-        </div>
+        {
+          isHostOwner
+          ? (
+            <div className="alert">
+              <h5><em>This is your home listing. Edit your listing here:</em></h5>
+              <Link to = {`/homes/${home.id}/edit`} ><button className = 'btn btn-secondary'>Edit this Listing</button></Link>
+            </div>
+          )
+          : null
+        }
           <hr/>
         <div className = "row">
           <div className="col-md-6 col-sm-12">
@@ -131,7 +137,16 @@ class SelectedHome extends Component {
                   <div>
                     <h2>Booking Details:</h2>
                     <h3>No dates currently available.</h3>
-                    <Link to = {`/homes/${home.id}/edit`} ><button className = 'btn btn-secondary'>Edit this Listing</button></Link>
+                    {
+                      isHostOwner
+                      ? (
+                        <Link to = {`/homes/${home.id}/edit`} >
+                          <button className = 'btn btn-secondary'>Edit this Listing</button>
+                        </Link>
+                      )
+                      : null
+                    }
+
                   </div>
                 )
             }

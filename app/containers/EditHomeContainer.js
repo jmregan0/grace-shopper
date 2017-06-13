@@ -9,6 +9,8 @@ const mapStateToProps = (state) => {
   let minDate = new Date();
   let maxDate = new Date();
   let startAdd = new Date();
+  let user_id = state.auth ? state.auth.id : null;
+  let host_id = state.homes ? state.homes.selected.host_id : null;
 
   let storedDates = []
   let disabledDeleteDates = [] //these dates will be disabled in the delete calendar form
@@ -70,6 +72,9 @@ const mapStateToProps = (state) => {
     //state for the remove availability form
     maxDateDelete: maxDate,
     disabledDeleteDates: disabledDeleteDates,
+    //state for hiding the edit page from other users
+    user_id: user_id,
+    host_id: host_id,
 
   }
 }

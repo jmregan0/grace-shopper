@@ -1,9 +1,14 @@
 import React from 'react'
+import {browserHistory} from 'react-router'
 
 export const WhoAmI = ({ user, logout }) => (
   <div className="whoami">
     <span className="whoami-user-name welcome-user">Welcome, {user && user.name}</span>
-    <button className="btn btn-success logout" onClick={logout}>Logout</button>
+    <button className="btn btn-success logout"
+      onClick={() => {
+        logout()
+        browserHistory.push(`/landing`)
+      }}>Logout</button>
   </div>
 )
 

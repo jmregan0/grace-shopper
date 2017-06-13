@@ -12,54 +12,53 @@ class SignUp extends React.Component {
   render(){
     const { message } = this.props;
     return (
-      <div className="signin-container">
-        <div className="buffer local">
+      <div className="container">
+        <div className="row">
           <form onSubmit={this.onSignupSubmit}>
-          <div className="form-group">
-              <label>name</label>
-              <input
-                name="name"
-                type="text"
-                className="form-control"
-                required
-              />
-            </div>
             <div className="form-group">
-              <label>email</label>
-              <input
-                name="email"
-                type="email"
-                className="form-control"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label>password</label>
-              <input
-                name="password"
-                type="password"
-                className="form-control"
-                required
-              />
-            </div>
-            <button type="submit" className="btn btn-block btn-primary">{message}</button>
+                <h4>Name:</h4>
+                <input
+                  name="name"
+                  type="text"
+                  className="form-control"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <h4>Email:</h4>
+                <input
+                  name="email"
+                  type="email"
+                  className="form-control"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <h4>Password:</h4>
+                <input
+                  name="password"
+                  type="password"
+                  className="form-control"
+                  required
+                />
+              </div>
+              <button type="submit" className="btn btn-block btn-primary">{message}</button>
           </form>
         </div>
-        <div className="or buffer">
-          <div className="back-line">
-            <span>OR</span>
+        <div>
+          <div className="row center sign-up-separate">
+            <h4>------ OR ------</h4>
           </div>
         </div>
-        <div className="buffer oauth">
-          <p>
+        <div className="row center">
+          <h3>
             <a
               target="_self"
-              href="/api/auth/login/google"
-              className="btn btn-social btn-google">
+              href="/api/auth/login/google">
               <i className="fa fa-google" />
               <span>{message} with Google</span>
             </a>
-          </p>
+          </h3>
         </div>
       </div>
     );

@@ -7,11 +7,15 @@ import moment from 'moment'
 
 
 const mapStateToProps = (state) => {
+  console.log('state in selectedhomecontainer mstp', state);
 
   let minDate = new Date();
   let maxDate = new Date();
   let disabledDates = [];
   let dates = state.availability.list;
+  let user_id = state.auth ? state.auth.id : null;
+  let host_id = state.homes ? state.homes.selected.host_id : null;
+
   console.log('dates', dates)
   if(dates.length){
     //similar logic exists in edithomecontainer - probably can refactor
@@ -56,6 +60,8 @@ const mapStateToProps = (state) => {
     minDate: minDate,
     maxDate: maxDate,
     disabledDates: disabledDates,
+    user_id: user_id,
+    host_id: host_id,
   }
 }
 
