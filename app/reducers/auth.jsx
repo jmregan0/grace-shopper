@@ -15,27 +15,6 @@ export const authenticated = user => ({
 })
 
 
-// export const login = (username, password) =>
-//   dispatch =>
-//     axios.post('/api/auth/login/local',
-//       {username, password})
-//     .then(()=>{
-//       // console.log(user.config)
-//         //on login sync session cart with user cart
-
-//       axios.get('/api/auth/whoami')
-//       .then(user=>{
-//         axios.post('')
-//         dispatch(getCartByUserId(user.data.id))
-
-//       })
-
-//     })
-             
-//     .then(() => dispatch(whoami()))
-//     .catch(() => dispatch(whoami()))
-
-
 
 export const login = (username, password) =>
   dispatch =>
@@ -57,8 +36,6 @@ export const login = (username, password) =>
 
 export const logout = () =>
   dispatch =>{
-    console.log("$*&#^$@# hitting logout route")
-
     axios.delete('/api/cart/sessioncart')
     .then(()=>{
       axios.post('/api/auth/logout')

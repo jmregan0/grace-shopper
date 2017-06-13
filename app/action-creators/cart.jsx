@@ -31,7 +31,7 @@ export const getCartByUserId = userId => {
       }else{
         axios.get(`/api/cart/sessioncart`)
         .then(cart=>{
-          console.log("***********cart", cart )
+          
           dispatch(fetchCart(cart.data));
 
         })
@@ -46,10 +46,8 @@ export const addAvailabilityToCartAC = (homeId, startDate, endDate, auth) => {
 
       
       var user=auth;
-      console.log("AUTH IN addavailAC", homeId, startDate, endDate, auth)
+    
   return dispatch => {
-    // console.log(auth)
-    console.log("auuuuth", auth)
 
         if(user){
             axios.post(`/api/cart/${user.id}`, {homeId:homeId, startDate:startDate, endDate:endDate})
@@ -61,7 +59,6 @@ export const addAvailabilityToCartAC = (homeId, startDate, endDate, auth) => {
             console.log("CANNOT ADD CART ITEMS WHEN NOT SIGNED IN")
             axios.post(`/api/cart/sessioncart`, {homeId:homeId, startDate:startDate, endDate:endDate})
             .then((sessionObj)=>{
-              console.log("AC sessionOBJ", sessionObj)
               dispatch(getCartByUserId())
               browserHistory.push(`/cart`)
             })

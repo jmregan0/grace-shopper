@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
   let maxDate = new Date();
   let unavailableDays = [];
   let dates = state.availability.list;
-  // console.log('dates', dates)
+
   if(dates.length){
     minDate = new Date(dates.reduce((acc, val) => {
       if(moment(acc.date).isAfter(moment(val.date)) && val.status === 'available') return val;
@@ -28,11 +28,6 @@ const mapStateToProps = (state) => {
 
     unavailableDays = dates.filter(date => date.status === 'reserved').map(date => new Date(date.date))
 
-
-
-    // console.log('mapstatetoprops mindate', minDate);
-    // console.log('mapstatetoprops maxdate', maxDate);
-    // console.log('mapstatetoprops unavailableDays', unavailableDays);
   }
 
   return {

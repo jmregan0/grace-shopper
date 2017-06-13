@@ -18,8 +18,7 @@ class SelectedHome extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log('nextprops in selectedhome', nextProps);
-    // console.log('currentprops in selectedhome', this.props);
+
     if(nextProps !== this.props) {
       this.setState({
         minDate: nextProps.minDate,
@@ -67,7 +66,7 @@ class SelectedHome extends Component {
     const dates = this.props.availability.list
 
     const auth = this.props.state.auth;
-    console.log("AUTH IN SELECTED HOME", this.props.state.auth)
+
     return (
       <div className = "container">
         <div className="alert">

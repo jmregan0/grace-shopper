@@ -16,7 +16,6 @@ import CheckoutContainer from './containers/CheckoutContainer'
 import LandingContainer from './containers/LandingContainer'
 import SelectedHomeContainer from './containers/SelectedHomeContainer'
 import CartContainer from './containers/CartContainer'
-import GuestCartContainer from './containers/GuestCartContainer'
 import SignUpContainer from './containers/SignUpContainer'
 import { fetchHomes, getUserHomes, fetchLatestHomes, getHomeById } from './action-creators/homes'
 import { getAvailabilityById } from './action-creators/availability'
@@ -131,18 +130,7 @@ const initialize = function(nextRouterState) {
       console.log('you are a user!', current.auth)
     }
 }
-// const initialize = function(nextRouterState) {
-//   var current = store.getState()
-//   console.log(store.getState())
-//     if(current.auth === null || current.auth === ""){
-//       console.log('not a user', current.auth)
-//     } else {
-//       console.log('you are a user!', current.auth)
-//     }
 
-//   // store.dispatch(createNewCart())
-//   //import this func
-// }
 
 render(
   <Provider store={store}>
