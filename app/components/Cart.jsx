@@ -66,7 +66,7 @@ const Cart = (props) => {
 						</tr>
 					</tfoot>
 				</table>
-</div>
+	  </div>
     )
 }
 

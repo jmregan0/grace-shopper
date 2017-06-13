@@ -56,7 +56,7 @@ const ExampleApp = connect(
                         {user ? <Link to='/new-home'>Add Home</Link> : null}
                       </li>
                       <li>
-                        {user ? <Link to={`/cart/${user.id}`}>Cart</Link> : null}
+                        {user ? <Link to={`/cart/${user.id}`}>Cart</Link> : <Link to={`/cart`}>Cart</Link>}
                       </li>
                   </ul>
               </div>
@@ -70,6 +70,7 @@ const ExampleApp = connect(
 )
 
 const fetchLatestHomesList = () => {
+
   axios.get('/api/homes/latest')
   .then(res => res.data)
   .then(latestHomes =>{
@@ -135,19 +136,8 @@ const initialize = function(nextRouterState) {
     } else {
       console.log('you are a user!', current.auth)
     }
-  }
-// const initialize = function(nextRouterState) {
-//   var current = store.getState()
-//   console.log(store.getState())
-//     if(current.auth === null || current.auth === ""){
-//       console.log('not a user', current.auth)
-//     } else {
-//       console.log('you are a user!', current.auth)
-//     }
+}
 
-//   // store.dispatch(createNewCart())
-//   //import this func
-// }
 
 render(
   <Provider store={store}>
