@@ -6,7 +6,7 @@ import moment from 'moment'
 
 class CalendarForm extends Component {
   constructor(props) {
-    super()
+    super(props)
   }
 
   shouldComponentUpdate(nextProps, nextState) {

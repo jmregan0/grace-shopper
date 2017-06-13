@@ -6,7 +6,7 @@ import moment from 'moment'
 
 class EditHome extends Component {
   constructor(props) {
-    super()
+    super(props)
     this.state = {
       //state for home information form
       id: props.params.homeId,
