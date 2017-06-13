@@ -6,7 +6,8 @@ module.exports = db => db.define('transactions', {
 
   price: Sequelize.FLOAT,
   startDate: Sequelize.DATE,
-  endDate: Sequelize.DATE
+  endDate: Sequelize.DATE,
+  email: Sequelize.STRING
 
 })
 

@@ -54,28 +54,6 @@ const Success = (props) => {
     <div>
     <h1>Thank you for your reservation!</h1>
     {dummyData.map(homeReservation => {
-      return (
-        homeReservation.map(date => {
-          console.log('date in Success', date)
-          return (
-            axios.put(`/api/availability/${date.id}`)
-            .then(res => {
-            //   console.log('res in Success', res)
-              props.reserveDate(date.id)
-            })
-          )
-        })
-        // axios.post('/api/transactions'), {
-        //   price: homeReservation[0].home.price,
-        //   startDate: homeReservation[0].date,
-        //   endDate: homeReservation[homeReservation.length-1].date,
-        //   host_id: ,
-        //   guest_id: user.id,
-        //   home_id: homeReservation.home.id
-        //   }
-        // .then(res => res.data)
-        // .then
-      )
     })}
     </div>
   )
