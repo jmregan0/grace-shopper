@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 
 class Checkout extends React.Component {
   constructor() {
@@ -12,12 +12,14 @@ class Checkout extends React.Component {
   // console.log("reserveDate in Checkout", reserveDate)
 
   handleSubmit(evt) {
-    cart.map(item => {
-      reserveDate(item.date)
-    })
+    evt.preventDefault();
+    console.log('submit button hit!')
+    this.props.createNewTransaction(this.props.transactions)
+    browserHistory.push('/success')
   }
 
   render() {
+    console.log('transactions', this.props.transactions)
     console.log('cart props', this.props)
     console.log('cart state', this.state)
     const cart = this.props.cart
@@ -61,7 +63,7 @@ class Checkout extends React.Component {
                       <div>home.price x cart.length nights</div>
                     </div>
                     <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppmcvdam.png"/>
-                    <Link className = 'btn btn-warning' to="/success" onClick={this.handleSubmit}>Submit your reservation</Link>
+                    <Link to={'/success'} className = 'btn btn-warning' onClick={this.handleSubmit}>Submit your reservation</Link>
                   </div>
             </div>
           </div>

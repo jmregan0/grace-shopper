@@ -48,7 +48,6 @@ const Success = (props) => {
   const cart = props.cart
   const user = props.user
   console.log('props', props)
-  console.log('reserveDate in props', props.reserveDate)
   console.log('cart in props', cart)
   return (
     <div>
@@ -61,7 +60,6 @@ const Success = (props) => {
             axios.put(`/api/availability/${date.id}`)
             .then(res => {
             //   console.log('res in Success', res)
-              props.reserveDate(date.id)
             })
           )
         })

@@ -2,19 +2,22 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Checkout from '../components/Checkout'
 import { updateAvailability } from '../action-creators/availability'
+import { createUserTransaction } from '../action-creators/transactions'
 
 const mapStateToProps = (state) => {
   let cartAvailabilities = state.cart.selected
   return {
   cart: cartAvailabilities,
   user: state.auth,
-  transactions: convertCartToRanges(cartAvailabilities, state.auth),
+  transactions: convertCartToRanges(cartAvailabilities, state.auth) || [],
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    reserveDate: (date) => dispatch(updateAvailability(date))
+    reserveDate: (date) => dispatch(updateAvailability(date)),
+    createNewTransaction: (transaction) => dispatch(createUserTransaction(transaction))
+
   }
 }
 
@@ -37,7 +40,6 @@ const convertCartToRanges = (availArr, user) => {
     }
     transactionArr.push(transaction);
   }
-
   //map each range to a transaction object
   return transactionArr.map(transaction => ({
     price: transaction[0].home.price * transaction.length,

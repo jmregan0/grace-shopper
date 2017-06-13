@@ -1,4 +1,4 @@
-import { FETCH_PAST_GUEST_TRANSACTIONS, FETCH_FUTURE_GUEST_TRANSACTIONS, FETCH_HOST_TRANSACTIONS } from '../constants'
+import { FETCH_PAST_GUEST_TRANSACTIONS, FETCH_FUTURE_GUEST_TRANSACTIONS, FETCH_HOST_TRANSACTIONS, CREATE_TRANSACTION } from '../constants'
 
 const initialState = {
   pastGuest: [],
@@ -9,6 +9,7 @@ const initialState = {
   //   { name: 'Past Reservations', isActive: false },
   //   { name: 'Transaction History as Host', isActive: false },
   // ],
+  transactions: []
 }
 
 export default function(state=initialState, action) {
@@ -39,6 +40,10 @@ export default function(state=initialState, action) {
     //   newState.tabData[1][name] = false
     //   newState.tabData[2][name] = true
     //   break
+    case CREATE_TRANSACTION:
+      newState.transactions = action.transaction
+      break
+
     default:
       return state
   }
