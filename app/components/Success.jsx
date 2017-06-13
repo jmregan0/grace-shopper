@@ -46,15 +46,17 @@ let dummyData = [
 
 const Success = (props) => {
   const cart = props.cart
-  const user = props.user
+  const userId = (props.user && props.user.id) || null
   console.log('props', props)
   console.log('reserveDate in props', props.reserveDate)
   console.log('cart in props', cart)
   return (
-    <div>
+    <div className = "container">
     <h1>Thank you for your reservation!</h1>
     {dummyData.map(homeReservation => {
     })}
+    <h4>Thanks for booking a stay with GalacticBnB. We hope you enjoy your visit! To see a record of your transaction, go to your profile below:</h4>
+    <Link to = {`/users/${userId}`}><button className = 'btn'>View Profile</button></Link>
     </div>
   )
 }

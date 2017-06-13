@@ -4,9 +4,9 @@ import CalendarForm from './CalendarForm'
 
 class SelectedHome extends Component {
   constructor(props) {
-    // console.log('props in selectedhome constructor', props)
     super()
     this.state = {
+      auth: props.auth,
       home: props.selected,
       minDate: props.minDate,
       maxDate: props.maxDate,
@@ -19,8 +19,7 @@ class SelectedHome extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log('nextprops in selectedhome', nextProps);
-    // console.log('currentprops in selectedhome', this.props);
+
     if(nextProps !== this.props) {
       this.setState({
         home: nextProps.selected,
@@ -36,7 +35,7 @@ class SelectedHome extends Component {
 
   handleSubmit() {
     console.log('onclick', this.state.start, this.state.end)
-    this.props.addAvailabilityToCart(this.state.home.id, this.state.start, this.state.end)
+    this.props.addAvailabilityToCart(this.state.home.id, this.state.start, this.state.end, auth)
   }
 
   handleDateChange(e) {
@@ -67,11 +66,11 @@ class SelectedHome extends Component {
 
   render() {
 
-    console.log('selectedhome props', this.props);
     // console.log('selectedhome state', this.state);
     const home = this.props.selected
     const host = this.props.selected.Host
     const dates = this.props.availability.list
+    const auth = this.props.state.auth;
     const isHostOwner = (this.props.host_id === this.props.user_id)
 
     return (

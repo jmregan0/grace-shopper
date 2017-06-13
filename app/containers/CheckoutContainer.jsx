@@ -36,6 +36,7 @@ const convertCartToRanges = (availArr, user) => {
       i++;
     }
     transactionArr.push(transaction);
+    i--;
   }
 
   //map each range to a transaction object
@@ -47,6 +48,8 @@ const convertCartToRanges = (availArr, user) => {
     guest_id: (user && user.id) || null,
     home_id: transaction[0].home_id,
     availability_ids: transaction.map(availability => availability.id),
+    home: transaction[0].home,
+    user: user,
   }))
 }
 
