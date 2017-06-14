@@ -27,7 +27,11 @@ const convertCartToRanges = (availArr, user) => {
   let currentDate;
   let currentHomeId;
 
-  availArr.sort((a,b) => {return new Date(a.date).getTime() > new Date(b.date).getTime()})
+  availArr.sort((a,b) => {
+    console.log('a date', new Date(a.date).getTime())
+    console.log('b date', new Date(b.date).getTime())
+    return new Date(a.date).getTime() - new Date(b.date).getTime()
+  })
   console.log('availArr', availArr);
   //loop through the availability array and add an array representing each range
   for(let i = 0; i < availArr.length; i++) {
