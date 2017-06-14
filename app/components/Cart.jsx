@@ -42,13 +42,13 @@ const Cart = (props) => {
 								</td>
 								<td data-th="Price">{"$"+ item.home.price}</td>
 								<td data-th="Subtotal" className="text-center">1</td>
-								<td className="actions center" data-th="">{console.log(item)}
+								<td className="actions center" data-th="">
 									{
 										auth?
 										<button onClick={ ()=> store.dispatch(deleteCartItem(item.guest_cart_items.availability_id, auth.id))}className="btn btn-danger btn-sm"><i className="fa fa-trash-o"></i></button>
 										:<button onClick={ ()=> store.dispatch(deleteCartItem(item.id))}className="btn btn-danger btn-sm"><i className="fa fa-trash-o"></i></button>
 									}
-								}
+								
 								</td>
 							</tr>
 						</tbody>
