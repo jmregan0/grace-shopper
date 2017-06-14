@@ -87,6 +87,16 @@ module.exports = require('express').Router({mergeParams: true})
         console.log("req.body", req.body)
         const gettingHome = Home.findById(req.body.home_id)
         const gettingUser = User.findById(req.body.guest_id)
+
+        User.findById(req.body.guest_id)
+        .then((user)=>{
+          user.getCart()
+          .then(cart=>{
+            cart.setAvailabilities([])
+          })
+        })
+
+
         return Promise.all([res.data, gettingHome, gettingUser])
       })
       .then(([transaction, home, user]) => {
