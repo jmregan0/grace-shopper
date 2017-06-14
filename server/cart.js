@@ -4,6 +4,7 @@ const db = require('APP/db');
 const Cart = db.model('cart');
 const Availability = db.model('availability');
 const Homes = db.model('homes');
+const User = db.model('users');
 const guest_cart_items = db.model('guest_cart_items');
 
 const { mustBeLoggedIn, forbidden } = require('./auth.filters');
@@ -113,8 +114,12 @@ module.exports = require('express').Router()
 })
 
 .delete('/:id', (req, res, next) => {
-    return Cart.findOne({
+
+    return User.findOne({
       where: {id: req.user.id}
+    })
+    .then((user)=>{
+        return user.getCart()
     })
     .then(cart => {
         console.log("no cart?", cart)
