@@ -44,10 +44,18 @@ export const getCartByUserId = userId => {
 export const deleteCartItem = (availId, userId) => {
   console.log('avail id, user id', availId, userId)
   return dispatch => {
-    return axios.delete(`/api/cart/${availId}`)
-    .then(res => {
-      dispatch(getCartByUserId(userId))
-    })
+    if(userId){
+      return axios.delete(`/api/cart/${availId}`)
+      .then(res => {
+        dispatch(getCartByUserId(userId))
+      })
+    }else{
+      return axios.delete(`/api/cart/sessioncart/${availId}`)
+      .then(res => {
+        dispatch(getCartByUserId(userId))
+      })
+    }
+
   }
 }
 
@@ -67,7 +75,7 @@ export const addAvailabilityToCartAC = (homeId, startDate, endDate, auth) => {
         }else{
             console.log("CANNOT ADD CART ITEMS WHEN NOT SIGNED IN")
             axios.post(`/api/cart/sessioncart`, {homeId:homeId, startDate:startDate, endDate:endDate})
-            .then((sessionObj)=>{
+            .then(()=>{
               dispatch(getCartByUserId())
               browserHistory.push(`/cart`)
             })

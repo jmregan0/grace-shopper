@@ -6,7 +6,7 @@ import store from '../store'
 const Cart = (props) => {
 		const cart = props.cart
 		const auth = props.auth
-		console.log('props', props)
+
 		let total = cart.reduce(function(prev, curr){return prev += curr.home.price},0.00)
 
     return (
@@ -43,7 +43,12 @@ const Cart = (props) => {
 								<td data-th="Price">{"$"+ item.home.price}</td>
 								<td data-th="Subtotal" className="text-center">1</td>
 								<td className="actions center" data-th="">
-									<button onClick={ ()=> store.dispatch(deleteCartItem(item.guest_cart_items.availability_id, auth.id))}className="btn btn-danger btn-sm"><i className="fa fa-trash-o"></i></button>
+									{
+										auth?
+										<button onClick={ ()=> store.dispatch(deleteCartItem(item.guest_cart_items.availability_id, auth.id))}className="btn btn-danger btn-sm"><i className="fa fa-trash-o"></i></button>
+										:<button onClick={ ()=> store.dispatch(deleteCartItem(item.id))}className="btn btn-danger btn-sm"><i className="fa fa-trash-o"></i></button>
+									}
+								
 								</td>
 							</tr>
 						</tbody>
