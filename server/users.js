@@ -3,7 +3,8 @@
 const db = require('APP/db')
 const User = db.model('users')
 const Cart = db.model('cart')
-
+const nodemailer = require('nodemailer')
+const transporter = require('./transporter')
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
 module.exports = require('express').Router()
@@ -23,15 +24,28 @@ module.exports = require('express').Router()
     (req, res, next) =>{
 //--------------------------
       return User.create(req.body)
-              .then(user => {
-                console.log(user)
-                Cart.create()
-                .then(cart=>{
-                  cart.setUser(user)
-                })
-                res.status(201).json(user)
+        .then(user => {
+          console.log(user)
+          Cart.create()
+          .then(cart=>{
+            cart.setUser(user)
+          })
+          res.status(201).json(user)
 //--------------------------
-              })
+          var mailOptions = {
+          from: 'GalacticBnB <colickyboy@gmail.com>',
+          to: user.email,
+          subject: 'Your GalacticBnB account is created',
+          html: '<p><strong>Welcome, ' + user.name + '!</strong></p><p>Thank you for opening an account with GalacticBnB, where you\'ll find the multiverse\'s most unique homes here.</p><p>To sign in, use the email address that you signed up with, which was ' + user.email + '. </p><p>Happy home hunting!</p><p>Sincerely,</p><p>The GalacticBnB Team</p>'
+        }
+        transporter.sendMail(mailOptions, function (err, res) {
+            if(err){
+                console.log(err);
+            } else {
+                console.log('Email Sent');
+            }
+        })
+        })
       .catch(next)
     }
   )
