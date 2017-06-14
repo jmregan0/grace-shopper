@@ -56,11 +56,15 @@ const ExampleApp = connect(
                         {user ? <Link to='/new-home'>Add Home</Link> : null}
                       </li>
                       <li>
-                        {user ? <Link to={`/cart/${user.id}`}>Cart</Link> : <Link to={`/cart`}>Cart</Link>}
+
                       </li>
                   </ul>
-                <div className="nav navbar-nav right">
-                  {user ? <WhoAmI/> : <Login/>}
+              </div>
+                <div className="collapse navbar-collapse right">
+                  <ul className='nav navbar-nav'>
+                    <li>{user ? <WhoAmI/> : <Login/>}</li>
+                    <li>{user ? <Link to={`/cart/${user.id}`}><span className='glyphicon glyphicon-shopping-cart full-height'></span></Link> : <Link to={`/cart`}><span className='glyphicon glyphicon-shopping-cart'></span></Link>}</li>
+                  </ul>
                 </div>
               </div>
           </div>

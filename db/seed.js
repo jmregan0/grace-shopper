@@ -120,7 +120,7 @@ const homes = seed(Home, ({users}) => ({
 
   },
   deathStar1: {
-    name: 'Basic 1 bedroom',
+    name: 'Death Star 1 bedroom',
     location: 'Death Star',
     description: 'The basic structure of the station was a sphere the size of a small class-IV moon, with a kilometer-wide trench containing docking bays running around its equator. It was the very incarnation of the Tarkin Doctrine. Because of its size and shape, it was sometimes mistaken for a small moon.The first Death Star, like its successor, was divided into two hemispheres, each subdivided into 12 bridge-controlled zones. The northern hemisphere held the main armament of the station, a fearsome superlaser. This weapon had the external appearance of a bowl several kilometers wide. When activated, eight separate beams were each activated by a crystal through the particle accelerator tubes, amplified through rings, and conjoined to form one of eight separate beams that would converge outside the dish, focusing into a point to form a single incredibly powerful superlaser beam. The power settings of the superlaser were adjustable, allowing for the destruction of naval vessels and planets alike.',
     imageUrl: 'https://lumiere-a.akamaihd.net/v1/images/Death-Star-II_b5760154.jpeg?region=0%2C68%2C2160%2C1080',
@@ -129,7 +129,7 @@ const homes = seed(Home, ({users}) => ({
 
   },
   deathStar2: {
-    name: 'VIP Suite',
+    name: 'Death Star VIP Suite',
     location: 'Death Star',
     description: 'The basic structure of the station was a sphere the size of a small class-IV moon, with a kilometer-wide trench containing docking bays running around its equator. It was the very incarnation of the Tarkin Doctrine. Because of its size and shape, it was sometimes mistaken for a small moon.The first Death Star, like its successor, was divided into two hemispheres, each subdivided into 12 bridge-controlled zones. The northern hemisphere held the main armament of the station, a fearsome superlaser. This weapon had the external appearance of a bowl several kilometers wide. When activated, eight separate beams were each activated by a crystal through the particle accelerator tubes, amplified through rings, and conjoined to form one of eight separate beams that would converge outside the dish, focusing into a point to form a single incredibly powerful superlaser beam. The power settings of the superlaser were adjustable, allowing for the destruction of naval vessels and planets alike.',
     imageUrl: 'https://vignette3.wikia.nocookie.net/starwars/images/7/72/DeathStar1-SWE.png/revision/latest?cb=20150121020639',
@@ -138,7 +138,7 @@ const homes = seed(Home, ({users}) => ({
 
   },
   jabba: {
-    name: 'Basic 1 Bedroom',
+    name: 'Jabba\'s "Palace" 1 Bedroom',
     location: 'Jabba the Hut\'s Palace',
     description: '"I have never seen a more sinister and depraved crowd. One would think the rest of the galaxy safe, what with every thug, debaucher, and scofflaw having gathered here." ―C-3PO, to R2-D2, commenting on the inhabitants of Jabba\'s palace',
     imageUrl: 'http://i.imgur.com/1RyZ95r.jpg',
@@ -156,7 +156,7 @@ const homes = seed(Home, ({users}) => ({
 
   },
   xandar: {
-    name: '1 bedroom apt',
+    name: 'Xandar 1 bedroom apt',
     location: 'Xandar',
     description: 'Xandar is a planet in the Tranta system in the Andromeda galaxy. It is best known as the home world of the Nova Corps, an intergalactic police task force. Xandar is also the home planet of Firelord and Air-Walker, former Heralds of Galactus as well as the super-villain Supernova.',
     imageUrl: 'https://s-media-cache-ak0.pinimg.com/originals/17/f1/3a/17f13a1ea2f5674339240e0a54d787ff.jpg',
