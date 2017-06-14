@@ -35,6 +35,7 @@ class CalendarForm extends Component {
         //   end: this.props.end
         // }}
         selected={false}
+        autoFocus={false}
 
         {...(maxDate && { maxDate: maxDate})}
         {...(disabledDates && { disabledDates: disabledDates})}

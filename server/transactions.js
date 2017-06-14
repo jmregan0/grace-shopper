@@ -29,7 +29,7 @@ module.exports = require('express').Router({mergeParams: true})
         guest_id: req.params.id,
         endDate: {$gte: Sequelize.NOW()}
       },
-      include: [{model: Home }]
+      include: [{all: true}]
     })
     .then(futureGuestTransactions => {
       console.log("futureGuestTransactions", futureGuestTransactions)
@@ -43,7 +43,7 @@ module.exports = require('express').Router({mergeParams: true})
         guest_id: req.params.id,
         endDate: {$lt: Sequelize.NOW()}
       },
-      include: [{model: Home }]
+      include: [{all: true}]
     })
     .then(pastGuestTransactions => {
       console.log("pastGuestTransactions", pastGuestTransactions)

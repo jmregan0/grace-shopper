@@ -28,7 +28,7 @@ class Checkout extends React.Component {
     let total = transactions.reduce(function(prev, curr){return prev += curr.price}, 0.00)
       return (
         <div className = "container">
-          <h1>Review your reservation</h1>
+          <h2>Review your reservation:</h2>
           <div className="container">
             <div className="order-section row col-md-9 col-sm-9 col-xs-12">
               <div className="row">
@@ -44,13 +44,14 @@ class Checkout extends React.Component {
                 </div>
               </div>
               <hr/>
-              <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppmcvdam.png" className="col-xs-19"/>
+              <img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" className="col-xs-19"/>
               <div>
                 <Link className = 'btn btn-warning' to="/success" onClick={this.handleSubmit}>Submit your reservation</Link>
               </div>
             </div>
           </div>
           <div className="col-xs-12 row">
+            <h2>Your Stays:</h2>
             {transactions.map((transaction, i) => {
               return (
                 <div key={i} className="row container list-group-item">

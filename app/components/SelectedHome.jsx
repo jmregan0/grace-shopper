@@ -67,6 +67,53 @@ class SelectedHome extends Component {
     }
   }
 
+  renderCalendarContent() {
+    if((this.props.host_id !== this.props.user_id)){
+      return (
+        <div>
+          <h2>Booking Details:</h2>
+          {
+            this.state.error
+            ? (
+                <div className="col-xs-12 alert alert-danger">
+                  <strong>{this.state.error}</strong>
+                </div>
+              )
+            : null
+          }
+          <div className="row">
+            <CalendarForm
+              minDate={this.state.minDate}
+              maxDate={this.state.maxDate}
+              start={this.state.start || null}
+              end={this.state.end || null}
+              disabledDates={this.state.disabledDates}
+              handleDateChange={this.handleDateChange}
+            />
+          </div>
+          <div className = "row">
+            <button
+              className = 'btn btn-primary'
+              disabled={this.state.error||false}
+              onClick ={this.handleSubmit}>
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <h2>Booking Details:</h2>
+          <p><em>This is your home listing. You can view pending reservations for this listing in the Upcoming Reservations tab of your user profile.</em></p>
+          <Link to = {`/users/${this.props.auth.id}`} >
+            <button className = 'btn btn-secondary'>Go to My Profile</button>
+          </Link>
+        </div>
+      )
+    }
+  }
+
   render() {
 
     // console.log('selectedhome state', this.state);
@@ -74,8 +121,7 @@ class SelectedHome extends Component {
     const host = this.props.selected.Host
     const dates = this.props.availability.list
     const auth = this.props.auth;
-    const isHostOwner = (this.props.host_id === this.props.user_id)
-
+    const isHostOwner = (this.props.host_id === this.props.user_id);
     return (
       <div className = "container">
         {
@@ -88,6 +134,7 @@ class SelectedHome extends Component {
           )
           : null
         }
+
           <hr/>
         <div className = "row">
           <div className="col-md-6 col-sm-12">
@@ -101,54 +148,14 @@ class SelectedHome extends Component {
             </div>
           </div>
           <div className = "col-md-6 col-sm-12">
+            {this.renderCalendarContent()}
             {
-              dates.length
-              ? (
-                  <div>
-                    <h2>Booking Details:</h2>
-                    {
-                      this.state.error
-                      ? (
-                          <div className="col-xs-12 alert alert-danger">
-                            <strong>{this.state.error}</strong>
-                          </div>
-                        )
-                      : null
-                    }
-                    <div className="row">
-                      <CalendarForm
-                        minDate={this.state.minDate}
-                        maxDate={this.state.maxDate}
-                        start={this.state.start || null}
-                        end={this.state.end || null}
-                        disabledDates={this.state.disabledDates}
-                        handleDateChange={this.handleDateChange}
-                      />
-                    </div>
-                    <div className = "row">
-                      <button
-                        className = 'btn btn-primary'
-                        disabled={this.state.error||false}
-                        onClick ={this.handleSubmit}>
-                        Add to Cart
-                      </button>
-                    </div>
-                  </div>
-                )
+              dates.length || isHostOwner
+              ? null
               : (
                   <div>
                     <h2>Booking Details:</h2>
                     <h3>No dates currently available.</h3>
-                    {
-                      isHostOwner
-                      ? (
-                        <Link to = {`/homes/${home.id}/edit`} >
-                          <button className = 'btn btn-secondary'>Edit this Listing</button>
-                        </Link>
-                      )
-                      : null
-                    }
-
                   </div>
                 )
             }

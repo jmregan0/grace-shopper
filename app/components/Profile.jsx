@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import moment from 'moment'
 import store from '../store'
+import Homes from './Homes'
 
 var tabData = [
   { name: 'Your Upcoming Reservations', isActive: true },
@@ -27,7 +28,7 @@ class Tab extends React.Component {
   render() {
     return (
       <li onClick={this.props.handleClick} className={this.props.isActive ? "active" : null}>
-        <a href="#">{this.props.data.name}</a>
+        <Link>{this.props.data.name}</Link>
       </li>
     );
   }
@@ -42,27 +43,27 @@ export class Content extends React.Component {
           <h2 className="panel-heading">Your Upcoming Reservations</h2>
           {this.props.futureGuest.length ? this.props.futureGuest.map(transaction => {
             return (
-                <div key={transaction.id}>
+                <div className="order-info" key={transaction.id}>
                     <div className="order order-header row thead-inverse">
                         <div className="order-column">
-                            <div><strong>Order placed</strong></div>
-                            <div>{moment(transaction.created_at).format('LL')}</div>
-                        </div>
-                        <div className="order-column">
-                            <div><strong>Total</strong></div>
-                            <div>${transaction.price * (moment(transaction.endDate).diff(moment(transaction.startDate), 'days'))}</div>
-                        </div>
-                        <div className="right">
                             <div><strong>Order #</strong></div>
                             <div className="center">{transaction.id}</div>
                         </div>
+                        <div className="right">
+                            <div><strong>Order placed</strong></div>
+                            <div>{moment(transaction.created_at).format('LL')}</div>
+                        </div>
                     </div>
                     <div className="order order-body flex">
-                        <div className="left"><img src={transaction.home.imageUrl} className="order-thumb"/></div>
-                        <div className="no-flex">
-                            <div className="bottom-padding"><Link to="/homes/{transaction.home.id}" className="link">{transaction.home.name}</Link></div>
-                            <div className="bottom-padding">From <strong>{moment.utc(transaction.startDate).format('LL')}</strong> to <strong>{moment.utc(transaction.endDate).format('LL')}</strong></div>
-                            <div className="price">${transaction.price}</div>
+                        <div className = "row">
+                          <div className="left col-sm-6"><img src={transaction.home.imageUrl} className="order-thumb col-xs-12"/></div>
+                          <div className="col-sm-6">
+                            <div className="bottom-padding">Home: <Link to={`/homes/${transaction.home.id}`} className="link">{transaction.home.name}</Link></div>
+                            <div className="bottom-padding">Host: <Link to={`/users/${transaction.host.id}`} className="link">{transaction.host.name}</Link></div>
+                            <div className="bottom-padding">From: <strong>{moment.utc(transaction.startDate).format('LL')}</strong></div>
+                            <div className="bottom-padding">To: <strong>{moment.utc(transaction.endDate).format('LL')}</strong></div>
+                            <div className="price">Order Total: ${transaction.price}</div>
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -75,27 +76,27 @@ export class Content extends React.Component {
           <h2 className="panel-heading">Your Past Reservations</h2>
           {this.props.pastGuest.length ? this.props.pastGuest.map(transaction => {
             return (
-                <div key={transaction.id}>
+                <div className="order-info" key={transaction.id}>
                     <div className="order order-header row thead-inverse">
-                        <div className="order-column">
-                            <div><strong>Order placed</strong></div>
-                            <div>{moment(transaction.created_at).format('LL')}</div>
-                        </div>
-                        <div className="order-column">
-                            <div><strong>Total</strong></div>
-                            <div>${transaction.price * (moment(transaction.endDate).diff(moment(transaction.startDate), 'days'))}</div>
-                        </div>
-                        <div className="right">
-                            <div><strong>Order #</strong></div>
-                            <div className="center">{transaction.id}</div>
-                        </div>
+                      <div className="order-column">
+                          <div><strong>Order #</strong></div>
+                          <div className="center">{transaction.id}</div>
+                      </div>
+                      <div className="right">
+                          <div><strong>Order placed</strong></div>
+                          <div>{moment(transaction.created_at).format('LL')}</div>
+                      </div>
                     </div>
                     <div className="order order-body flex">
-                        <div className="left"><img src={transaction.home.imageUrl} className="order-thumb"/></div>
-                        <div className="no-flex">
-                            <div className="bottom-padding"><Link to="/homes/{transaction.home.id}" className="link">{transaction.home.name}</Link></div>
-                            <div className="bottom-padding">From <strong>{moment.utc(transaction.startDate).format('LL')}</strong> to <strong>{moment.utc(transaction.endDate).format('LL')}</strong></div>
-                            <div className="price">${transaction.price}</div>
+                        <div className = "row">
+                          <div className="left col-sm-6"><img src={transaction.home.imageUrl} className="order-thumb col-xs-12"/></div>
+                          <div className="col-sm-6">
+                            <div className="bottom-padding">Home: <Link to={`/homes/${transaction.home.id}`} className="link">{transaction.home.name}</Link></div>
+                            <div className="bottom-padding">Host: <Link to={`/users/${transaction.host.id}`} className="link">{transaction.host.name}</Link></div>
+                            <div className="bottom-padding">From: <strong>{moment.utc(transaction.startDate).format('LL')}</strong></div>
+                            <div className="bottom-padding">To: <strong>{moment.utc(transaction.endDate).format('LL')}</strong></div>
+                            <div className="price">Order Total: ${transaction.price}</div>
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -108,34 +109,30 @@ export class Content extends React.Component {
           <h2 className="panel-heading">Transaction History as Host</h2>
           {this.props.host.length ? this.props.host.map(transaction => {
             return (
-                <div key={transaction.id}>
-                    <div className="order order-header row thead-inverse">
-                        <div className="order-column">
-                    <div><strong>Order placed</strong></div>
-                        <div>{moment(transaction.created_at).format('LL')}</div>
-                    </div>
-                    <div className="order-column">
-                        <div><strong>Total</strong></div>
-                        <div>${transaction.price * (moment(transaction.endDate).diff(moment(transaction.startDate), 'days'))}</div>
-                    </div>
-                    <div className="order-column">
-                        <div><strong>Guest</strong></div>
-                        <div><a href={`mailto:${transaction.guest.email}`}>{transaction.guest.name}</a></div>
-                    </div>
-                    <div className="right">
-                        <div><strong>Order #</strong></div>
-                        <div className="center">{transaction.id}</div>
-                    </div>
+              <div className="order-info" key={transaction.id}>
+                <div className="order order-header row thead-inverse">
+                  <div className="order-column">
+                      <div><strong>Order #</strong></div>
+                      <div className="center">{transaction.id}</div>
+                  </div>
+                  <div className="right">
+                      <div><strong>Order placed</strong></div>
+                      <div>{moment(transaction.created_at).format('LL')}</div>
+                  </div>
                 </div>
                 <div className="order order-body flex">
-                    <div className="left"><img src={transaction.home.imageUrl} className="order-thumb"/></div>
-                    <div className="no-flex">
-                        <div className="bottom-padding"><Link to="/homes/{transaction.home.id}" className="link">{transaction.home.name}</Link></div>
-                        <div className="bottom-padding">From <strong>{moment.utc(transaction.startDate).format('LL')}</strong> to <strong>{moment.utc(transaction.endDate).format('LL')}</strong></div>
-                        <div className="price">${transaction.price}</div>
+                    <div className = "row">
+                      <div className="left col-sm-6"><img src={transaction.home.imageUrl} className="order-thumb col-xs-12"/></div>
+                      <div className="col-sm-6">
+                        <div className="bottom-padding">Home: <Link to={`/homes/${transaction.home.id}`} className="link">{transaction.home.name}</Link></div>
+                        <div className="bottom-padding">Guest: <Link to={`/users/${transaction.guest.id}`} className="link">{transaction.guest.name}</Link></div>
+                        <div className="bottom-padding">From: <strong>{moment.utc(transaction.startDate).format('LL')}</strong></div>
+                        <div className="bottom-padding">To: <strong>{moment.utc(transaction.endDate).format('LL')}</strong></div>
+                        <div className="price">Order Total: ${transaction.price}</div>
+                      </div>
                     </div>
                 </div>
-            </div>
+              </div>
             )
           }) : <p>No one has made reservations for your home yet.</p>}
         </section>
@@ -159,12 +156,14 @@ export default class Profile extends React.Component {
   }
 
   render() {
+    const isUserSame = (this.props.selected.id === this.props.user_id);
+
     return (
       <div className="panel">
-        <div className="col-lg-3 col-md-3 hidden-sm hidden-xs panel-body">
+        <div className="col-lg-3 col-md-3 col-sm-12 panel-body">
           <div className="media">
               <div>
-                  <img className="thumbnail img-responsive" src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" width="300px" height="300px"/>
+                  <img className="thumbnail img-responsive" src={this.props.selected.picture} width="300px" height="300px"/>
               </div>
               <div className="media-body">
                   <hr/>
@@ -186,15 +185,29 @@ export default class Profile extends React.Component {
           </div>
         </div>
         <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12 panel-body">
-            <Tabs activeTab={this.state.activeTab} changeTab={this.handleClick} />
-            <Content
-                activeTab={this.state.activeTab}
-                selected={this.props.selected}
-                userHomes={this.props.userHomes}
-                pastGuest={this.props.pastGuest}
-                futureGuest={this.props.futureGuest}
-                host={this.props.host}
-            />
+            {
+              isUserSame
+              ? (
+                 <div>
+                    <Tabs activeTab={this.state.activeTab} changeTab={this.handleClick} />
+                    <Content
+                        activeTab={this.state.activeTab}
+                        selected={this.props.selected}
+                        userHomes={this.props.userHomes}
+                        pastGuest={this.props.pastGuest}
+                        futureGuest={this.props.futureGuest}
+                        host={this.props.host}
+                    />
+                  </div>
+                )
+              : (
+                 <div>
+                 <h1>{this.props.selected.name}'s Homes:</h1>
+                 <Homes homes={this.props.userHomes}/>
+                 </div>
+                )
+            }
+
         </div>
       </div>
     );
