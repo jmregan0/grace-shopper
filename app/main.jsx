@@ -41,32 +41,30 @@ const ExampleApp = connect(
                   <Link to="/" className='navbar-brand galactic-font'>GalacticBnB</Link>
               </div>
               <div className='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
-                  <ul className='nav navbar-nav left'>
+                <ul className='nav navbar-nav left'>
 
-                      <li>
-                          <Link to='/homes'>Homes</Link>
-                      </li>
-                      {/*<li>
-                          {user ? null : <Link to='/signup'>SignUp</Link>}
-                      </li>*/}
-                      <li>
-                          {user ? <Link to={`/users/${user.id}`}>Profile</Link> : null}
-                      </li>
-                      <li>
-                        {user ? <Link to='/new-home'>Add Home</Link> : null}
-                      </li>
-                      <li>
+                    <li>
+                        <Link to='/homes'>Homes</Link>
+                    </li>
+                    {/*<li>
+                        {user ? null : <Link to='/signup'>SignUp</Link>}
+                    </li>*/}
+                    <li>
+                        {user ? <Link to={`/users/${user.id}`}>Profile</Link> : null}
+                    </li>
+                    <li>
+                      {user ? <Link to='/new-home'>Add Home</Link> : null}
+                    </li>
+                    <li>
 
-                      </li>
-                  </ul>
-              </div>
-                <div className="collapse navbar-collapse right">
-                  <ul className='nav navbar-nav'>
-                    <li>{user ? <WhoAmI/> : <Login/>}</li>
+                    </li>
+                </ul>
+                  <ul className='nav navbar-nav right'>
+                    <li className='side-padding'>{user ? <WhoAmI/> : <Login/>}</li>
                     <li>{user ? <Link to={`/cart/${user.id}`}><span className='glyphicon glyphicon-shopping-cart full-height'></span></Link> : <Link to={`/cart`}><span className='glyphicon glyphicon-shopping-cart'></span></Link>}</li>
                   </ul>
-                </div>
               </div>
+            </div>
       </nav>
       {children}
     </div>
