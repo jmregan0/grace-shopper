@@ -81,24 +81,32 @@ class SelectedHome extends Component {
               )
             : null
           }
-          <div className="row">
-            <CalendarForm
-              minDate={this.state.minDate}
-              maxDate={this.state.maxDate}
-              start={this.state.start || null}
-              end={this.state.end || null}
-              disabledDates={this.state.disabledDates}
-              handleDateChange={this.handleDateChange}
-            />
-          </div>
-          <div className = "row">
-            <button
-              className = 'btn btn-primary'
-              disabled={this.state.error||false}
-              onClick ={this.handleSubmit}>
-              Add to Cart
-            </button>
-          </div>
+          {
+            this.props.availability.list.length
+            ? (
+                <div>
+                  <div className="row">
+                    <CalendarForm
+                      minDate={this.state.minDate}
+                      maxDate={this.state.maxDate}
+                      start={this.state.start || null}
+                      end={this.state.end || null}
+                      disabledDates={this.state.disabledDates}
+                      handleDateChange={this.handleDateChange}
+                    />
+                  </div>
+                  <div className = "row">
+                    <button
+                      className = 'btn btn-primary'
+                      disabled={this.state.error||false}
+                      onClick ={this.handleSubmit}>
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              )
+            : null
+          }
         </div>
       )
     } else {
@@ -154,7 +162,6 @@ class SelectedHome extends Component {
               ? null
               : (
                   <div>
-                    <h2>Booking Details:</h2>
                     <h3>No dates currently available.</h3>
                   </div>
                 )
