@@ -17,7 +17,7 @@ module.exports = require('express').Router()
     console.log("before", req.session);
 
     Availability.findAll({
-        order: 'id ASC',
+        order: 'date ASC',
         where: {
             
             date: {
@@ -165,7 +165,7 @@ console.log("we've hit sub big time")
     console.log(req.session)
     req.session.tag = "hello"
     Availability.findAll({
-            order: 'id ASC',
+            order: 'date ASC',
             where: {
                 date: {
                     $between: [req.body.startDate, req.body.endDate]
