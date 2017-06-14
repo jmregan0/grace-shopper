@@ -7,7 +7,7 @@ const Landing = (props) => {
     <div className='container'>
       <header className='jumbotron hero-spacer'>
         <h1>Welcome Home... Anywhere In The Universe!</h1>
-        <p>Whether you're looking for a pad to crash in Andromeda or Dagobah, we've got you covered. Check out the sweet places to crash below.</p>
+        <p>Whether you're looking for a pad to crash in Andromeda or Dagobah, we've got you covered. Check out the sweet places to stay below.</p>
         <p><Link to = '/homes' className='btn btn-primary btn-large'>View all homes</Link>
         </p>
       </header>

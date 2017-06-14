@@ -59,7 +59,9 @@ const Cart = (props) => {
 						<td><Link to={'/homes'} className="btn btn-warning"><i className="fa fa-angle-left"></i> Continue Shopping</Link></td>
 						<td colSpan="2" className="hidden-xs"></td>
 						<td className="hidden-xs text-center"><h4>Total: {"$" + total + ".00"}</h4></td>
-						<td><Link to="/checkout" className="btn btn-success btn-block">Checkout<i className="fa fa-angle-right"></i></Link></td>
+						{
+						props.auth.name?<td><Link to="/checkout" className="btn btn-success btn-block">Checkout<i className="fa fa-angle-right"></i></Link></td>:<td><Link to="/signup" className="btn btn-success btn-block">Checkout<i className="fa fa-angle-right"></i></Link></td>	
+						}
 					</tr>
 				</tfoot>
 			</table>
