@@ -40,8 +40,8 @@ const ExampleApp = connect(
                   </button>
                   <Link to="/" className='navbar-brand galactic-font'>GalacticBnB</Link>
               </div>
-              <div className='collapse navbar-collapse left' id='bs-example-navbar-collapse-1'>
-                  <ul className='nav navbar-nav'>
+              <div className='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+                  <ul className='nav navbar-nav left'>
 
                       <li>
                           <Link to='/homes'>Homes</Link>
@@ -66,6 +66,7 @@ const ExampleApp = connect(
                     <li>{user ? <Link to={`/cart/${user.id}`}><span className='glyphicon glyphicon-shopping-cart full-height'></span></Link> : <Link to={`/cart`}><span className='glyphicon glyphicon-shopping-cart'></span></Link>}</li>
                   </ul>
                 </div>
+              </div>
           </div>
       </nav>
       {children}

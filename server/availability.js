@@ -21,7 +21,7 @@ module.exports = require('express').Router({mergeParams: true})
   .get('/', (req, res, next) => {
     console.log(req.body)
     Availability.findAll({
-      order: 'id ASC',
+      order: 'date ASC',
       where: {
         home_id: req.params.id,
       }
@@ -58,7 +58,7 @@ module.exports = require('express').Router({mergeParams: true})
     console.log(req.query)
     console.log(req.query.startDate, req.query.endDate)
     Availability.findAll({
-      order: 'id ASC',
+      order: 'date ASC',
       where: {
         date:{
           $between: [req.query.startDate, req.query.endDate]

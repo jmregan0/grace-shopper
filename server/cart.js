@@ -4,6 +4,7 @@ const db = require('APP/db');
 const Cart = db.model('cart');
 const Availability = db.model('availability');
 const Homes = db.model('homes');
+const User = db.model('users');
 const guest_cart_items = db.model('guest_cart_items');
 
 const { mustBeLoggedIn, forbidden } = require('./auth.filters');
@@ -17,7 +18,7 @@ module.exports = require('express').Router()
     console.log("before", req.session);
 
     Availability.findAll({
-        order: 'id ASC',
+        order: 'date ASC',
         where: {
             
             date: {
@@ -36,12 +37,15 @@ module.exports = require('express').Router()
         })
        
         if (req.session.cart) {
-          
+            
             req.session.cart = req.session.cart.concat(avails);
 
         } else {
             req.session.cart = avails;
         }
+        req.session.cart = req.session.cart.filter(function(item, pos) {
+            return req.session.cart.indexOf(item) === pos;
+        })   
         console.log(req.session)
         res.status(200);
         res.send(req.session);
@@ -110,8 +114,12 @@ module.exports = require('express').Router()
 })
 
 .delete('/:id', (req, res, next) => {
-    return Cart.findOne({
+
+    return User.findOne({
       where: {id: req.user.id}
+    })
+    .then((user)=>{
+        return user.getCart()
     })
     .then(cart => {
         console.log("no cart?", cart)
@@ -165,7 +173,7 @@ console.log("we've hit sub big time")
     console.log(req.session)
     req.session.tag = "hello"
     Availability.findAll({
-            order: 'id ASC',
+            order: 'date ASC',
             where: {
                 date: {
                     $between: [req.body.startDate, req.body.endDate]

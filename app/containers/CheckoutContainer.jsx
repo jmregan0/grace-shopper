@@ -26,12 +26,18 @@ const convertCartToRanges = (availArr, user) => {
   let transactionArr = [];
   let currentDate;
   let currentHomeId;
+
+  availArr.sort((a,b) => {
+    console.log('a date', new Date(a.date).getTime())
+    console.log('b date', new Date(b.date).getTime())
+    return new Date(a.date).getTime() - new Date(b.date).getTime()
+  })
+  console.log('availArr', availArr);
   //loop through the availability array and add an array representing each range
   for(let i = 0; i < availArr.length; i++) {
     currentDate = new Date(availArr[i].date);
     currentHomeId = availArr[i].home_id
     let transaction = [];
-
     //while the next availability in the array is consecutive, add it to the current range. otherwise, create a new range
     while(((availArr[i] && availArr[i].home_id)  === currentHomeId && currentDate.getTime() === new Date(availArr[i].date).getTime()) && i < availArr.length){
       transaction.push(availArr[i]);

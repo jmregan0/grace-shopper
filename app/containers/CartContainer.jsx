@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 import Cart from '../components/Cart'
 
 const mapStateToProps = (state) => {
+  let cart = state.cart.selected.sort((a,b) => {return new Date(a.date).getTime() - new Date(b.date).getTime()})
  return {
-  cart: state.cart.selected,
+  cart: cart,
   auth: state.auth
  }
 }
