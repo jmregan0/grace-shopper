@@ -67,7 +67,6 @@ const ExampleApp = connect(
                   </ul>
                 </div>
               </div>
-          </div>
       </nav>
       {children}
     </div>
