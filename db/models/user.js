@@ -9,7 +9,10 @@ module.exports = db => db.define('users', {
     type: STRING,
     allowNull: false
   },
-  picture: STRING,
+  picture: {
+    type: STRING,
+    defaultValue: 'http://i.imgur.com/3BrMZK8.png',
+  },
   email: {
     type: STRING,
     allowNull: false,

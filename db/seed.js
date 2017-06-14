@@ -22,54 +22,63 @@ const users = seed(User, {
     userType: 'host',
     email: 'yoda@example.com',
     password: '1234',
+    picture: 'http://static.comicvine.com/uploads/original/11113/111130081/3821766-2969176990-Yoda1.jpg',
   },
   lando: {
     name: 'Lando Calrissian',
     userType: 'host',
     email: 'lando@example.gov',
     password: '1234',
+    picture: 'https://vignette3.wikia.nocookie.net/darth/images/a/ab/BillyDee.jpg/revision/latest?cb=20080201203945',
   },
   kirk: {
     name: 'Captain Kirk',
     userType: 'host',
     email: 'captainkirk@example.gov',
     password: '1234',
+    picture: 'http://13thdimension.com/wp-content/uploads/2016/07/xfrtoc70fgzg49ubheth.jpg',
   },
   drWho: {
     name: 'Dr. Who',
     userType: 'host',
     email: 'drwho@example.gov',
     password: '1234',
+    picture: 'https://mattcbr.files.wordpress.com/2006/09/hof002.jpg',
   },
   stormTrooper: {
     name: 'Storm Trooper 074',
     userType: 'host',
     email: 'st074@example.gov',
     password: '1234',
+    picture: 'https://www.sideshowtoy.com/photo_902292_thumb.jpg',
   },
   vader: {
     name: 'Darth Vader',
     userType: 'host',
     email: 'vaded@example.gov',
     password: '1234',
+    picture: 'https://www.flickeringmyth.com/wp-content/uploads/2015/04/1521964.jpg',
   },
   jabba: {
     name: 'Jabba the Hut',
     userType: 'host',
     email: 'jh@example.gov',
     password: '1234',
+    picture: 'http://a.dilcdn.com/bl/wp-content/uploads/sites/6/2016/06/jabba-the-hutt-portrait-tall.jpg',
   },
   coop: {
     name: 'Joseph Cooper',
     userType: 'host',
     email: 'jc@example.gov',
     password: '1234',
+    picture: 'http://cdn2us.denofgeek.com/sites/denofgeekus/files/interstellar_1_1.jpg',
   },
   thanos: {
     name: 'Thanos',
     userType: 'host',
     email: 'thanos@example.gov',
     password: '1234',
+    picture: 'https://www.sideshowtoy.com/wp-content/uploads/2015/01/902322-product-feature-990x600.jpg',
   }})
 
 

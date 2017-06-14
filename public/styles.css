@@ -130,9 +130,12 @@ img {
 }
 
 .order-section {
-  margin: 25px 0;
-  padding: 15px;
+  padding: 25px;
   border: 1px solid #dddddd;
+}
+
+.order-info {
+  margin-top: 10px;
 }
 
 /*CSS in order to make navbar collapse for md width, default is sm*/
