@@ -36,12 +36,15 @@ module.exports = require('express').Router()
         })
        
         if (req.session.cart) {
-          
+            
             req.session.cart = req.session.cart.concat(avails);
 
         } else {
             req.session.cart = avails;
         }
+        req.session.cart = req.session.cart.filter(function(item, pos) {
+            return req.session.cart.indexOf(item) === pos;
+        })   
         console.log(req.session)
         res.status(200);
         res.send(req.session);
