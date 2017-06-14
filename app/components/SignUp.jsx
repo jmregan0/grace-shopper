@@ -12,7 +12,7 @@ class SignUp extends React.Component {
   render(){
     const { message } = this.props;
     return (
-      <div className="container">
+      <div className="container col-xs-8 col-sm-8 col-md-6 col-lg-6 col-xs-offset-2 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
         <div className="row">
           <form onSubmit={this.onSignupSubmit}>
             <div className="form-group">
