@@ -154,6 +154,27 @@ img {
   color: white
 }
 
+@font-face {
+    font-family: 'star_jedi_hollowregular';
+    src: url('starjhol-webfont.woff2') format('woff2'),
+         url('starjhol-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'star_jediregular';
+    src: url('starjedi-webfont.woff2') format('woff2'),
+         url('starjedi-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.galactic-font {
+  font-family: 'star_jediregular';
+  color: white;
+}
+
 /*CSS in order to make navbar collapse for md width, default is sm*/
 @media (max-width: 991px) {
     .navbar-header {
