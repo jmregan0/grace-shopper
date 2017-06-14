@@ -1,3 +1,11 @@
+body {
+  min-height: 100vh;
+}
+
+body {
+  height: 100vh;
+}
+
 .background {
   background-image: url('elysium.jpg');
   /*background-size: 800px 300px;*/
@@ -136,6 +144,14 @@ img {
 
 .order-info {
   margin-top: 10px;
+}
+
+.fourofour {
+  background-image: url('/404.jpg');
+}
+
+.whitetext {
+  color: white
 }
 
 /*CSS in order to make navbar collapse for md width, default is sm*/
