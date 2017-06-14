@@ -75,14 +75,17 @@ module.exports = require('express').Router({mergeParams: true})
   })
 
   .put('/:availabilityId', (req, res, next) => {
+    console.log('req.body in availability')
     const id = req.params.availabilityId
-    Availability.update(req.body, {
-        where: {
-          id: id,
-          status: 'reserved',
-        },
-        returning: true,
+    return Availability.find({
+      where: {id: id}
     })
+    .then(date => {
+      return date.update(req.body, {
+        where: {id: id},
+        returning: true,
+      }
+    )})
     .spread((numItemsUpdated, dates) => {
         res.sendStatus(201)
     })

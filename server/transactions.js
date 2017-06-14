@@ -85,7 +85,7 @@ module.exports = require('express').Router({mergeParams: true})
           from: 'GalacticBnB <colickyboy@gmail.com>',
           to: user.email,
           subject: 'Your GalacticBnB reservation is set',
-          html: '<p>Hello, ' + user.name + '!</p><p>Thank you for reserving a home through GalacticBnB.</p><p>This is your order confirmation. Please save this for future reference.</p><p>Reservation details:</p><p><strong>Staying at:</strong> ' + home.name + '</p><p><strong>Host:</strong> ' + host.name + '</p><p><strong>Price:</strong> ' + transaction.price + '</p><p><strong>Check-in:</strong> ' + moment(res.startDate, "MM/DD/YYYY") + '</p><p><strong>Checkout:</strong> ' + moment(res.endDate, "MM/DD/YYYY") + '</p><p>We hope you enjoy your stay at ' + home.name + '!</p><p>Sincerely,</p><p>The GalacticBnB Team</p>'
+          html: '<p>Hello, ' + user.name + '!</p><p>Thank you for reserving a home through GalacticBnB.</p><p>This is your order confirmation. Please save this for future reference.</p><p>Reservation details:</p><p><strong>Staying at:</strong> ' + home.name + '</p><p><strong>Host:</strong> ' + host.name + '</p><p><strong>Price:</strong> ' + transaction.price + '</p><p><strong>Check-in:</strong> ' + moment(res.startDate).format("MM/DD/YYYY") + '</p><p><strong>Checkout:</strong> ' + moment(res.endDate).format("MM/DD/YYYY") + '</p><p>We hope you enjoy your stay at ' + home.name + '!</p><p>Sincerely,</p><p>The GalacticBnB Team</p>'
         }
         transporter.sendMail(mailOptions, function (err, res) {
             if(err){

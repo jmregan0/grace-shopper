@@ -22,9 +22,13 @@ export const getAvailabilityById = homeId => {
 
 export const updateAvailability = date => {
   return dispatch => {
-    axios.put(`/api/availability/${date.id}`)
-    .then(res => {
-      dispatch(makeUnavailable(res.data))
+    console.log('here!')
+    axios.put(`/api/availability/${date}`, {status: 'reserved'})
+    .then(res => res.data)
+    .then(updatedDate => {
+      console.log('updatedDate in availability', updatedDate)
+      dispatch(makeUnavailable(updatedDate))
     })
+    .catch(err => console.error(err))
   }
 }

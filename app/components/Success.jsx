@@ -3,52 +3,10 @@ import axios from 'axios'
 import { Link } from 'react-router'
 import { updateAvailability } from '../action-creators/availability'
 
-let dummyData = [
-  [{
-    date: 'July 5, 2017',
-    guest_cart_items: {
-      cart_id: 1,
-      availability_id: 4
-    },
-    home: {
-      description: 'Yodas hut was...',
-      excerpt: 'Yodas hut...',
-      host_id: 3,
-      id: 1,
-      imageUrl: 'https://lumiere-a.akamaihd.net/v1/images/yodas-hut_a3d1133d.jpeg?region=0%2C75%2C1560%2C880&width=768',
-      location: 'Dagobah',
-      name: "Yoda's Hut",
-      price: 150,
-    },
-    home_id: 1,
-    id: 4
-  }, {
-    date: 'July 6, 2017',
-    guest_cart_items: {
-      cart_id: 1,
-      availability_id: 6
-    },
-    home: {
-      description: 'Yodas hut was...',
-      excerpt: 'Yodas hut...',
-      host_id: 3,
-      id: 1,
-      imageUrl: 'https://lumiere-a.akamaihd.net/v1/images/yodas-hut_a3d1133d.jpeg?region=0%2C75%2C1560%2C880&width=768',
-      location: 'Dagobah',
-      name: "Yoda's Hut",
-      price: 150,
-    },
-    home_id: 1,
-    id: 6
-  }],
-  []
-]
-
 const Success = (props) => {
   const cart = props.cart
   const userId = (props.user && props.user.id) || null
-  console.log('props', props)
-  console.log('cart in props', cart)
+  cart.map(reservation => props.reserveDate(reservation.id))
   return (
     <div className = "container">
     <h1>Thank you for your reservation!</h1>
