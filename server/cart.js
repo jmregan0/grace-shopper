@@ -19,13 +19,10 @@ module.exports = require('express').Router()
     Availability.findAll({
         order: 'id ASC',
         where: {
-            // date:info.startDate,
+            
             date: {
                 $between: [rb.startDate, rb.endDate],
-                // $or: {
-                //   $eq: moment(info.startDate).format("MMMM D YYYY"),
-                // $eq: moment(info.endDate).format("MMMM D YYYY"),
-                // }
+
             },
             home_id: rb.homeId,
         },
@@ -39,7 +36,7 @@ module.exports = require('express').Router()
         })
        
         if (req.session.cart) {
-            // console.log("line 33", req.session.cart.length)
+          
             req.session.cart = req.session.cart.concat(avails);
 
         } else {
@@ -56,51 +53,6 @@ module.exports = require('express').Router()
 
 .get('/sessioncart', (req, res, next) => {
 
-    // var arr = [];
-    // // console.log("from api/cart/sessionsuser", req.session)
-    // if (req.session.cart.length !== 0) {
-    //     // console.log("GET ROUTE SESSION CART", req.session)
-
-    //     var info = req.session.cart;
-    //     var start = [info[0].startDate];
-
-
-    //     info = info.map(info => {
-
-    //         return Availability.findAll({
-    //             order: 'id ASC',
-    //             where: {
-    //                 // date:info.startDate,
-    //                 date: {
-    //                     $between: [info.startDate, info.endDate],
-    //                     // $or: {
-    //                     //   $eq: moment(info.startDate).format("MMMM D YYYY"),
-    //                     // $eq: moment(info.endDate).format("MMMM D YYYY"),
-    //                     // }
-    //                 },
-    //                 home_id: info.homeId,
-    //             },
-    //             include: [
-    //                 { model: Homes }
-    //             ]
-    //         })
-    //     })
-
-    //     Promise.all(info)
-    //         .then((avails) => {
-
-    //             if (avails.length > 1) {
-    //                 var availsArr = [].concat.apply(avails[0][0], avails.slice(1));
-    //             } else {
-    //                 var availsArr = avails[0];
-    //             }
-
-    //             res.status(200).json(availsArr);
-    //         })
-
-    // } else {
-    //     res.send([])
-    // }
     var availIds = req.session.cart;
     var avails = availIds.map((availId)=>{
         return Availability.findOne({
@@ -119,48 +71,13 @@ module.exports = require('express').Router()
 })
 
 .delete('/sessioncart', (req, res, next) => {
-    console.log("ATTEMPTING TO DELETE")
+    
     req.session.cart = [];
     res.sendStatus(203)
 })
 
 .post('/sync/:id', (req, res, next) => {
 
-    // var availAbbrev = req.session.cart;
-    // Cart.findOne({
-    //         where: { user_id: req.params.id }
-    //     })
-    //     .then(cart => {
-
-    //         var availProm = availAbbrev.map(avail => {
-
-    //             return Availability.findAll({
-    //                     order: 'id ASC',
-    //                     where: {
-    //                         date: {
-    //                             $between: [avail.startDate, avail.endDate]
-    //                         },
-    //                         home_id: avail.homeId,
-    //                     }
-
-    //                 })
-    //                 .then((avails) => {
-    //                     cart.addAvailabilities(avails)
-    //                 })
-    //         })
-
-    //         Promise.all(availProm)
-    //             .then(() => {
-    //                 Cart.findOne({
-    //                         where: { user_id: req.params.id }
-    //                     })
-    //                     .then((cart) => {
-    //                         req.session.cart = [];
-    //                         res.status(200).json(cart)
-    //                     })
-    //             })
-
-    //     })
 
     var availIds = req.session.cart;
     var avails = availIds.map((availId)=>{
