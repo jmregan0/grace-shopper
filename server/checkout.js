@@ -1,8 +1,5 @@
 'use strict'
 
-const keyPublishable = 'pk_test_WRJ7AaA6RcwK9dE91Unm7hZn';
-const keySecret = 'sk_test_lnT8LELeRNPLb6ImwXIu9RnP';
-
 const stripe = require("stripe")(keySecret);
 const db = require('APP/db');
 const { mustBeLoggedIn, forbidden } = require('./auth.filters');
